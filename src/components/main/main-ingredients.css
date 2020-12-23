@@ -1,0 +1,50 @@
+.main-ingredients {
+  margin-top: 50px;
+  width: 800px;
+  margin-left: 200px;
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: column wrap;
+}
+
+.main-ingredient {
+  border: 6px solid rgba(88, 132, 173);
+  width: 10em;
+  height: 3em;
+  border-radius: 20px;
+  text-align: center;
+  padding: 0px px;
+  margin-bottom: 2em;
+  font-size: 15px;
+  transition: all .3s cubic-bezier(.77,0,.175,1);
+}
+
+.main-ingredient:hover {
+  border: 6px solid rgba(88, 132, 173);
+  background-color: rgba(88, 132, 173);
+  color: white;
+  width: 10em;
+  height: 3em;
+  border-radius: 20px;
+  text-align: center;
+  padding: 0px px;
+  margin-bottom: 2em;
+  font-size: 15px;
+  transition: all .3s cubic-bezier(.77,0,.175,1);
+}
+
+.main-ingredient-clicked {
+  border: 6px solid rgba(88, 132, 173);
+  background-color: rgba(88, 132, 173);
+  color: white;
+  width: 10em;
+  height: 3em;
+  border-radius: 20px;
+  text-align: center;
+  padding: 0px px;
+  margin-bottom: 2em;
+  font-size: 15px;
+  transition: all .3s cubic-bezier(.77,0,.175,1);
+}

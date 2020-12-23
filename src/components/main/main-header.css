@@ -1,0 +1,39 @@
+.main-header {
+  height: 100px;
+}
+
+.main-header-logo {
+  position: relative;
+  width: 150px;
+  height: auto;
+  left: -510px;
+}
+
+.main-header-bar {
+  position: relative;
+  border: 0.3px solid rgb(56, 56, 56);
+  width: 63em;
+  left: 160px;
+  top: -12px;
+}
+
+.main-header-login {
+  position: relative;
+  left: 1045px;
+  top: -40px;
+  width: 10em;
+  font-size: 20px;
+  color: rgba(88, 132, 173);
+  cursor: pointer;
+}
+
+.main-header-user {
+  position: relative;
+  left: 1045px;
+  top: -40px;
+  width: 10em;
+  font-size: 20px;
+  color: rgba(88, 132, 173);
+  cursor: pointer;
+}
+
