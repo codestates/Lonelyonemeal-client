@@ -1,0 +1,29 @@
+.main-chefContainer {
+    position: absolute;
+    top: 20vh;
+    left: 40vw;
+  }
+  
+  .main-chef {
+    width: auto;
+    height: 50vh;
+    margin-bottom: 3rem;
+  }
+  
+  .main-chefContainer-small {
+    position: absolute;
+    top: 56vh;
+    left: 60vw;
+    transition: all .85s cubic-bezier(.77,0,.175,1);
+  }
+  
+  .main-chef-small {
+    position: relative;
+    width: auto;
+    height: 45vh;
+    margin-bottom: -20rem;
+  }
+  
+  .main-chefsTalk-small {
+    margin-right: 25rem;
+  }
