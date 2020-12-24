@@ -1,0 +1,87 @@
+.back{
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    background-color: #3f370B;
+    height: 100vh;
+}
+.loginContainer{
+    display: flex;
+    /* flex-direction: column;
+    flex-wrap: nonwrap; */
+    flex-flow: column nowrap;
+
+    align-items: center;
+    border: #f1d42a solid 7px;
+    background-color: #FFFFF0;
+    Width: 332px;
+    Height: 435px;
+    border-radius: 54px;  
+     
+}
+.middleContainer{
+    display: flex;
+    /* flex-direction: column;
+    flex-wrap: nonwrap; */
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    border-radius: 54px; 
+    
+    background-color: #FFFFF0;
+    Width: 332px;
+    Height: 400px;
+}
+.inputBox{
+    Width: 198px;
+    Height: 26px;
+    border: none;
+    border-radius: 5px;
+    background-color: #EEEAC9;
+}
+
+.button{
+    Width : 94px;
+    Height: 26px;
+    border: none;
+    border-radius: 5px;
+    background-color: #F1D42A;
+    font-size: 10px;
+}
+.block{
+    height: 20px;
+}
+.go{
+    width: 141px;
+    height: 80px;
+}
+.block1{
+    height: 30px;
+}
+.but{
+    border-radius: 5px;
+    border: none;
+}
+.but:hover{
+    background-color: #F1D42A;
+    border: none;
+
+}
+.ex{
+    font-size: 10px;   
+    font-weight: 100;
+}
+.text{
+    font-size: 11px;
+}
+.google{
+    display: inline;
+    width: 40px;
+    height: 40px;
+}
+.github{
+    display: inline;
+    width: 40px;
+    height: 40px;
+}

@@ -1,27 +1,23 @@
-body{
+.wrap{
     display: flex;
-    height: 100vh;
     background-color: #F1D42A;
-    flex-wrap: wrap;
-    align-items: center;
+    flex-flow: column nowrap;
     justify-content: center;
-  }
-  .item{
-    display: flex;
-    width: 100%;
-    height: 100%;
     align-items: center;
-    justify-items: center;
-    
+    height: 100vh;
   }
+
   .simbol{
   width: 262px;
   height: 248px;
   transition: all .85s cubic-bezier(.77,0,.175,1);
   }
   .simbol:hover {
-  width: 362px;
-  height: 348px;
+  width: 562px;
+  height: 548px;
   transition: all .85s cubic-bezier(.77,0,.175,1);
+  }
+  .simbol:hover{
+    transform: rotate( 360deg );
   }
   
