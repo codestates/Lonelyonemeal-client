@@ -1,42 +1,59 @@
 import { Component } from 'react';
 import './App.css';
 import { withRouter, Route, Switch, Redirect } from 'react-router-dom'
-import Intro from "./components/main/Intro"
-import Signin from "./components/user/Signin"
-import Signup from "./components/user/Signup"
+import Intro from "./components/main/intro"
+import Signin from "./components/user/signin"
+import Signup from "./components/user/signup"
+import Main from "./components/main/main"
+import Openning from "./components/main/openning"
 
 class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      introClicked: false,
-      
-
+      isIntro: true,
+      isOpenning: true,
     }
-    this.handleIntroClicked = this.handleIntroClicked.bind(this)
+    this.handleIntroClicked = this.handleIntroClicked.bind(this);
+    this.handleOpenningClicked = this.handleOpenningClicked.bind(this);
   }
 
   handleIntroClicked = () => {
     this.setState({
-      introClicked: true
+      isIntro: false
     })
     this.props.history.push("/")
   }
+
+  handleOpenningClicked = () => {
+    this.setState({
+      isOpenning: false
+    })
+    this.props.history.push("/")
+  }
+
   render() {
+    const {isOpenning, isIntro} = this.state;
     return (
       <div className="App" >
         <Switch>
           <Route exact path='/main' render={() => <Main />} />
           <Route exact path='/intro' render={() => <Intro handleIntroClicked={this.handleIntroClicked} />} />
-          <Route exact path='/signin'render = {()=><Signin/>} />
-          <Route exact path='/signup'render = {()=><Signup/>} />
+          <Route exact path='/signin' render = {() => <Signin/>} />
+          <Route exact path='/signup' render = {() => <Signup/>} />
+          <Route exact path='/openning' render = {() => <Openning isOpenning={isOpenning} handleOpenningClicked={this.handleOpenningClicked}/>} />
           <Route
           path = '/'
-          render ={()=>{
-            if(this.state.introClicked){
-              return <Redirect to = '/signin'/>
+          render = {() => {
+            if(!isIntro && isOpenning) {
+              return <Redirect to = '/openning' />
             }
-            return <Redirect to = '/intro'/>
+            else if(!isIntro && !isOpenning) {
+              return <Redirect to = '/main' />
+            }
+            else {
+              return <Redirect to = '/intro' />
+            }
           }}
           />
         </Switch>
