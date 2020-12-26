@@ -44,7 +44,18 @@ class Signin extends Component {
       })
       .then(res => {
         console.log(res.data);
-        this.props.loginHandler(res.data.username); // <----- 응답으로 유저네임정도 보내줬음 좋겠음.
+        return (
+          axios({
+            method: 'GET',
+            url: 'http://onemeal.site/users/userinfo',
+            headers: { 'Content-Type': 'application/json' },
+            withCredentials: true,
+          })
+        )
+      })
+      .then(res => {
+        console.log(res.data.userInfo.username);
+        this.props.loginHandler(res.data.userInfo.username);
       })
       .catch(err => {
         console.log(err);
