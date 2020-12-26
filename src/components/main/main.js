@@ -48,12 +48,12 @@ class Main extends Component {
 
 
   render() {
-    const {chefsMessage, isLogin, isLoginModalOpen} = this.state;
+    const {chefsMessage, isLogin, isLoginModalOpen, username} = this.state;
     return(
       <div className='main-wrap'>
         <Chef chefsMessage={chefsMessage} />   
         <div className='main-main'>
-          <MainHeader isLogin={isLogin} loginModalHandler={this.loginModalHandler}/>
+          <MainHeader isLogin={isLogin} username={username} loginModalHandler={this.loginModalHandler}/>
           <MainIngre />
           <button className='main-submit' onClick={this.getOneMeal}>셰프에게 추천받기</button>
         </div>
