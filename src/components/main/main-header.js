@@ -8,7 +8,7 @@ function MainHeader(props) {
       <div className='main-header-bar'></div>
       {props.isLogin ?
         <div className='main-header-user'>{`${props.userinfo.name}님 환영합니다!`}</div> :
-        <div className='main-header-login'>로그인</div>
+        <div className='main-header-login' onClick={props.loginModalHandler}>로그인</div>
       }
     </header>
   )

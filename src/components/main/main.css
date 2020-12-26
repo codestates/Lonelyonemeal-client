@@ -6,61 +6,14 @@ body {
   overflow: hidden;
 }
 
-.dummy-mypage {
-  position: absolute;
-  background-color: rgba(88, 132, 173);
-  width: 100vw;
-  height: 100vh;
-}
-
-.main-pieaceOfMypage {
-  position: absolute;
-  top: 15vh;
-  left: 0px;
-  width: 0; 
-  height: 0; 
-  border-top: 300px solid transparent;
-  border-bottom: 300px solid transparent;
-  border-left: 70px solid rgba(88, 132, 173);
-  transition: all .45s cubic-bezier(.77,0,.175,1);
-}
-
-.main-pieaceOfMypage:hover {
-  position: absolute;
-  top: 15vh;
-  left: 0px;
-  width: 0; 
-  height: 0; 
-  border-top: 300px solid transparent;
-  border-bottom: 300px solid transparent;
-  border-left: 100px solid rgba(88, 132, 173);
-  transition: all .45s cubic-bezier(.77,0,.175,1);
-}
-
 .main-wrap {
-  position: relative;
   background-color: #F1D42A;
   width: 100vw;
   height: 100vh;
   text-align: center;
   display: flex;
   justify-content: center;
-  transition: all .85s cubic-bezier(.77,0,.175,1);
-  transform: translate(0%)
 }
-
-.main-wrap-moved {
-  position: relative;
-  background-color: #F1D42A;
-  width: 100vw;
-  height: 100vh;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  transition: all .85s cubic-bezier(.77,0,.175,1);
-  transform: translate(100%)
-}
-
 
 /* ------ main --------*/
 
