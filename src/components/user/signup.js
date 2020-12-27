@@ -30,7 +30,7 @@ class Signup extends Component {
     else {
       axios({
         method: 'POST',
-        url: 'http://onemeal.site/users/signup',
+        url: 'https://onemeal.site/users/signup',
         headers: { 'Content-Type': 'application/json' },
         withCredentials: true,
         data: { email: email, username: username, password: password }

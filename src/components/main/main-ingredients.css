@@ -1,8 +1,7 @@
 .main-ingredients {
   margin-top: 50px;
-  width: 800px;
-  margin-left: 200px;
-  height: 400px;
+  width: 60vw;
+  height: 45vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -10,94 +9,93 @@
 }
 
 .main-ingredient {
-  border: 6px solid rgba(88, 132, 173);
+  border: 5px solid rgba(88, 132, 173);
   width: 10em;
   height: 3em;
   border-radius: 20px;
-  text-align: center;
-  padding: 0px px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin-bottom: 2em;
-  font-size: 15px;
+  font-size: 1em;
+  font-weight: 700;
   transition: all .3s cubic-bezier(.77,0,.175,1);
 }
 
 .main-ingredient:hover {
-  border: 6px solid rgba(88, 132, 173);
+  border: 5px solid rgba(88, 132, 173);
   background-color: rgba(88, 132, 173);
   color: white;
   width: 10em;
   height: 3em;
   border-radius: 20px;
-  text-align: center;
-  padding: 0px px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin-bottom: 2em;
-  font-size: 15px;
+  font-size: 1em;
+  font-weight: 700;
   transition: all .3s cubic-bezier(.77,0,.175,1);
 }
 
 .main-ingredient-clicked {
-  border: 6px solid rgba(88, 132, 173);
+  border: 5px solid rgba(88, 132, 173);
   background-color: rgba(88, 132, 173);
   color: white;
   width: 10em;
   height: 3em;
   border-radius: 20px;
-  text-align: center;
-  padding: 0px px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin-bottom: 2em;
-  font-size: 15px;
+  font-size: 1em;
+  font-weight: 700;
   transition: all .3s cubic-bezier(.77,0,.175,1);
 }
 
 @media all and (max-width:767px) {
   .main-ingredients {
-    margin-top: 5vh;
-    width: 80vw;
-    margin-left: 10vw;
-    height: 400px;
+    margin-top: 50px;
+    width: 60vw;
+    height: 45vh;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-flow: column wrap;
   }
-
+  
   .main-ingredient {
-    border: 3px solid rgba(88, 132, 173);
-    width: 20vw;
-    height: 3vh;
-    border-radius: 5px;
-    text-align: center;
-    padding: 0px px;
-    margin-bottom: 2vh;
-    font-size: 18px;
-    transition: all .3s cubic-bezier(.77,0,.175,1);
+    border: 2px solid rgba(88, 132, 173);
+    width: 7em;
+    height: 2em;
+    border-radius: 10px;
+    margin-bottom: 1em;
+    font-size: 0.8em;
+    font-weight: 500;
   }
   
   .main-ingredient:hover {
-    border: 3px solid rgba(88, 132, 173);
     background-color: rgba(88, 132, 173);
     color: white;
-    width: 20vw;
-    height: 3vh;
-    border-radius: 5px;
-    text-align: center;
-    padding: 0px px;
-    margin-bottom: 2vh;
-    font-size: 18px;
-    transition: all .3s cubic-bezier(.77,0,.175,1);
+    border: 2px solid rgba(88, 132, 173);
+    width: 7em;
+    height: 2em;
+    border-radius: 10px;
+    margin-bottom: 1em;
+    font-size: 0.8em;
+    font-weight: 500;
   }
   
   .main-ingredient-clicked {
-    border: 3px solid rgba(88, 132, 173);
     background-color: rgba(88, 132, 173);
     color: white;
-    width: 20vw;
-    height: 3vh;
-    border-radius: 5px;
-    text-align: center;
-    padding: 0px px;
-    margin-bottom: 2vh;
-    font-size: 18px;
-    transition: all .3s cubic-bezier(.77,0,.175,1);
+    border: 2px solid rgba(88, 132, 173);
+    width: 7em;
+    height: 2em;
+    border-radius: 10px;
+    margin-bottom: 1em;
+    font-size: 0.8em;
+    font-weight: 500;
   }
 }

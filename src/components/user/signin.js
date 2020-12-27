@@ -37,7 +37,7 @@ class Signin extends Component {
     else {
       axios({
         method: 'POST',
-        url: 'http://onemeal.site/users/login',
+        url: 'https://onemeal.site/users/login',
         headers: { 'Content-Type': 'application/json' },
         withCredentials: true,
         data: { email: email, password: password }
@@ -47,7 +47,7 @@ class Signin extends Component {
         return (
           axios({
             method: 'GET',
-            url: 'http://onemeal.site/users/userinfo',
+            url: 'https://onemeal.site/users/userinfo',
             headers: { 'Content-Type': 'application/json' },
             withCredentials: true,
           })
