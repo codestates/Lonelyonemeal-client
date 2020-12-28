@@ -10,13 +10,12 @@ class Result extends Component {
         this.state = {
             foodName: "",
             foodImg: ""
-
         }
         this.signupRequestHandler = this.signupRequestHandler.bind(this);
     }
 
   
-
+    /*
     signupRequestHandler() {
 
         axios({
@@ -33,13 +32,14 @@ class Result extends Component {
                 console.log(err);
             })
     }
+    */
 
 
     render() {
         return (
             <div className="back">
                 <div className='loginContainer'>
-                    <img className='X' src={x} onClick={this.props.loginModalHandler} />
+                    <img className='X' src={x} onClick={this.props.resultModalHandler} />
                     <div className="middleContainer">
                         <div className="title">셰프의 선택은</div>
                         <div className="resultName">계란 볶음밥</div>
