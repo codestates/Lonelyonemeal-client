@@ -8,7 +8,7 @@ class MainIngre extends Component {
         ['감자','potato'],['계란','egg'],['밥','rice'],['파','g_onion'],
         ['양파','onion'],['두부','tofu'],['스팸','spam'],['식빵','bread'],
         ['고추장','gochujang'],['돼지고기','pork'],['치킨','chicken'],['참치','tuna'],
-        ['밀가루','flour'],['김치','kimchi'],['누텔라','nutella'],['포카칩','pocachip']
+        ['밀가루','flour'],['김치','kimchi'],['깻잎','sesame'],['포카칩','pocachip']
       ],
       shoppingBag: []  /* 재료 클릭 시 쇼핑백에 담기게 되며, 재 클릭시 쇼핑백에서 사라짐 */
     }

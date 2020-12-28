@@ -30,7 +30,7 @@ class Signup extends Component {
     else {
       axios({
         method: 'POST',
-        url: 'http://onemeal.site/users/signup',
+        url: 'https://onemeal.site/users/signup',
         headers: { 'Content-Type': 'application/json' },
         withCredentials: true,
         data: { email: email, username: username, password: password }
@@ -82,6 +82,8 @@ class Signup extends Component {
               type='password' />
             <div className='block' />
             <button className="button" onClick={this.signupRequestHandler}>회원가입</button>
+            <div className='block' />
+            <div className="alert-box">{this.state.errorMessage}</div>
             <div className='block' />
             <span className="text">
               아이디가 있으신가요?
