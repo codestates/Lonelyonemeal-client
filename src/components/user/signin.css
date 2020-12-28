@@ -1,0 +1,204 @@
+.back {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.8);
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loginContainer{
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  border: #f1d42a solid 10px;
+  background-color: #FFFFF0;
+  width: 332px;
+  height: 435px;
+  border-radius: 54px;
+}
+
+.middleContainer{
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  border-radius: 54px; 
+  background-color: #FFFFF0;
+  Width: 332px;
+  Height: 400px;
+}
+
+.inputBox{
+  Width: 198px;
+  Height: 26px;
+  border: none;
+  border-radius: 5px;
+  background-color: #EEEAC9;
+}
+
+.button{
+  Width : 94px;
+  Height: 26px;
+  border: none;
+  border-radius: 5px;
+  background-color: #F1D42A;
+  font-size: 10px;
+  cursor: pointer;
+}
+
+.block{
+  height: 2.1vh;
+}
+
+.go{
+  margin-bottom: 1vh;
+  max-width: 140px;
+  width: 100vw;
+}
+
+.block1{
+  height: 3vh;
+}
+
+.text2 {
+  text-decoration-line: underline;
+  color: rgba(88, 132, 173);
+  display: inline-block;
+  font-size: 1em;
+  cursor: pointer;
+}
+
+.text2:hover {
+  display: inline-block;
+  border-radius: 5px;
+  background-color: #F1D42A;
+  border: none;
+}
+
+.ex{
+  font-size: 0.6em;   
+  font-weight: 100;
+}
+
+.text{
+  display: inline-block;
+  font-size: 0.7em;
+}
+
+.google{
+  display: inline;
+  width: 40px;
+  height: 40px;
+}
+
+.github{
+  display: inline;
+  width: 40px;
+  height: 40px;
+}
+
+.X {
+  position: relative;
+  filter: grayscale(10%);
+  width: 10px;
+  top: 2em;
+  left: 8em;
+  cursor: pointer;
+}
+
+@media all and (min-width:1701px) {
+  .loginContainer{
+    width: 382px;
+    height: 500px;
+  }
+
+  .middleContainer{
+    width: 360px;
+    height: 450px;
+  }
+  
+  .inputBox{
+    width: 220px;
+    height: 30px;
+  }
+  
+  .button{
+    width : 110px;
+    height: 30px;
+    font-size: 14px;
+  }
+  
+  .block{
+    height: 2.5vh;
+  }
+  
+  .go{
+    max-width: 160px;
+  }
+  
+  .block1{
+    height: 4vh;
+  }
+  
+  .text2:hover {
+    display: inline-block;
+    border-radius: 5px;
+    background-color: #F1D42A;
+    border: none;
+  }
+  
+  .ex{
+    font-size: 0.8em;   
+    font-weight: 200;
+  }
+  
+  .text{
+    font-size: 0.8em;
+  }
+  
+  .google{
+    width: 60px;
+    height: 60px;
+  }
+  
+  .github{
+    width: 60px;
+    height: 60px;
+  }
+  
+  .X {
+    left: 9em;
+  }
+}
+
+.alert-box{
+  font-size: 10px;
+  color: red;
+}
+.title{
+font-size: 20px;
+}
+.resultImg{
+  background-color: red;
+  width: 250px;
+  height: 210px;
+  margin-top: 30px;
+}
+.resultName{
+  font-size: 26px;
+  font-weight: 850;
+  margin-top: 10px;
+  color: #948636;
+}
+.save{
+  margin-top: 30px;
+  font-weight: 800;
+  font-size: 20px;
+  color: #A09348;
+}
+.goMyPage{
+  font-size: 15px;
+  color: #5884AD;
+}

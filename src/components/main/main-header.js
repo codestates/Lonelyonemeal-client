@@ -7,8 +7,8 @@ function MainHeader(props) {
       <img className='main-header-logo' src={logo} alt=''/>
       <div className='main-header-bar'></div>
       {props.isLogin ?
-        <div className='main-header-user'>{`${props.userinfo.name}님 환영합니다!`}</div> :
-        <div className='main-header-login'>로그인</div>
+        <div className='main-header-user'>{`${props.username}님 환영합니다!`}</div> :
+        <div className='main-header-login' onClick={props.loginModalHandler}>로그인</div>
       }
     </header>
   )
