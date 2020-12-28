@@ -43,15 +43,25 @@ class Main extends Component {
 
   /* 셰프에게 추천받기 버튼 서버통신 함수 */
   getOneMeal() {
+    fetch('https://onemeal.site:443/users/userinfo', {
+      method: 'get',
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'include'
+    })
+    .then(res => {
+      console.log(res.data)
+    })
+    /*
     axios({
       method: 'get',
-      url: 'https://onemeal.site/',
+      url: 'https://onemeal.site:443/users/userinfo',
       headers: { 'Content-Type': 'application/json' },
       withCredentials: true
     })
-      .then(res => {
-        console.log(res)
-      })
+    .then(res => {
+      console.log(res.data)
+    })
+    */
   }
 
   /* 로그인 상태 변경 함수 */

@@ -51,31 +51,38 @@ class Signin extends Component {
       })
     }
     else {
+      let result = await axios.post("https://onemeal.site/login",{email: this.state.email , password : this.state.password},{withCredentials: true})
+      console.log(result)
+      this.props.loginHandler(result.data.username)
+      // fetch('https://onemeal.site:443/users/login', {
+      //   method: 'post',
+      //   headers: { 'Content-Type': 'application/json' },
+      //   body: JSON.stringify({ email: email, password: password }),
+      //   credentials: 'include'
+      // })
+      // .then(res => res.data)
+      // .then(data => {
+      //   this.props.loginHandler(data.username)
+      // })
+      // .catch(err => {
+      //   console.log(err)
+      // })
+      /*
       axios({
         method: 'POST',
-        url: 'http://onemeal.site/users/login',
+        url: 'https://onemeal.site:443/users/login',
         headers: { 'Content-Type': 'application/json' },
         withCredentials: true,
         data: { email: email, password: password }
       })
-        .then(res => {
-          console.log(res.data);
-          return (
-            axios({
-              method: 'GET',
-              url: 'https://onemeal.site/users/userinfo',
-              headers: { 'Content-Type': 'application/json' },
-              withCredentials: true,
-            })
-          )
-        })
-        .then(res => {
-          console.log(res.data.userInfo.username);
-          this.props.loginHandler(res.data.userInfo.username);
-        })
-        .catch(err => {
-          console.log(err);
-        })
+      .then(res => res.data)
+      .then(data => {
+        this.props.loginHandler(data.username)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+      */
     }
   }
 
