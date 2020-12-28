@@ -6,17 +6,23 @@ import Signin from "./components/user/signin"
 import Signup from "./components/user/signup"
 import Main from "./components/main/main"
 import Openning from "./components/main/openning"
+import Result from "./components/user/result"
+
 
 class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
+
       isIntro: true,
       isOpenning: true,
+     
     }
     this.handleIntroClicked = this.handleIntroClicked.bind(this);
     this.handleOpenningClicked = this.handleOpenningClicked.bind(this);
   }
+
+
 
   handleIntroClicked = () => {
     this.setState({
@@ -42,6 +48,7 @@ class App extends Component {
           <Route exact path='/signin' render = {() => <Signin/>} />
           <Route exact path='/signup' render = {() => <Signup/>} />
           <Route exact path='/openning' render = {() => <Openning isOpenning={isOpenning} handleOpenningClicked={this.handleOpenningClicked}/>} />
+          <Route exact path='/result' render ={()=> <Result/>}/>
           <Route
           path = '/'
           render = {() => {

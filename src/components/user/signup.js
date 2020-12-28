@@ -83,6 +83,8 @@ class Signup extends Component {
             <div className='block' />
             <button className="button" onClick={this.signupRequestHandler}>회원가입</button>
             <div className='block' />
+            <div className="alert-box">{this.state.errorMessage}</div>
+            <div className='block' />
             <span className="text">
               아이디가 있으신가요?
               <span className="text2" onClick={this.props.handleSignupView}>로그인</span>
