@@ -14,35 +14,27 @@ class Mypage extends Component {
       isLogin: true,
       userInfo: {
         username: '',
-        foodImg: '',
-        foodName: '',
-        link: ''
+        email: '',
+        password: ''
       }
     };
     this.getUserInfo = this.getUserInfo.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
   }
 
+  componentDidMount() {
+    this.getUserInfo();
+  }
+
   /* 유저정보 불러오는 함수 */
-  getUserInfo() {
-    axios({
-      method: 'GET',
-      url: 'https://onemeal.site/users/userinfo',
-      headers: { 'Content-Type': 'application/json' },
-      withCredentials: true
-    })
-    .then(res => res.data.userInfo)
-    .then(res => {
-      this.setState({
-        username: res.username,
-        foodImg: res.foodImg,
-        foodName: res.foodname,
-        link: res.link
-      });
-    })
-    .catch(err => {
-      console.log(err);
-    })
+  async getUserInfo() {
+    let userInfo = await axios.get('https://onemeal.site/users/userinfo', { withCredentials: true });
+    console.log(userInfo);
+    this.setState({
+      username: userInfo.data.data.username,
+      email: userInfo.data.data.email,
+      password: userInfo.data.data.password
+    });
   }
 
   /* 로그아읏 함수 */
@@ -54,9 +46,6 @@ class Mypage extends Component {
       withCredentials: true
     })
   }
-
-
-
 
   render() {
     const { isResultModalOpen, isLogin, userInfo } = this.state;
