@@ -1,6 +1,8 @@
 .main-header {
   height: 10vh;
+  width: 100vw;
   display: flex;
+  justify-content: center;
 }
 
 .main-header-logo {
@@ -9,17 +11,16 @@
 }
 
 .main-header-bar {
-  border-bottom: 0.3px solid rgb(56, 56, 56);
+  position: relative;
+  border-bottom: 2px solid rgb(56, 56, 56);
   width: 63vw;
-  left: 10.5em;
-  top: -0.8em;
 }
 
 .main-header-login {
-  position: relative;
-  left: -7vw;
-  top: 5vh;
-  width: 10em;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  margin: 1em;
   font-size: 1.2em;
   color: rgba(88, 132, 173);
   cursor: pointer;
@@ -27,11 +28,10 @@
 }
 
 .main-header-user {
-  position: relative;
-  float: right;
-  top: -2em;
-  left: -2em;
-  width: 10em;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  margin: 1em;
   font-size: 1.2em;
   color: rgba(88, 132, 173);
   cursor: pointer;
@@ -39,53 +39,38 @@
 }
 
 @media all and (min-width:768px) and (max-width:1024px) {
-  .main-header {
-    width: 90vw;
-  }
-
 }
 
 @media all and (max-width:767px) {
   .main-header {
-    position: relative;
-    left: 10vw;
-    width: 90vw;
-    height: 10vh;
-    display: flex;
+    height: 7vh;
+    background-color: rgba(88, 132, 173);
+    box-shadow: 1px 1px 5px 1px rgb(129, 129, 129);
   }
   
   .main-header-logo {
-    margin-top: 1vh;
-    width: 9em;
-    height: auto;
+    width: 4.8em;
+    margin: 0.4em;
   }
   
   .main-header-bar {
-    border-bottom: 1px solid rgb(56, 56, 56);
-    width: 63vw;
-    left: 10.5em;
+    border-bottom: none;
   }
   
   .main-header-login {
-    position: relative;
-    left: -7vw;
-    top: 5vh;
-    width: 10em;
-    font-size: 1.2em;
-    color: rgba(88, 132, 173);
-    cursor: pointer;
-    text-align: right;
+    position: absolute;
+    top: 45%;
+    margin: 0em;
+    font-size: 0.8em;
+    color: rgb(255, 255, 255);
+    text-decoration-line: underline;
   }
   
   .main-header-user {
-    position: relative;
-    float: right;
-    top: -2em;
-    left: -2em;
-    width: 10em;
-    font-size: 1.2em;
-    color: rgba(88, 132, 173);
-    cursor: pointer;
-    text-align: right;
+    position: absolute;
+    top: 45%;
+    margin: 0em;
+    font-size: 0.8em;
+    color: rgb(255, 255, 255);
   }
 }

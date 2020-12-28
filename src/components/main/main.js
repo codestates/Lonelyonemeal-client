@@ -44,7 +44,7 @@ class Main extends Component {
   /* 셰프에게 추천받기 버튼 서버통신 함수 */
   getOneMeal() {
     axios({
-      method: 'GET ',
+      method: 'get',
       url: 'https://onemeal.site/',
       headers: { 'Content-Type': 'application/json' },
       withCredentials: true

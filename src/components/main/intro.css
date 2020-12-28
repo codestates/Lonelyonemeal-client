@@ -37,12 +37,16 @@
     max-width: 350px;
     width: 50vw;
     transition: all .85s cubic-bezier(.77,0,.175,1);
+    animation: autoSpin 3s infinite linear;
   }
 
-  .simbol:hover {
-    max-width: 500px;
-    width: 80vw;
-    transition: all .85s cubic-bezier(.77,0,.175,1);
-    transform: rotate( 360deg );
+  @keyframes autoSpin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(359deg);
+    }
   }
+
 }
