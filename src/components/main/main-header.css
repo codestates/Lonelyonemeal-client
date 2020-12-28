@@ -32,9 +32,8 @@
   right: 0;
   bottom: 0;
   margin: 1em;
-  font-size: 1.2em;
-  color: rgba(88, 132, 173);
-  cursor: pointer;
+  font-size: 1.1em;
+  color: rgb(29, 29, 29);
   text-align: right;
 }
 

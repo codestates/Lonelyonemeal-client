@@ -1,0 +1,33 @@
+@import url("./mymenu.css");
+@import url("./myinfo.css");
+
+.my-wrap {
+  background-color: rgba(88, 132, 173);
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.my-container {
+  border: 5px solid red;
+  width: 60vw;
+  height: 60vh;
+  margin-top: 3vh;
+  display: flex;
+  flex-direction: row;
+}
+
+.my-logout-button {
+  border: none;
+  text-align: center;
+  width: 150px;
+  height: 50px;
+  border-radius: 10px;
+  margin-top: 10vh;
+  font-size: 15px;
+  font-weight: bold;
+  color: rgb(20, 20, 20);
+  background-color: #F1D42A;
+}

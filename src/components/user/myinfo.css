@@ -1,0 +1,18 @@
+.my-info-container {
+  border: 1px solid green;
+  width: 50%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.my-pic {
+  background-color: burlywood;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+}
+
+.my-name {
+  
+}
