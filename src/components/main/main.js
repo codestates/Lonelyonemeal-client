@@ -45,7 +45,7 @@ class Main extends Component {
   getOneMeal() {
     axios({
       method: 'get',
-      url: 'https://onemeal.site/',
+      url: 'https://onemeal.site/users/userinfo',
       headers: { 'Content-Type': 'application/json' },
       withCredentials: true
     })
