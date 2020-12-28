@@ -26,7 +26,7 @@ class Signin extends Component {
   }
 
   async githubLoginHandler() {
-    let result = await axios.post("https://onemeal.site/githubLogin", { withCredentials: true })
+    let result = await axios.get("https://onemeal.site/githubLogin", { withCredentials: true })
     let GITHUB_LOGIN_URL = `https://github.com/login/oauth/authorize?client_id=${result.client_id}`
     window.location.assign(GITHUB_LOGIN_URL)
   }
@@ -60,9 +60,7 @@ class Signin extends Component {
       })
       .then(res => res.data)
       .then(data => {
-        this.setState({
-          username: data.username
-        });
+        loginHandler(data.userInfo.username)
       })
       .catch(err => {
         console.log(err)

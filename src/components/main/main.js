@@ -49,9 +49,9 @@ class Main extends Component {
       headers: { 'Content-Type': 'application/json' },
       withCredentials: true
     })
-      .then(res => {
-        console.log(res)
-      })
+    .then(res => {
+      console.log(res.data)
+    })
   }
 
   /* 로그인 상태 변경 함수 */
