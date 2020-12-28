@@ -51,19 +51,22 @@ class Signin extends Component {
       })
     }
     else {
-      fetch('https://onemeal.site:443/users/login', {
-        method: 'post',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: email, password: password }),
-        credentials: 'include'
-      })
-      .then(res => res.data)
-      .then(data => {
-        this.props.loginHandler(data.username)
-      })
-      .catch(err => {
-        console.log(err)
-      })
+      let result = await axios.post("https://onemeal.site/login",{email: this.state.email , password : this.state.password},{withCredentials: true})
+      console.log(result)
+      this.props.loginHandler(result.data.username)
+      // fetch('https://onemeal.site:443/users/login', {
+      //   method: 'post',
+      //   headers: { 'Content-Type': 'application/json' },
+      //   body: JSON.stringify({ email: email, password: password }),
+      //   credentials: 'include'
+      // })
+      // .then(res => res.data)
+      // .then(data => {
+      //   this.props.loginHandler(data.username)
+      // })
+      // .catch(err => {
+      //   console.log(err)
+      // })
       /*
       axios({
         method: 'POST',
