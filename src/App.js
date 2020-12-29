@@ -53,7 +53,7 @@ class App extends Component {
           <Route exact path='/signin' render = {() => <Signin/>} />
           <Route exact path='/signup' render = {() => <Signup/>} />
           <Route exact path='/openning' render = {() => <Openning isOpenning={isOpenning} handleOpenningClicked={this.handleOpenningClicked}/>} />
-          <Route exact path='/result' render ={()=> <Result/>}/>
+          <Route exact path='/result' render ={()=> <Result />}/>
           <Route exact path='/mypage' render ={()=> <Mypage isLogin={isLogin} handleLogin={this.handleLogin}/>}/>
           <Route exact path='/share' render ={()=> <Share/>}/>
           <Route
