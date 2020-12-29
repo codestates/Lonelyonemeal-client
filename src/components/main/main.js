@@ -60,6 +60,7 @@ class Main extends Component {
       isLoginModalOpen: false,
       username: username
     });
+    this.props.handleLogin();
     // 상위 이즈로그인 변경
   }
 

@@ -8,10 +8,14 @@ class MyInfo extends Component {
       selectedUserImg: null,
       newUsername: null,
       newEmail: null,
-      newPassword: null
+      newPassword: null,
+      password2: null
     };
     this.handleImgChange = this.handleImgChange.bind(this);
     this.handleImgClick = this.handleImgClick.bind(this);
+    this.handlePasswordClick = this.handlePasswordClick.bind(this);
+    this.handleNameClick = this.handleNameClick.bind(this);
+    this.handleAnyThing = this.handleAnyThing.bind(this);
   }
 
   /* 로컬에서 선택한 이미지 스테이트에 담아두는 핸들링 함수 */
@@ -27,10 +31,57 @@ class MyInfo extends Component {
   }
 
   /* 서버에 이미지 업데이트 함수 */
-  handleImgClick() {
+  async handleImgClick() {
     const formData = new FormData();
     formData.append('file', this.state.selectedUserImg);
+    return axios.put('https://onemeal.site/users/userinfoup', { userImg: this.state.selectedUserImg }, { withCredentials: true })
+    .then(res => {
+      console.log(res.data);
+      alert('업로드 성공!');
+      this.props.getUserInfo();
+    })
+    .catch(err => {
+      console.log(err);
+      alert('업로드 실패!')
+    })
+  }
 
+  /* 서버에 이름 업데이트 함수 */
+  async handleNameClick() {
+    const formData = new FormData();
+    formData.append('file', this.state.selectedUserImg);
+    return axios.put('https://onemeal.site/users/userinfoup', { username: this.state.newUsername }, { withCredentials: true })
+    .then(res => {
+      console.log(res.data);
+      alert('업로드 성공!');
+      this.props.getUserInfo();
+    })
+    .catch(err => {
+      console.log(err);
+      alert('업로드 실패!')
+    })
+  }
+
+  /* 서버에 비밀번호 업데이트 함수 */
+  async handlePasswordClick() {
+    const {password, password2} = this.state;
+    const formData = new FormData();
+    formData.append('file', this.state.selectedUserImg);
+    if(password === password2) {
+      return axios.put('https://onemeal.site/users/userinfoup', { password: this.state.newPassword }, { withCredentials: true })
+      .then(res => {
+        console.log(res.data);
+        alert('업로드 성공!');
+        this.props.getUserInfo();
+      })
+      .catch(err => {
+        console.log(err);
+        alert('업로드 실패!')
+      })
+    }
+    else {
+      alert('비밀번호를 확인 해 주세요')
+    }
   }
 
   render() {
@@ -44,23 +95,23 @@ class MyInfo extends Component {
         <button className='btn-pic' onClick={this.handleImgClick}>변경</button>
         <div className='my-name'>
           <h1 className='my-info-list'>사용자 이름</h1>
-          <input type='text' className='my-name-disc' name='newUsername' value={userInfo.username ? userInfo.username : '김코딩'}></input>
+          <input type='text' className='my-name-disc' name='newUsername' defaultValue={userInfo.username} onChange={(e) => this.handleAnyThing(e)}></input>
         </div>
-        <button className='btn'>변경</button>
+        <button className='btn' onClick={this.handleNameClick}>변경</button>
         <div className='my-email'>
           <h1 className='my-info-list'>E-mail</h1>
-          <input type='text' className='my-email-disc' name='newEmail' value={userInfo.email ? userInfo.email : 'testtest@test.com'}></input>
+          <input type='text' className='my-email-disc' name='newEmail' defaultValue={userInfo.email} onChange={(e) => this.handleAnyThing(e)}></input>
         </div>
         <button className='btn'>변경</button>
         <div className='my-password'>
           <h1 className='my-info-list'>비밀번호</h1>
-          <input type='password' name='newPassword' placeholder='변경할 비밀번호를 입력하세요.'className='my-password-disc'></input>
+          <input type='password' name='newPassword' placeholder='변경할 비밀번호를 입력하세요.'className='my-password-disc' onChange={(e) => this.handleAnyThing(e)}></input>
         </div>
         <div className='my-password'>
           <h1 className='my-info-list'>비밀번호 확인</h1>
-          <input type='password' placeholder='비밀번호를 다시 입력하세요.'className='my-password-disc'></input>
+          <input type='password' name='password2' placeholder='비밀번호를 다시 입력하세요.'className='my-password-disc' onChange={(e) => this.handleAnyThing(e)}></input>
         </div>
-        <button className='btn'>변경</button>
+        <button className='btn' onClick={this.handlePasswordClick}>변경</button>
       </aside>
     );
   }
