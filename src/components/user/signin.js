@@ -51,7 +51,7 @@ class Signin extends Component {
       })
     }
     else {
-      let result = await axios.post("https://onemeal.site/users/login",{email: email , password : password},{withCredentials: true})
+      let result = await axios.post("https://onemeal.site/users/login",{email: email , password : password},{headers: { 'Content-Type': 'application/json'} ,withCredentials: true})
       console.log(result)
       this.props.loginHandler(result.data.data.username)
     }

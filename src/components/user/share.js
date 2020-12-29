@@ -18,7 +18,7 @@ class Share extends Component {
   
 
     async signupRequestHandler() {
-        let result = await axios.get("https://onemeal.site/resultrecipe",{ foodName: this.foodName, foodImg: this.foodImg },{withCredentials: true})
+        let result = await axios.get("https://onemeal.site/resultrecipe",{ foodName: this.foodName, foodImg: this.foodImg },{headers: { 'Content-Type': 'application/json'} ,withCredentials: true})
 
 
         // axios({
