@@ -7,7 +7,6 @@ class MyInfo extends Component {
     this.state = {
       selectedUserImg: null,
       newUsername: null,
-      newEmail: null,
       newPassword: null,
       password2: null
     };
@@ -25,7 +24,7 @@ class MyInfo extends Component {
     this.setState({ selectedUserImg: target })
   }
 
-  /* 이름, 이메일, 비밀번호 온체인지 핸들링 함수 */
+  /* 이름, 비밀번호 온체인지 핸들링 함수 */
   handleAnyThing(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
@@ -34,7 +33,13 @@ class MyInfo extends Component {
   async handleImgClick() {
     const formData = new FormData();
     formData.append('file', this.state.selectedUserImg);
-    return axios.put('https://onemeal.site/users/userinfoup', { userImg: this.state.selectedUserImg }, { withCredentials: true })
+    return fetch('https://onemeal.site/users/userimgup', {
+      method: 'put',
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'include',
+      body: JSON.stringify({ userImg: formData })
+    })
+    .then(res => res.json())
     .then(res => {
       console.log(res.data);
       alert('업로드 성공!');
@@ -47,36 +52,46 @@ class MyInfo extends Component {
   }
 
   /* 서버에 이름 업데이트 함수 */
-  async handleNameClick() {
-    const formData = new FormData();
-    formData.append('file', this.state.selectedUserImg);
-    return axios.put('https://onemeal.site/users/userinfoup', { username: this.state.newUsername }, { withCredentials: true })
-    .then(res => {
-      console.log(res.data);
-      alert('업로드 성공!');
-      this.props.getUserInfo();
-    })
-    .catch(err => {
-      console.log(err);
-      alert('업로드 실패!')
-    })
-  }
-
-  /* 서버에 비밀번호 업데이트 함수 */
-  async handlePasswordClick() {
-    const {password, password2} = this.state;
-    const formData = new FormData();
-    formData.append('file', this.state.selectedUserImg);
-    if(password === password2) {
-      return axios.put('https://onemeal.site/users/userinfoup', { password: this.state.newPassword }, { withCredentials: true })
+  handleNameClick() {
+    const {newUsername} = this.state;
+    return fetch('https://onemeal.site/users/userinfoup', {
+      method: 'put',
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'include',
+      body: JSON.stringify({ username: newUsername })
+      })
+      .then(res => res.json())
       .then(res => {
         console.log(res.data);
-        alert('업로드 성공!');
         this.props.getUserInfo();
+        alert('업로드 성공!');
       })
       .catch(err => {
         console.log(err);
-        alert('업로드 실패!')
+        alert('업로드 실패..');
+      })
+  }
+
+  /* 서버에 비밀번호 업데이트 함수 */
+  handlePasswordClick() {
+    const {newPassword, password2} = this.state;
+    if(newPassword === password2) {
+      const {newUsername} = this.state;
+      return fetch('https://onemeal.site/users/userinfoup', {
+      method: 'put',
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'include',
+      body: JSON.stringify({ username: newUsername })
+      })
+      .then(res => res.json())
+      .then(res => {
+        console.log(res.data);
+        this.props.getUserInfo();
+        alert('업로드 성공!');
+      })
+      .catch(err => {
+        console.log(err);
+        alert('업로드 실패..');
       })
     }
     else {
@@ -100,9 +115,8 @@ class MyInfo extends Component {
         <button className='btn' onClick={this.handleNameClick}>변경</button>
         <div className='my-email'>
           <h1 className='my-info-list'>E-mail</h1>
-          <input type='text' className='my-email-disc' name='newEmail' defaultValue={userInfo.email} onChange={(e) => this.handleAnyThing(e)}></input>
+          <div className='my-email-disc'>{userInfo.email}</div>
         </div>
-        <button className='btn'>변경</button>
         <div className='my-password'>
           <h1 className='my-info-list'>비밀번호</h1>
           <input type='password' name='newPassword' placeholder='변경할 비밀번호를 입력하세요.'className='my-password-disc' onChange={(e) => this.handleAnyThing(e)}></input>

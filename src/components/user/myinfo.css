@@ -21,11 +21,16 @@ button:focus {
   text-align: right;
 }
 
-.my-name-disc, .my-email-disc, .my-password-disc {
+.my-name-disc, .my-password-disc {
   background-color: rgba(88, 132, 173);
   border: 1px solid #F1D42A;
   border-radius: 5px;
   padding: 3px;
+}
+
+.my-email-disc {
+  display: block;
+  text-align: left;
 }
 
 .my-password-disc::placeholder{

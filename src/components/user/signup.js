@@ -50,6 +50,7 @@ class Signup extends Component {
       credentials: 'include',
       body: JSON.stringify({ email: email, username: username, password: password })
       })
+      .then(res => res.json())
       .then(res => {
         console.log(res.data);
         this.props.handleSignupView();

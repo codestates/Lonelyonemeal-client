@@ -22,7 +22,7 @@ class Signin extends Component {
     this.loginRequestHandler = this.loginRequestHandler.bind(this);
     this.handleSignupView = this.handleSignupView.bind(this);
     this.socialLoginHandler = this.githubLoginHandler.bind(this);
-
+    this.getUserInfo = this.getUserInfo.bind(this);
   }
 
   async githubLoginHandler() {
@@ -62,14 +62,39 @@ class Signin extends Component {
       credentials: 'include',
       body: JSON.stringify({email: email , password : password})
       })
+      .then(res => res.json())
       .then(res => {
         console.log(res.data);
-        this.props.loginHandler(res.data.data.username);
+        this.getUserInfo();
       })
       .catch(err => {
         console.log(err);
       })
     }
+  }
+
+  /* 유저인포 불러오는 함수 */
+  getUserInfo() {
+    /*
+    let result = await axios.get("https://onemeal.site/users/userinfo" , {withCredentials: true});
+    console.log(result);
+    console.log('와! 성공!');
+    */
+    fetch('https://onemeal.site/users/userinfo', {
+    method: 'get',
+    headers: { 'Content-Type': 'application/json' },
+    credentials: 'include'
+    })
+    .then(res => res.json())
+    .then(res => {
+      localStorage.setItem('userInfo', JSON.stringify(res.data));
+      this.props.loginHandler(res.data.username);
+      console.log(res.data);
+      console.log('와! 성공!');
+    })
+    .catch(err => {
+      console.log(err);
+    })
   }
 
   render() {
