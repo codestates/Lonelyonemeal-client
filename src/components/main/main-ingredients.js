@@ -15,6 +15,15 @@ class MainIngre extends Component {
     this.selectOrDeleteIngredient = this.selectOrDeleteIngredient.bind(this);
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if(prevState.shoppingBag.length !== this.state.shoppingBag.length) {
+      this.props.copyShoppingBag(this.state.shoppingBag); /* 상위 컴포넌트에 복사 */
+    }
+    else {
+      return;
+    }
+  }
+
   /* 재료버튼 클릭, 재클릭 핸들링 함수 */
   selectOrDeleteIngredient(e) {
     let target = e.target.textContent;
@@ -52,6 +61,7 @@ class MainIngre extends Component {
       e.target.classList.remove('main-ingredient-clicked');  /* 재료버튼 스타일을 클릭후 에서 클릭전 상태로 바꿈 */
       e.target.classList.add('main-ingredient');
     }
+    this.props.randomShefTalk();
   }
 
   render() {

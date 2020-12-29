@@ -42,7 +42,7 @@ class Signin extends Component {
   }
 
 
-  loginRequestHandler() {
+  async loginRequestHandler() {
     const { email, password } = this.state;
 
     if (email === "" || password === "") {
@@ -51,31 +51,9 @@ class Signin extends Component {
       })
     }
     else {
-      axios({
-        method: 'POST',
-        url: 'https://onemeal.site/users/login',
-        headers: { 'Content-Type': 'application/json' },
-        withCredentials: true,
-        data: { email: email, password: password }
-      })
-        .then(res => {
-          console.log(res.data);
-          return (
-            axios({
-              method: 'GET',
-              url: 'https://onemeal.site/users/userinfo',
-              headers: { 'Content-Type': 'application/json' },
-              withCredentials: true,
-            })
-          )
-        })
-        .then(res => {
-          console.log(res.data.userInfo.username);
-          this.props.loginHandler(res.data.userInfo.username);
-        })
-        .catch(err => {
-          console.log(err);
-        })
+      let result = await axios.post("https://onemeal.site/users/login",{email: email , password : password},{withCredentials: true})
+      console.log(result)
+      this.props.loginHandler(result.data.data.username)
     }
   }
 

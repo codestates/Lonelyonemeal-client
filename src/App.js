@@ -7,6 +7,8 @@ import Signup from "./components/user/signup"
 import Main from "./components/main/main"
 import Openning from "./components/main/openning"
 import Result from "./components/user/result"
+import Mypage from "./components/user/mypage"
+import Share from "./components/user/share"
 
 
 class App extends Component {
@@ -49,6 +51,8 @@ class App extends Component {
           <Route exact path='/signup' render = {() => <Signup/>} />
           <Route exact path='/openning' render = {() => <Openning isOpenning={isOpenning} handleOpenningClicked={this.handleOpenningClicked}/>} />
           <Route exact path='/result' render ={()=> <Result/>}/>
+          <Route exact path='/mypage' render ={()=> <Mypage/>}/>
+          <Route exact path='/share' render ={()=> <Share/>}/>
           <Route
           path = '/'
           render = {() => {
