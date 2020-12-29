@@ -64,7 +64,7 @@ class Signin extends Component {
       })
       .then(res => {
         console.log(res.data);
-        this.props.loginHandler(result.data.data.username);
+        this.props.loginHandler(res.data.data.username);
       })
       .catch(err => {
         console.log(err);
