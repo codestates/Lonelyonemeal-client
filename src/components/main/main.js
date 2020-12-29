@@ -88,10 +88,24 @@ class Main extends Component {
   }
 
   /* 유저인포 테스트 함수 */
-  async userInfoTest() {
+  userInfoTest() {
+    /*
     let result = await axios.get("https://onemeal.site/users/userinfo" , {withCredentials: true});
     console.log(result);
     console.log('와! 성공!');
+    */
+    fetch('https://onemeal.site/users/userinfo', {
+    method: 'get',
+    headers: { 'Content-Type': 'application/json' },
+    credentials: 'include'
+    })
+    .then(res => {
+      console.log(res.data);
+      console.log('와! 성공!');
+    })
+    .catch(err => {
+      console.log(err);
+    })
   }
 
 
