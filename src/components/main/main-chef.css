@@ -13,7 +13,7 @@
     transform: translateY(100%);
   }
   to {
-    transform: translateY(0%);
+    transform: translateY(-5%);
   }
 }
 
@@ -24,6 +24,9 @@
 }
 
 .main-chefsTalk-small {
+  position: relative;
+  top: -40vh;
+  left: -10vw;
   font-size: 1.1rem;
   font-family: 'Nanum Gothic';
 }
@@ -62,6 +65,14 @@
     max-width: 400px;
     height: auto;
   }
+
+  .main-chefsTalk-small {
+    top: -25vh;
+    left: -68vw;
+    font-size: 1rem;
+    text-align: right;
+  }
+  
 }
 
 /*---------- 오프닝용 -------------*/

@@ -10,36 +10,36 @@ class Result extends Component {
         this.state = {
             foodName: "",
             foodImg: ""
-
         }
         this.signupRequestHandler = this.signupRequestHandler.bind(this);
     }
 
   
+    /*
+    signupRequestHandler() {
 
-    async signupRequestHandler() {
-        let result = await axios.get("https://onemeal.site/resultrecipe",{ foodName: this.foodName, foodImg: this.foodImg },{withCredentials: true})
-        // axios({
-        //     method: 'GET',
-        //     url: 'https://onemeal.site/resultrecipe',
-        //     headers: { 'Content-Type': 'application/json' },
-        //     withCredentials: true,
-        //     data: { foodName: this.foodName, foodImg: this.foodImg }
-        // })
-        //     .then(res => {
-        //         console.log(res.data);
-        //     })
-        //     .catch(err => {
-        //         console.log(err);
-        //     })
+        axios({
+            method: 'GET',
+            url: 'https://onemeal.site/resultrecipe',
+            headers: { 'Content-Type': 'application/json' },
+            withCredentials: true,
+            data: { foodName: this.foodName, foodImg: this.foodImg }
+        })
+            .then(res => {
+                console.log(res.data);
+            })
+            .catch(err => {
+                console.log(err);
+            })
     }
+    */
 
 
     render() {
         return (
             <div className="back">
                 <div className='loginContainer'>
-                    <img className='X' src={x} onClick={this.props.loginModalHandler} />
+                    <img className='X' src={x} onClick={this.props.resultModalHandler} />
                     <div className="middleContainer">
                         <div className="title">셰프의 선택은</div>
                         <div className="resultName">계란 볶음밥</div>
