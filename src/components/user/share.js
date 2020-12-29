@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-
+import kakao from './img2/kakao.png'
 import x from './img2/X.png'
 import { Link, withRouter } from 'react-router-dom'
 import axios from 'axios'
 
-class Result extends Component {
+class Share extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -19,6 +19,8 @@ class Result extends Component {
 
     async signupRequestHandler() {
         let result = await axios.get("https://onemeal.site/resultrecipe",{ foodName: this.foodName, foodImg: this.foodImg },{withCredentials: true})
+
+
         // axios({
         //     method: 'GET',
         //     url: 'https://onemeal.site/resultrecipe',
@@ -44,9 +46,9 @@ class Result extends Component {
                         <div className="title">셰프의 선택은</div>
                         <div className="resultName">계란 볶음밥</div>
                         <div className="resultImg" />
-                        <div className="save">저장하기</div>
+                        <div className="text">친구들에게 <span className="text1">고독한 한끼</span>를 소개해보세요!</div>
                         <div className='block' />
-                        <div className="goMyPage">마이페이지 에서 확인하세요!</div>
+                        <img className='kakao' src={kakao} alt='kakao'/>
                     </div>
                 </div>
             </div >
@@ -55,7 +57,7 @@ class Result extends Component {
 }
 
 
-export default withRouter(Result)
+export default withRouter(Share)
 
 
       

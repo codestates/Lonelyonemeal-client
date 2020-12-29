@@ -42,7 +42,7 @@ class Signin extends Component {
   }
 
 
-  loginRequestHandler() {
+  async loginRequestHandler() {
     const { email, password } = this.state;
 
     if (email === "" || password === "") {

@@ -43,7 +43,7 @@ class Main extends Component {
 
   /* 셰프에게 추천받기 버튼 서버통신 함수 */
   async getOneMeal() {
-     let result = await axios.get("https://onemeal.site/users/userinfo'" , {withCredentials: true})
+     let result = await axios.post("https://onemeal.site/users/userinfoup'" , {withCredentials: true})
      console.log(result)
     // fetch('https://onemeal.site:443/users/userinfo', {
     //   method: 'get',
