@@ -12,7 +12,6 @@ class Main extends Component {
     super(props);
     this.state = {
       chefsMessage: null,
-      isLogin: false,  /* 로그인 여부 판별 */
       isLoginModalOpen: false,  /* 로그인 모달창이 열렸는지 여부 판별 */
       isResultModalOpen: false,
       username: null  /* 로그인 했을 시 사용자 이름 */,
@@ -32,7 +31,7 @@ class Main extends Component {
   async getGithubToken(authorizationCode) {
     const result = await axios.post("https://onemeal.site/githubLogin", { authorizationCode }, { withCredentials: true })
     this.setState({
-      isLogin: true,
+      //isLogin: true,
       githubToken: result.data.accessToken
     })
   }
@@ -59,9 +58,9 @@ class Main extends Component {
   loginHandler(username) {
     this.setState({
       isLoginModalOpen: false,
-      isLogin: true,
       username: username
     });
+    // 상위 이즈로그인 변경
   }
 
   /* 로그인창 열고닫는 함수 */
@@ -87,19 +86,27 @@ class Main extends Component {
     this.setState({ chefsMessage: talkBox[Math.floor(Math.random() * (9 - 0 + 1) + 0)]});
   }
 
+  /* 유저인포 테스트 함수 */
+  async userInfoTest() {
+    let result = await axios.get("https://onemeal.site/users/userinfo" , {withCredentials: true});
+    console.log(result);
+    console.log('와! 성공!');
+  }
+
 
   render() {
-    const { chefsMessage, isLogin, isLoginModalOpen, isResultModalOpen, username, resultMenu } = this.state;
+    const { chefsMessage, isLoginModalOpen, isResultModalOpen, username, resultMenu } = this.state;
     return (
       <div className='main-wrap'>
         <Chef chefsMessage={chefsMessage} />
         <div className='main-main'>
-          <MainHeader isLogin={isLogin} username={username} loginModalHandler={this.loginModalHandler} />
+          <MainHeader isLogin={this.props.isLogin} username={username} loginModalHandler={this.loginModalHandler} />
           <MainIngre copyShoppingBag={this.copyShoppingBag} randomShefTalk={this.randomShefTalk} />
           <button className='main-submit' onClick={this.getOneMeal}>셰프에게 추천받기</button>
         </div>
         {isLoginModalOpen ? <Signin loginHandler={this.loginHandler} loginModalHandler={this.loginModalHandler} /> : null}
         {isResultModalOpen ? <Result resultModalHandler={this.resultModalHandler} resultMenu={resultMenu} /> : null}
+        <button className='test' onClick={this.userInfoTest.bind(this)}>유저인포 콘솔에 찍는 테스트 버튼</button>
       </div>
     );
   }

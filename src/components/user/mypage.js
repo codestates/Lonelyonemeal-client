@@ -11,11 +11,11 @@ class Mypage extends Component {
     super(props);
     this.state = {
       isResultModalOpen: false,
-      isLogin: true,
       userInfo: {
         username: '',
         email: '',
-        password: ''
+        password: '',
+        userImg: null
       }
     };
     this.getUserInfo = this.getUserInfo.bind(this);
@@ -31,9 +31,12 @@ class Mypage extends Component {
     let userInfo = await axios.get('https://onemeal.site/users/userinfo', { withCredentials: true });
     console.log(userInfo);
     this.setState({
-      username: userInfo.data.data.username,
-      email: userInfo.data.data.email,
-      password: userInfo.data.data.password
+      userInfo: {
+        username: userInfo.data.data.username,
+        email: userInfo.data.data.email,
+        password: userInfo.data.data.password,
+        userImg: userInfo.data.data.userImg
+      }
     });
   }
 
@@ -45,13 +48,14 @@ class Mypage extends Component {
       headers: { 'Content-Type': 'application/json' },
       withCredentials: true
     })
+    this.props.handleLogout();
   }
 
   render() {
-    const { isResultModalOpen, isLogin, userInfo } = this.state;
+    const { isResultModalOpen, userInfo } = this.state;
     return(
       <div className='my-wrap'>
-        <MainHeader isLogin={isLogin} username={userInfo.username} loginModalHandler={this.loginModalHandler} />
+        <MainHeader isLogin={this.props.isLogin} username={userInfo.username} loginModalHandler={this.loginModalHandler} />
         <div className='my-container'>
           <MyInfo userInfo={userInfo}/>
           <MyMenu/>

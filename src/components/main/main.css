@@ -16,6 +16,11 @@ body {
   align-items: center;
 }
 
+.test {
+  position: absolute;
+  background-color: crimson;
+}
+
 /* ------ main --------*/
 
 .main-main {
