@@ -13,8 +13,8 @@ class Main extends Component {
     this.state = {
       chefsMessage: null,
       isLoginModalOpen: false,  /* 로그인 모달창이 열렸는지 여부 판별 */
-      isResultModalOpen: false,
-      username: null  /* 로그인 했을 시 사용자 이름 */,
+      isResultModalOpen: false,  /* 결과 모달창이 열렸는지 여부 판별 */
+      username: JSON.parse(localStorage.getItem('userInfo')) ? JSON.parse(localStorage.getItem('userInfo')).username : null  /* 로그인 했을 시 사용자 이름 */,
       githubToken: "",
       shoppingBag: [],  /* 유저가 고른 재료들 */
       resultMenu: {}  /* 셰프의 결과음식 */
@@ -87,28 +87,6 @@ class Main extends Component {
     this.setState({ chefsMessage: talkBox[Math.floor(Math.random() * (9 - 0 + 1) + 0)]});
   }
 
-  /* 유저인포 테스트 함수 */
-  userInfoTest() {
-    /*
-    let result = await axios.get("https://onemeal.site/users/userinfo" , {withCredentials: true});
-    console.log(result);
-    console.log('와! 성공!');
-    */
-    fetch('https://onemeal.site/users/userinfo', {
-    method: 'get',
-    headers: { 'Content-Type': 'application/json' },
-    credentials: 'include'
-    })
-    .then(res => {
-      console.log(res.data);
-      console.log('와! 성공!');
-    })
-    .catch(err => {
-      console.log(err);
-    })
-  }
-
-
   render() {
     const { chefsMessage, isLoginModalOpen, isResultModalOpen, username, resultMenu } = this.state;
     return (
@@ -121,7 +99,6 @@ class Main extends Component {
         </div>
         {isLoginModalOpen ? <Signin loginHandler={this.loginHandler} loginModalHandler={this.loginModalHandler} /> : null}
         {isResultModalOpen ? <Result resultModalHandler={this.resultModalHandler} resultMenu={resultMenu} /> : null}
-        <button className='test' onClick={this.userInfoTest.bind(this)}>유저인포 콘솔에 찍는 테스트 버튼</button>
       </div>
     );
   }

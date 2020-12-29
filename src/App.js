@@ -18,11 +18,19 @@ class App extends Component {
       isLogin: false,
       isIntro: true,
       isOpenning: true,
-     
     }
     this.handleIntroClicked = this.handleIntroClicked.bind(this);
     this.handleOpenningClicked = this.handleOpenningClicked.bind(this);
     this.handleLogin = this.handleLogin.bind(this);
+  }
+  /** 세션 유지 코드 **/
+  componentDidMount(prevProps, prevState) {
+    if(localStorage.getItem('userInfo')) {
+      this.setState({ isLogin: true });
+    }
+    else {
+      this.setState({ isLogin: false });
+    }
   }
 
   handleLogin() {
@@ -50,12 +58,10 @@ class App extends Component {
         <Switch>
           <Route exact path='/main' render={() => <Main isLogin={isLogin} handleLogin={this.handleLogin}/>} />
           <Route exact path='/intro' render={() => <Intro handleIntroClicked={this.handleIntroClicked} />} />
-          <Route exact path='/signin' render = {() => <Signin/>} />
-          <Route exact path='/signup' render = {() => <Signup/>} />
-          <Route exact path='/openning' render = {() => <Openning isOpenning={isOpenning} handleOpenningClicked={this.handleOpenningClicked}/>} />
-          <Route exact path='/result' render ={()=> <Result/>}/>
+          <Route exact path='/signin' render = {() => <Signin />} />
+          <Route exact path='/signup' render = {() => <Signup />} />
+          <Route exact path='/openning' render = {() => <Openning isOpenning={isOpenning} handleOpenningClicked={this.handleOpenningClicked} />} />
           <Route exact path='/mypage' render ={()=> <Mypage isLogin={isLogin} handleLogin={this.handleLogin}/>}/>
-          <Route exact path='/share' render ={()=> <Share/>}/>
           <Route
           path = '/'
           render = {() => {

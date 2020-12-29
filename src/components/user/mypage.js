@@ -2,9 +2,9 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import { withRouter } from 'react-router-dom'
 import MainHeader from '../main/main-header'
-import Result from './result'
 import MyInfo from './myinfo'
 import MyMenu from './mymenu.js'
+import Share from './share'
 
 class Mypage extends Component {
   constructor(props) {
@@ -22,22 +22,31 @@ class Mypage extends Component {
     this.handleLogout = this.handleLogout.bind(this);
   }
 
-  componentDidMount() {
-    this.getUserInfo();
+  componentDidUpdate(prevState, prevProps) {
+    let userInfo = JSON.parse(localStorage.getItem('userInfo'));
+    if(userInfo) {
+      if(this.state.userInfo.username !== userInfo.username ||
+      this.state.userInfo.password !== userInfo.password ||
+      this.state.userInfo.userImg !== userInfo.userImg) {
+        this.getUserInfo();
+      }
+    }
   }
 
   /* 유저정보 불러오는 함수 */
-  async getUserInfo() {
-    let userInfo = await axios.get('https://onemeal.site/users/userinfo', { withCredentials: true });
-    console.log(userInfo);
+  getUserInfo() {
+    let userInfo = JSON.parse(localStorage.getItem('userInfo'));
     this.setState({
       userInfo: {
-        username: userInfo.data.data.username,
-        email: userInfo.data.data.email,
-        password: userInfo.data.data.password,
-        userImg: userInfo.data.data.userImg
+        username: userInfo.username,
+        email: userInfo.email,
+        password: userInfo.password,
+        userImg: userInfo.userImg
       }
-    });
+    })
+    if(!userInfo) {
+      console.log('userInfo라는 로컬스토리지 없다~');
+    }
   }
 
   /* 로그아읏 함수 */
@@ -48,7 +57,14 @@ class Mypage extends Component {
       headers: { 'Content-Type': 'application/json' },
       withCredentials: true
     })
-    this.props.handleLogout();
+    .then(() => {
+      this.props.handleLogin();
+      localStorage.clear();
+    })
+    .then(() => {
+      alert('성공적으로 로그아웃 되었습니다!')
+      this.props.history.push("/main");
+    })
   }
 
   render() {
@@ -61,7 +77,7 @@ class Mypage extends Component {
           <MyMenu/>
         </div>
         <button className='my-logout-button' onClick={this.handleLogout}>로그아웃</button>
-        { isResultModalOpen ? <Result /> : null }
+        { isResultModalOpen ? <Share /> : null }
       </div>
     );
   }
