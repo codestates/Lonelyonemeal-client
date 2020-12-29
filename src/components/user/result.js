@@ -11,7 +11,7 @@ class Result extends Component {
             foodName: "",
             foodImg: ""
         }
-        this.signupRequestHandler = this.signupRequestHandler.bind(this);
+        //this.signupRequestHandler = this.signupRequestHandler.bind(this);
     }
 
   
