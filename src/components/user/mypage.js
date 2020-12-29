@@ -57,7 +57,7 @@ class Mypage extends Component {
       <div className='my-wrap'>
         <MainHeader isLogin={this.props.isLogin} username={userInfo.username} loginModalHandler={this.loginModalHandler} />
         <div className='my-container'>
-          <MyInfo userInfo={userInfo}/>
+          <MyInfo userInfo={userInfo} getUserInfo={this.getUserInfo}/>
           <MyMenu/>
         </div>
         <button className='my-logout-button' onClick={this.handleLogout}>로그아웃</button>
