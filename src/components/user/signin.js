@@ -7,6 +7,7 @@ import axios from 'axios'
 import x from './img2/X.png'
 import Signup from './signup'
 import { GoogleLogin } from "react-google-login"
+require('dotenv').config(); 
 
 class Signin extends Component {
   constructor(props) {
@@ -22,12 +23,11 @@ class Signin extends Component {
     this.loginRequestHandler = this.loginRequestHandler.bind(this);
     this.handleSignupView = this.handleSignupView.bind(this);
     this.socialLoginHandler = this.githubLoginHandler.bind(this);
-
+    this.getUserInfo = this.getUserInfo.bind(this);
   }
 
   async githubLoginHandler() {
-    let result = await axios.get("https://onemeal.site/githubLogin", { withCredentials: true })
-    let GITHUB_LOGIN_URL = `https://github.com/login/oauth/authorize?client_id=${result.client_id}`
+    let GITHUB_LOGIN_URL = `https://github.com/login/oauth/authorize?client_id=${process.env.GITHUB_CLIENT_ID}`
     window.location.assign(GITHUB_LOGIN_URL)
   }
 
@@ -51,10 +51,50 @@ class Signin extends Component {
       })
     }
     else {
+      /*
       let result = await axios.post("https://onemeal.site/users/login",{email: email , password : password},{headers: { 'Content-Type': 'application/json'} ,withCredentials: true})
       console.log(result)
       this.props.loginHandler(result.data.data.username)
+      */
+     fetch('https://onemeal.site/users/login', {
+      method: 'post',
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'include',
+      body: JSON.stringify({email: email , password : password})
+      })
+      .then(res => res.json())
+      .then(res => {
+        console.log(res.data);
+        this.getUserInfo();
+      })
+      .catch(err => {
+        console.log(err);
+      })
     }
+  }
+
+  /* 유저인포 불러오는 함수 */
+  getUserInfo() {
+    /*
+    let result = await axios.get("https://onemeal.site/users/userinfo" , {withCredentials: true});
+    console.log(result);
+    console.log('와! 성공!');
+    */
+    fetch('https://onemeal.site/users/userinfo', {
+    method: 'get',
+    headers: { 'Content-Type': 'application/json' },
+    credentials: 'include'
+    })
+    .then(res => res.json())
+    .then(res => {
+      localStorage.setItem('userInfo', JSON.stringify(res.data));
+      this.props.loginHandler(res.data.username);
+      console.log(res.data);
+      console.log('와! 성공!');
+    })
+    .catch(err => {
+      console.log(err);
+    })
   }
 
   render() {

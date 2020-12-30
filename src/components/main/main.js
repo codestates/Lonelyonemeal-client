@@ -13,8 +13,8 @@ class Main extends Component {
     this.state = {
       chefsMessage: null,
       isLoginModalOpen: false,  /* 로그인 모달창이 열렸는지 여부 판별 */
-      isResultModalOpen: false,
-      username: null  /* 로그인 했을 시 사용자 이름 */,
+      isResultModalOpen: false,  /* 결과 모달창이 열렸는지 여부 판별 */
+      username: JSON.parse(localStorage.getItem('userInfo')) ? JSON.parse(localStorage.getItem('userInfo')).username : null  /* 로그인 했을 시 사용자 이름 */,
       githubToken: "",
       shoppingBag: [],  /* 유저가 고른 재료들 */
       resultMenu: {}  /* 셰프의 결과음식 */
@@ -25,7 +25,7 @@ class Main extends Component {
     this.resultModalHandler = this.resultModalHandler.bind(this);
     this.getGithubToken = this.getGithubToken.bind(this);
     this.copyShoppingBag = this.copyShoppingBag.bind(this);
-    this.randomShefTalk = this.randomShefTalk.bind(this);
+    this.randomChefTalk = this.randomChefTalk.bind(this);
   }
 
   async getGithubToken(authorizationCode) {
@@ -48,10 +48,11 @@ class Main extends Component {
 
   /* 셰프에게 추천받기 버튼 서버통신 함수 */
   async getOneMeal() {
+    this.resultModalHandler();
     let result = await axios.post("https://onemeal.site/users/resultrecipe" , {ingredients: this.state.shoppingBag}, {withCredentials: true});
     console.log(result.data);
     this.setState({ resultMenu: result.data.recipe });
-    this.resultModalHandler();
+
   }
 
   /* 로그인 상태 변경 함수 */
@@ -82,18 +83,10 @@ class Main extends Component {
   }
 
   /* 셰프 랜덤메시지 출력 함수 */
-  randomShefTalk() {
-    const talkBox = ['', '좋은 선택이에요!', '', '흠...', '', '', '', '최선인가요..?', '']
+  randomChefTalk() {
+    const talkBox = [ '좋은 선택이에요!', '좋아!!', '흠...', '최선인가요..?', '']
     this.setState({ chefsMessage: talkBox[Math.floor(Math.random() * (9 - 0 + 1) + 0)]});
   }
-
-  /* 유저인포 테스트 함수 */
-  async userInfoTest() {
-    let result = await axios.get("https://onemeal.site/users/userinfo" , {withCredentials: true});
-    console.log(result);
-    console.log('와! 성공!');
-  }
-
 
   render() {
     const { chefsMessage, isLoginModalOpen, isResultModalOpen, username, resultMenu } = this.state;
@@ -102,12 +95,11 @@ class Main extends Component {
         <Chef chefsMessage={chefsMessage} />
         <div className='main-main'>
           <MainHeader isLogin={this.props.isLogin} username={username} loginModalHandler={this.loginModalHandler} />
-          <MainIngre copyShoppingBag={this.copyShoppingBag} randomShefTalk={this.randomShefTalk} />
+          <MainIngre copyShoppingBag={this.copyShoppingBag} randomChefTalk={this.randomChefTalk} />
           <button className='main-submit' onClick={this.getOneMeal}>셰프에게 추천받기</button>
         </div>
         {isLoginModalOpen ? <Signin loginHandler={this.loginHandler} loginModalHandler={this.loginModalHandler} /> : null}
-        {isResultModalOpen ? <Result resultModalHandler={this.resultModalHandler} resultMenu={resultMenu} /> : null}
-        <button className='test' onClick={this.userInfoTest.bind(this)}>유저인포 콘솔에 찍는 테스트 버튼</button>
+        {isResultModalOpen ? <Result resultModalHandler={this.resultModalHandler} resultMenu={resultMenu} loginModalHandler={this.loginModalHandler} isLogin ={this.props.isLogin}/> : null}
       </div>
     );
   }
