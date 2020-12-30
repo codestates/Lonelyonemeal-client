@@ -25,8 +25,8 @@ class App extends Component {
     this.handleOpenningClicked = this.handleOpenningClicked.bind(this);
     this.handleLogin = this.handleLogin.bind(this);
     this.isLoginSetUp = this.isLoginSetUp.bind(this);
-    this.getAccessToken = this.getAccessToken.bind(this)
-
+    this.getAccessToken = this.getAccessToken.bind(this);
+    this.githubLogout = this.githubLogout.bind(this);
   }
   /** 세션 유지 코드 **/
   /*
@@ -55,7 +55,12 @@ class App extends Component {
     })
     .then(res => {
       console.log(res.json())
-      console.log(res.name.json())
+      return res.json()
+    })
+    .then(res => {
+      let userInfo = {id: res.node_id, username: res.name, userImg: res.avatar_url, email: res.email};
+      localStorage.setItem('userInfo', userInfo);
+      console.log(userInfo + '가 스토리지에 저장!')
     })
   }
 
@@ -66,6 +71,11 @@ class App extends Component {
     if (authorizationCode) {
       this.getAccessToken(authorizationCode)
     }
+  }
+
+  githubLogout() {
+    localStorage.clear();
+    this.setState({ accessToken: null })
   }
 
   handleLogin() {
@@ -96,7 +106,7 @@ class App extends Component {
       <div className="App" >
         <Switch>
           <Route exact path='/main' render={() => <Main isLogin={isLogin} handleLogin={this.handleLogin}/>} />
-          <Route exact path='/mypage' render ={()=> <Mypage isLogin={isLogin} handleLogin={this.handleLogin} accessToken={accessToken}/>}/>
+          <Route exact path='/mypage' render ={()=> <Mypage isLogin={isLogin} handleLogin={this.handleLogin} accessToken={accessToken} githubLogout={this.githubLogout}/>}/>
           <Route exact path='/intro' render={() => <Intro handleIntroClicked={this.handleIntroClicked} />} />
           <Route exact path='/signin' render = {() => <Signin />} />
           <Route exact path='/signup' render = {() => <Signup />} />

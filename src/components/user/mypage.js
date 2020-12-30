@@ -23,11 +23,15 @@ class Mypage extends Component {
     this.handleLogout = this.handleLogout.bind(this);
   }
 
-  componentDidMount() {
+  /* 만약 로컬스토리지와 스테이트의 유저인포가 다를 때 유저정보 자동갱신 */
+  componentDidUpdate(prevState, prevProps) {
+    const{email, password, userImg} = this.state;
     let localUserInfo = JSON.parse(localStorage.getItem('userInfo'));
-    //if(localUserInfo.)
-    this.getUserInfo();
-    
+    if(localUserInfo.userImg !== userImg ||
+    localUserInfo.email !== email ||
+    localUserInfo.password !== password) {
+      this.getUserInfo();
+    }
   }
 
   /* 유저정보 불러오는 함수 */
@@ -46,6 +50,19 @@ class Mypage extends Component {
       this.props.history.push("/mypage");
       console.log('userInfo라는 로컬스토리지 없다~');
     }
+    else if(this.props.accessToken) {
+      let getInfo = JSON.parse(localStorage.getItem('userInfo'))
+      this.setState({
+        userInfo: {
+          username: getInfo.username,
+          email: getInfo.email,
+          password: getInfo.password,
+          userImg: getInfo.userImg
+        }
+      })
+      console.log('스토리지에 저장된 깃헙인포를 가져왔어요');
+      this.props.history.push("/mypage");
+    }
     else {
       fetch('https://onemeal.site/users/userinfo', {
       method: 'get',
@@ -55,12 +72,13 @@ class Mypage extends Component {
       .then(res => res.json())
       .then(res => {
         localStorage.setItem('userInfo', JSON.stringify(res.data));
+        let getInfo = JSON.parse(localStorage.getItem('userInfo'))
         this.setState({
           userInfo: {
-            username: userInfo.username,
-            email: userInfo.email,
-            password: userInfo.password,
-            userImg: `https://onemeal.site/userImg/${userInfo.userImg}`
+            username: getInfo.username,
+            email: getInfo.email,
+            password: getInfo.password,
+            userImg: `https://onemeal.site/userImg/${getInfo.userImg}`
           }
         })
         console.log('유저정보 새로 받아왔어요')
@@ -83,6 +101,10 @@ class Mypage extends Component {
     .then(() => {
       this.props.handleLogin();
       localStorage.clear();
+      // 깃헙 로그아웃
+      if(this.props.accessToken) {
+        this.props.githubLogout();
+      }
     })
     .then(() => {
       alert('성공적으로 로그아웃 되었습니다!')
