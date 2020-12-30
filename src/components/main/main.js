@@ -98,6 +98,7 @@ class Main extends Component {
           <MainIngre copyShoppingBag={this.copyShoppingBag} randomChefTalk={this.randomChefTalk} />
           <button className='main-submit' onClick={this.getOneMeal}>셰프에게 추천받기</button>
         </div>
+        <div className='main-pieaceOfMypage'></div>
         {isLoginModalOpen ? <Signin loginHandler={this.loginHandler} loginModalHandler={this.loginModalHandler} /> : null}
         {isResultModalOpen ? <Result resultModalHandler={this.resultModalHandler} resultMenu={resultMenu} loginModalHandler={this.loginModalHandler} isLogin ={this.props.isLogin}/> : null}
       </div>
