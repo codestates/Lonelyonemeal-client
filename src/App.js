@@ -69,7 +69,7 @@ class App extends Component {
     })
     this.props.history.push("/")
   }
-
+ 
   render() {
     const {isOpenning, isIntro, isLogin} = this.state;
     return (
