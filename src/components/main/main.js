@@ -5,6 +5,7 @@ import Chef from './main-chef'
 import axios from 'axios'
 import Signin from '../user/signin'
 import Result from '../user/result'
+import { Link } from 'react-router-dom'
 
 
 class Main extends Component {
@@ -29,7 +30,7 @@ class Main extends Component {
   }
 
   async getGithubToken(authorizationCode) {
-    const result = await axios.post("https://onemeal.site/githubLogin", { authorizationCode }, { withCredentials: true })
+    const result = await axios.post("https://onemeal.site/socials/githubLogin", { authorizationCode }, { withCredentials: true })
     this.setState({
       //isLogin: true,
       githubToken: result.data.accessToken
@@ -98,6 +99,7 @@ class Main extends Component {
           <MainIngre copyShoppingBag={this.copyShoppingBag} randomChefTalk={this.randomChefTalk} />
           <button className='main-submit' onClick={this.getOneMeal}>셰프에게 추천받기</button>
         </div>
+        {this.props.isLogin ? <Link to="/mypage" className='main-pieaceOfMypage'></Link> : <div className='main-pieaceOfMypage' onClick={this.loginModalHandler}></div>}
         {isLoginModalOpen ? <Signin loginHandler={this.loginHandler} loginModalHandler={this.loginModalHandler} /> : null}
         {isResultModalOpen ? <Result resultModalHandler={this.resultModalHandler} resultMenu={resultMenu} loginModalHandler={this.loginModalHandler} isLogin ={this.props.isLogin}/> : null}
       </div>

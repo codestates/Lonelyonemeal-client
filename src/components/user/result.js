@@ -8,16 +8,12 @@ import mypage from './mypage'
 class Result extends Component {
     constructor(props) {
         super(props)
-        this.goMypage = this.goMypage.bind(this)
+        this.openLoginModal = this.openLoginModal.bind(this)
     }
 
-    goMypage() {
-        if (!this.props.isLogin) {
-            this.props.resultModalHandler()
-            this.props.loginModalHandler()
-        }else{
-            this.props.history.push("/mypage")
-        }
+    openLoginModal() {
+        this.props.resultModalHandler();
+        this.props.loginModalHandler();
     }
     //this.signupRequestHandler = this.signupRequestHandler.bind(this);
 
@@ -53,9 +49,14 @@ class Result extends Component {
                         <div className="resultImg" />
                         <div className="save">저장하기</div>
                         <div className='block' />
-                        <div className="goMyPage" onClick={this.goMypage}>마이페이지에서 확인하세요!</div>
+                        {/* <div className="goMyPage" onClick={this.goMypage}>마이페이지에서 확인하세요!</div> */}
                         {/* {this.props.isLogin ? <Link to="/mypage" /> : <Signin />} */}
                         {/* <Link to ={this.props.isLogin ? "/mypage" : "/"    :} className="goMyPage">마이페이지에서 확인하세요!</Link> */}
+                        {
+                            this.props.isLogin ?
+                            <Link to="/mypage" className="goMyPage">마이페이지에서 확인하세요!</Link> :
+                            <Link to="/main" className="goMyPage" onClick={this.openLoginModal}>마이페이지에서 확인하세요!</Link>
+                        }
                     </div>
                 </div>
             </div >
