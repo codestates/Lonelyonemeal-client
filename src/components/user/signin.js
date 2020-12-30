@@ -31,12 +31,10 @@ class Signin extends Component {
     window.location.assign(GITHUB_LOGIN_URL)
   }
 
-
-
   handleInputValue(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
-
+  
   handleSignupView() {
     this.setState({ showSignupView: !this.state.showSignupView });
   }

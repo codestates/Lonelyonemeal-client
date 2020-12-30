@@ -33,10 +33,15 @@ class MyMenu extends Component {
   render() {
     return(
       <div className='my-menu-wrap'>
-        {}
+        {/*array.map*/}
       </div>
     );
   }
 }
 
+
+
+function sdfadsf() {
+
+}
 export default MyMenu;

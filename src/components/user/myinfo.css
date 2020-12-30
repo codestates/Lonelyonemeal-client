@@ -57,6 +57,12 @@ button:focus {
   margin-top: 3vh;
 }
 
+.my-pic img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
 .my-pic-upload {
   position: absolute;
   top: 0px;

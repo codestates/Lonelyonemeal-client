@@ -29,6 +29,7 @@ class App extends Component {
 
   }
   /** 세션 유지 코드 **/
+  /*
   componentDidMount(prevProps, prevState) {
     if(localStorage.getItem('userInfo')) {
       this.setState({ isLogin: true });
@@ -37,18 +38,31 @@ class App extends Component {
       this.setState({ isLogin: false });
     }
   }
+  */
  
   async getAccessToken(authorizationCode) {
-    const accessToken = (await axios.post("https://onemeal.site/githubLogin",{authorizationCode} )).data.accessToken
+    const result = await axios.post("https://onemeal.site/socials/githubLogin",{authorizationCode} )
+    console.log(result);
+    if(result) {
       this.setState({
         isLogin :true,
-        accessToken 
+        accessToken: result.data.accessToken
       })
+    }
+    await fetch('https://api.github.com/user', {
+      method: 'get',
+      headers: { 'authorization': `token ${result.data.accessToken}` }
+    })
+    .then(res => {
+      console.log(res.json())
+      console.log(res.name.json())
+    })
   }
 
   componentDidMount() {
     const url = new URL(window.location.href)
     const authorizationCode = url.searchParams.get('code')
+    console.log(authorizationCode)
     if (authorizationCode) {
       this.getAccessToken(authorizationCode)
     }
@@ -77,12 +91,12 @@ class App extends Component {
   }
  
   render() {
-    const {isOpenning, isIntro, isLogin} = this.state;
+    const {isOpenning, isIntro, isLogin, accessToken} = this.state;
     return (
       <div className="App" >
         <Switch>
           <Route exact path='/main' render={() => <Main isLogin={isLogin} handleLogin={this.handleLogin}/>} />
-          <Route exact path='/mypage' render ={()=> <Mypage isLogin={isLogin} handleLogin={this.handleLogin}/>}/>
+          <Route exact path='/mypage' render ={()=> <Mypage isLogin={isLogin} handleLogin={this.handleLogin} accessToken={accessToken}/>}/>
           <Route exact path='/intro' render={() => <Intro handleIntroClicked={this.handleIntroClicked} />} />
           <Route exact path='/signin' render = {() => <Signin />} />
           <Route exact path='/signup' render = {() => <Signup />} />
