@@ -41,6 +41,7 @@ class MyInfo extends Component {
       console.log(res);
       alert('업로드 성공!');
       this.props.getUserInfo();
+      this.props.history.push("/mypage");
     })
     .catch(err => {
       console.log(err);
@@ -59,9 +60,10 @@ class MyInfo extends Component {
       })
       .then(res => res.json())
       .then(res => {
-        console.log(res.data);
+        console.log(res);
         this.props.getUserInfo();
         alert('업로드 성공!');
+        this.props.history.push("/mypage");
       })
       .catch(err => {
         console.log(err);
@@ -78,13 +80,14 @@ class MyInfo extends Component {
       method: 'put',
       headers: { 'Content-Type': 'application/json' },
       credentials: 'include',
-      body: JSON.stringify({ username: newUsername })
+      body: JSON.stringify({ username: newPassword })
       })
       .then(res => res.json())
       .then(res => {
-        console.log(res.data);
+        console.log(res);
         this.props.getUserInfo();
         alert('업로드 성공!');
+        this.props.history.push("/mypage");
       })
       .catch(err => {
         console.log(err);

@@ -57,9 +57,4 @@ class MyMenu extends Component {
   }
 }
 
-
-
-function sdfadsf() {
-
-}
 export default MyMenu;

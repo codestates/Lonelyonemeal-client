@@ -24,7 +24,8 @@ class Mypage extends Component {
   }
 
   componentDidMount() {
-    
+    let localUserInfo = JSON.parse(localStorage.getItem('userInfo'));
+    //if(localUserInfo.)
     this.getUserInfo();
     
   }
@@ -33,6 +34,7 @@ class Mypage extends Component {
   getUserInfo() {
     let userInfo = JSON.parse(localStorage.getItem('userInfo'));
     if(!userInfo) {
+      //여긴 그냥 로그인안하고 들어갔을때임
       this.setState({
         userInfo: {
           username: '당신은 억지로',
@@ -45,15 +47,28 @@ class Mypage extends Component {
       console.log('userInfo라는 로컬스토리지 없다~');
     }
     else {
-      this.setState({
-        userInfo: {
-          username: userInfo.username,
-          email: userInfo.email,
-          password: userInfo.password,
-          userImg: `https://onemeal.site/userImg/${userInfo.userImg}`
-        }
+      fetch('https://onemeal.site/users/userinfo', {
+      method: 'get',
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'include'
       })
-      this.props.history.push("/mypage");
+      .then(res => res.json())
+      .then(res => {
+        localStorage.setItem('userInfo', JSON.stringify(res.data));
+        this.setState({
+          userInfo: {
+            username: userInfo.username,
+            email: userInfo.email,
+            password: userInfo.password,
+            userImg: `https://onemeal.site/userImg/${userInfo.userImg}`
+          }
+        })
+        console.log('유저정보 새로 받아왔어요')
+        this.props.history.push("/mypage");
+      })
+      .catch(err => {
+        console.log(err);
+      })
     }
   }
 
