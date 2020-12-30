@@ -18,11 +18,14 @@ class App extends Component {
       isLogin: false,
       isIntro: true,
       isOpenning: true,
+      accessToken: null
     }
     this.handleIntroClicked = this.handleIntroClicked.bind(this);
     this.handleOpenningClicked = this.handleOpenningClicked.bind(this);
     this.handleLogin = this.handleLogin.bind(this);
     this.isLoginSetUp = this.isLoginSetUp.bind(this);
+    this.getAccessToken = this.getAccessToken.bind(this)
+
   }
   /** 세션 유지 코드 **/
   componentDidMount(prevProps, prevState) {
@@ -31,6 +34,22 @@ class App extends Component {
     }
     else {
       this.setState({ isLogin: false });
+    }
+  }
+ 
+  async getAccessToken(authorizationCode) {
+    const accessToken = (await axios.post("https://onemeal.site/githubLogin",{authorizationCode} )).data.accessToken
+      this.setState({
+        isLogin :true,
+        accessToken 
+      })
+  }
+
+  componentDidMount() {
+    const url = new URL(window.location.href)
+    const authorizationCode = url.searchParams.get('code')
+    if (authorizationCode) {
+      this.getAccessToken(authorizationCode)
     }
   }
 
@@ -55,7 +74,7 @@ class App extends Component {
     })
     this.props.history.push("/")
   }
-
+ 
   render() {
     const {isOpenning, isIntro, isLogin} = this.state;
     return (
