@@ -7,6 +7,7 @@ import axios from 'axios'
 import x from './img2/X.png'
 import Signup from './signup'
 import { GoogleLogin } from "react-google-login"
+require('dotenv').config(); 
 
 class Signin extends Component {
   constructor(props) {
@@ -26,8 +27,7 @@ class Signin extends Component {
   }
 
   async githubLoginHandler() {
-    let result = await axios.get("https://onemeal.site/githubLogin", { withCredentials: true })
-    let GITHUB_LOGIN_URL = `https://github.com/login/oauth/authorize?client_id=${result.client_id}`
+    let GITHUB_LOGIN_URL = `https://github.com/login/oauth/authorize?client_id=${process.env.GITHUB_CLIENT_ID}`
     window.location.assign(GITHUB_LOGIN_URL)
   }
 
