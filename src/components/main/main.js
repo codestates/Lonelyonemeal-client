@@ -29,7 +29,7 @@ class Main extends Component {
   }
 
   async getGithubToken(authorizationCode) {
-    const result = await axios.post("https://onemeal.site/githubLogin", { authorizationCode }, { withCredentials: true })
+    const result = await axios.post("https://onemeal.site/socials/githubLogin", { authorizationCode }, { withCredentials: true })
     this.setState({
       //isLogin: true,
       githubToken: result.data.accessToken
