@@ -30,18 +30,15 @@ class MyInfo extends Component {
   }
 
   /* 서버에 이미지 업데이트 함수 */
-  async handleImgClick() {
+  handleImgClick() {
     const formData = new FormData();
-    formData.append('file', this.state.selectedUserImg);
-    return fetch('https://onemeal.site/users/userimgup', {
-      method: 'put',
-      headers: { 'Content-Type': 'application/json' },
-      credentials: 'include',
-      body: JSON.stringify({ userImg: formData })
-    })
-    .then(res => res.json())
+    formData.append('img', this.state.selectedUserImg);
+    for (let key of formData.entries()) {
+      console.log(key[0] + ', ' + key[1]);
+    }
+    axios.put('https://onemeal.site/users/userimgup', formData, {withCredentials: true})
     .then(res => {
-      console.log(res.data);
+      console.log(res);
       alert('업로드 성공!');
       this.props.getUserInfo();
     })
@@ -105,7 +102,7 @@ class MyInfo extends Component {
       <aside className='my-info-container'>
         <div className='my-pic'>
           <img src={userInfo.userImg ? userInfo.userImg : undefined} alt='' />
-          <input className='my-pic-upload' type='file' onChange={(e) => this.handleImgChange(e)}></input>
+          <input className='my-pic-upload' name='img' type='file' onChange={(e) => this.handleImgChange(e)}></input>
         </div>
         <button className='btn-pic' onClick={this.handleImgClick}>변경</button>
         <div className='my-name'>

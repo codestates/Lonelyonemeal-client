@@ -50,7 +50,7 @@ class Mypage extends Component {
           username: userInfo.username,
           email: userInfo.email,
           password: userInfo.password,
-          userImg: userInfo.userImg
+          userImg: `https://onemeal.site/userImg/${userInfo.userImg}`
         }
       })
       this.props.history.push("/mypage");

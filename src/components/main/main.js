@@ -16,7 +16,6 @@ class Main extends Component {
       isLoginModalOpen: false,  /* 로그인 모달창이 열렸는지 여부 판별 */
       isResultModalOpen: false,  /* 결과 모달창이 열렸는지 여부 판별 */
       username: JSON.parse(localStorage.getItem('userInfo')) ? JSON.parse(localStorage.getItem('userInfo')).username : null  /* 로그인 했을 시 사용자 이름 */,
-      githubToken: "",
       shoppingBag: [],  /* 유저가 고른 재료들 */
       resultMenu: {}  /* 셰프의 결과음식 */
     }
@@ -24,28 +23,9 @@ class Main extends Component {
     this.loginHandler = this.loginHandler.bind(this);
     this.loginModalHandler = this.loginModalHandler.bind(this);
     this.resultModalHandler = this.resultModalHandler.bind(this);
-    this.getGithubToken = this.getGithubToken.bind(this);
     this.copyShoppingBag = this.copyShoppingBag.bind(this);
     this.randomChefTalk = this.randomChefTalk.bind(this);
   }
-
-  async getGithubToken(authorizationCode) {
-    const result = await axios.post("https://onemeal.site/socials/githubLogin", { authorizationCode }, { withCredentials: true })
-    this.setState({
-      //isLogin: true,
-      githubToken: result.data.accessToken
-    })
-  }
-
-
-  componentDidMount() {
-    const url = new URL(window.location.href)
-    const authorizationCode = url.searchParams.get('code')
-    if (authorizationCode) {
-      this.getGithubToken(authorizationCode)
-    }
-  }
-
 
   /* 셰프에게 추천받기 버튼 서버통신 함수 */
   async getOneMeal() {
@@ -53,7 +33,6 @@ class Main extends Component {
     let result = await axios.post("https://onemeal.site/users/resultrecipe" , {ingredients: this.state.shoppingBag}, {withCredentials: true});
     console.log(result.data);
     this.setState({ resultMenu: result.data.recipe });
-
   }
 
   /* 로그인 상태 변경 함수 */
