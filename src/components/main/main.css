@@ -17,26 +17,31 @@ body {
   align-items: center;
 }
 
-.test {
-  position: absolute;
-  background-color: crimson;
-}
-
 .main-pieaceOfMypage {
   position: absolute;
   left: 0;
-  width: 0; 
-  height: 0; 
-  border-top: 12vh solid transparent;
-  border-bottom: 12vh solid transparent;
-  border-left: 4vw solid rgba(88, 132, 173);
-  transition: all .3s cubic-bezier(.77,0,.175,1);
+  width: 3vw; 
+  height: 100vh; 
+  background-color: rgba(88, 132, 173);
+  transition: all .1s cubic-bezier(.77,0,.175,1);
 }
 
 .main-pieaceOfMypage:hover {
-  border-top: 14vh solid transparent;
-  border-bottom: 14vh solid transparent;
-  border-left: 6vw solid rgba(88, 132, 173);
+  width: 4vw; 
+  background-color: rgba(88, 132, 173);
+}
+
+.main-pieaceOfMypage:active {
+  animation: goToMypage 0.5s forwards;
+}
+
+@keyframes goToMypage {
+  from {
+    width: 4vw;
+  }
+  to {
+    width: 100vw;
+  }
 }
 
 /* ------ main --------*/
