@@ -33,9 +33,10 @@ class Main extends Component {
     fetch("https://onemeal.site/users/resultrecipe",{
       method: 'post',
       headers: { 'Content-Type': 'application/json' },
-      credentials: true,
+      credentials: 'include',
       body: JSON.stringify({ingredients: this.state.shoppingBag})
-    }).then(res => res.json())
+    })
+    .then(res => res.json())
     .then(res => {
       console.log(res.data);
       this.setState({ resultMenu: res.data });

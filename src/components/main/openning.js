@@ -61,7 +61,7 @@ class Openning extends Component {
         <Chef chefsMessage={chefsMessage} talkingCount={talkingCount} isOpenning={isOpenning}/>
       </div>
     )
-  }1
+  }
   
 }
 
