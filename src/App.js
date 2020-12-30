@@ -23,6 +23,7 @@ class App extends Component {
     this.handleIntroClicked = this.handleIntroClicked.bind(this);
     this.handleOpenningClicked = this.handleOpenningClicked.bind(this);
     this.handleLogin = this.handleLogin.bind(this);
+    this.isLoginSetUp = this.isLoginSetUp.bind(this);
     this.getAccessToken = this.getAccessToken.bind(this)
 
   }
@@ -56,6 +57,10 @@ class App extends Component {
     this.setState({ isLogin: !this.state.isLogin });
   }
 
+  isLoginSetUp() {
+    this.setState({ isLogin: false });
+  }
+
   handleIntroClicked = () => {
     this.setState({
       isIntro: false
@@ -76,11 +81,11 @@ class App extends Component {
       <div className="App" >
         <Switch>
           <Route exact path='/main' render={() => <Main isLogin={isLogin} handleLogin={this.handleLogin}/>} />
+          <Route exact path='/mypage' render ={()=> <Mypage isLogin={isLogin} handleLogin={this.handleLogin}/>}/>
           <Route exact path='/intro' render={() => <Intro handleIntroClicked={this.handleIntroClicked} />} />
           <Route exact path='/signin' render = {() => <Signin />} />
           <Route exact path='/signup' render = {() => <Signup />} />
-          <Route exact path='/openning' render = {() => <Openning isOpenning={isOpenning} handleOpenningClicked={this.handleOpenningClicked} />} />
-          <Route exact path='/mypage' render ={()=> <Mypage isLogin={isLogin} handleLogin={this.handleLogin} accessToken={this.state.accessToken}/> }/>
+          <Route exact path='/openning' render = {() => <Openning isOpenning={isOpenning} isLoginSetUp={this.isLoginSetUp} handleOpenningClicked={this.handleOpenningClicked} />} />
           <Route
           path = '/'
           render = {() => {

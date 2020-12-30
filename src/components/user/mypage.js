@@ -22,15 +22,10 @@ class Mypage extends Component {
     this.handleLogout = this.handleLogout.bind(this);
   }
 
-  componentDidUpdate(prevState, prevProps) {
-    let userInfo = JSON.parse(localStorage.getItem('userInfo'));
-    if(userInfo) {
-      if(this.state.userInfo.username !== userInfo.username ||
-      this.state.userInfo.password !== userInfo.password ||
-      this.state.userInfo.userImg !== userInfo.userImg) {
-        this.getUserInfo();
-      }
-    }
+  componentDidMount() {
+    
+    this.getUserInfo();
+    
   }
 
   /* 유저정보 불러오는 함수 */
@@ -44,6 +39,7 @@ class Mypage extends Component {
         userImg: userInfo.userImg
       }
     })
+    this.props.history.push("/mypage");
     if(!userInfo) {
       console.log('userInfo라는 로컬스토리지 없다~');
     }

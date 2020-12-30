@@ -13,6 +13,11 @@ class Openning extends Component {
     this.changeMessage = this.changeMessage.bind(this);
   }
 
+  componentDidMount() {
+    this.props.isLoginSetUp();
+    localStorage.clear();
+  }
+
   /* 화면 클릭 때 마다 talkingCount state 숫자 올려주기 */
   talkingCountUp() {
     this.changeMessage();  /* 숫자 올려주며 chefsMesaage도 같이 변환 */
