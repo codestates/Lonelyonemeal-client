@@ -2,6 +2,7 @@
 @import url("./myinfo.css");
 
 .my-wrap {
+  position: relative;
   background-color: rgba(88, 132, 173);
   width: 100vw;
   height: 100vh;
@@ -29,4 +30,22 @@
   font-weight: bold;
   color: rgb(20, 20, 20);
   background-color: #F1D42A;
+}
+
+.my-pieaceOfMainpage {
+  position: absolute;
+  right: 0;
+  top: 38vh;
+  width: 0; 
+  height: 0; 
+  border-top: 12vh solid transparent;
+  border-bottom: 12vh solid transparent;
+  border-right: 4vw solid #F1D42A;
+  transition: all .3s cubic-bezier(.77,0,.175,1);
+}
+
+.my-pieaceOfMainpage:hover {
+  border-top: 14vh solid transparent;
+  border-bottom: 14vh solid transparent;
+  border-right: 6vw solid #F1D42A;
 }
