@@ -37,16 +37,16 @@ class Openning extends Component {
       this.setState({chefsMessage: `안녕하세요! 고독한 한끼입니다.`})
     }
     if(talkingCount === 1) {
-      this.setState({chefsMessage: '고독한 한끼는 여러분의 허전한 냉장고~ 어쩌구'})
+      this.setState({chefsMessage: '저희 고독한 한끼는 자취생들의 소중한 한끼를 책임지는 서비스입니다.'})
     }
     if(talkingCount === 2) {
-      this.setState({chefsMessage: '여러분의 균형잡힌 영양소 밸런스를~ 어쩌구'})
+      this.setState({chefsMessage: '지금 배가 고프시다고요?!'})
     }
     if(talkingCount === 3) {
-      this.setState({chefsMessage: '저, 황셰프의 안목으로~ 어쩌구'})
+      this.setState({chefsMessage: '주방으로 뛰어가서 재료를 확인해주세요!'})
     }
     if(talkingCount === 4) {
-      this.setState({chefsMessage: '그럼 시작해볼까요? 우선 재료를 골라주세요.'})
+      this.setState({chefsMessage: '그럼 황셰프에게 쉽고 간단한 레시피를 받아볼까요??'})
     }
     if(talkingCount === 5) {
       setTimeout(this.props.handleOpenningClicked, 2000);
