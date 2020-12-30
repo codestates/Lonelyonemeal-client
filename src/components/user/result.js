@@ -42,18 +42,12 @@ class Result extends Component {
                 <div className='loginContainer'>
                     <img className='X' src={x} onClick={this.props.resultModalHandler} />
                     <div className="middleContainer">
-                        <div className="title">sdf</div>
-                        {/* <div className="title">{this.props.resultMenu.foodName}</div> */}
+                        <div className="title">{this.props.resultMenu.foodName}</div>
                         <div className="resultName"></div>
-                        {/* <img className="resultImg" src={this.props.resultMenu.foodImgaaaaAazAa} alt ="foodimg" /> */}
-                        <div className="resultImg" />
+                        <img className="resultImg" src={this.props.resultMenu.foodImg} alt="foodimg" />
                         <div className="save">저장하기</div>
                         <div className='block' />
-                        {/* <div className="goMyPage" onClick={this.goMypage}>마이페이지에서 확인하세요!</div> */}
-                        {/* {this.props.isLogin ? <Link to="/mypage" /> : <Signin />} */}
-                        {/* <Link to ={this.props.isLogin ? "/mypage" : "/"    :} className="goMyPage">마이페이지에서 확인하세요!</Link> */}
-                        {
-                            this.props.isLogin ?
+                        {this.props.isLogin ?
                             <Link to="/mypage" className="goMyPage">마이페이지에서 확인하세요!</Link> :
                             <Link to="/main" className="goMyPage" onClick={this.openLoginModal}>마이페이지에서 확인하세요!</Link>
                         }

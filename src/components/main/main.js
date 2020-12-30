@@ -17,7 +17,7 @@ class Main extends Component {
       isResultModalOpen: false,  /* 결과 모달창이 열렸는지 여부 판별 */
       username: JSON.parse(localStorage.getItem('userInfo')) ? JSON.parse(localStorage.getItem('userInfo')).username : null  /* 로그인 했을 시 사용자 이름 */,
       shoppingBag: [],  /* 유저가 고른 재료들 */
-      resultMenu: {}  /* 셰프의 결과음식 */
+      resultMenu: null  /* 셰프의 결과음식 */
     }
     this.getOneMeal = this.getOneMeal.bind(this);
     this.loginHandler = this.loginHandler.bind(this);
@@ -30,10 +30,22 @@ class Main extends Component {
   /* 셰프에게 추천받기 버튼 서버통신 함수 */
   async getOneMeal() {
     this.resultModalHandler();
-    let result = await axios.post("https://onemeal.site/users/resultrecipe" , {ingredients: this.state.shoppingBag}, {withCredentials: true});
-    console.log(result.data);
-    this.setState({ resultMenu: result.data.recipe });
+    fetch("https://onemeal.site/users/resultrecipe",{
+      method: 'post',
+      headers: { 'Content-Type': 'application/json' },
+      credentials: true,
+      body: JSON.stringify({ingredients: this.state.shoppingBag})
+    }).then(res => res.json())
+    .then(res => {
+      console.log(res.data);
+      this.setState({ resultMenu: res.data });
+    })
   }
+
+    // let result = await axios.post("https://onemeal.site/users/resultrecipe" , {ingredients: this.state.shoppingBag}, {withCredentials: true});
+    // console.log(result.data);
+    // this.setState({ resultMenu: result.data });
+
 
   /* 로그인 상태 변경 함수 */
   loginHandler(username) {

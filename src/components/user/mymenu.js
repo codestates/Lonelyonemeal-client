@@ -50,16 +50,11 @@ class MyMenu extends Component {
         <div className="menuInt">추천받은 음식</div>
         <div className="block" />
         < div className="saveResultbox" >
-          <Recomend /><Recomend /><Recomend /><Recomend />
+          <Recomend /><Recomend /><Recomend /><Recomend /><Recomend /><Recomend /><Recomend /><Recomend />
         </div >
       </div>
     );
   }
 }
 
-
-
-function sdfadsf() {
-
-}
 export default MyMenu;
