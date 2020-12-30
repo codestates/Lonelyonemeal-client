@@ -9,6 +9,7 @@ import Openning from "./components/main/openning"
 import Result from "./components/user/result"
 import Mypage from "./components/user/mypage"
 import Share from "./components/user/share"
+import axios from "axios"
 
 
 class App extends Component {

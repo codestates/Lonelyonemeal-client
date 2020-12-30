@@ -5,6 +5,7 @@ import MainHeader from '../main/main-header'
 import MyInfo from './myinfo'
 import MyMenu from './mymenu.js'
 import Share from './share'
+import { Link } from 'react-router-dom'
 
 class Mypage extends Component {
   constructor(props) {
@@ -31,17 +32,28 @@ class Mypage extends Component {
   /* 유저정보 불러오는 함수 */
   getUserInfo() {
     let userInfo = JSON.parse(localStorage.getItem('userInfo'));
-    this.setState({
-      userInfo: {
-        username: userInfo.username,
-        email: userInfo.email,
-        password: userInfo.password,
-        userImg: userInfo.userImg
-      }
-    })
-    this.props.history.push("/mypage");
     if(!userInfo) {
+      this.setState({
+        userInfo: {
+          username: '당신은 억지로',
+          email: '마이페이지에 접속했습니다',
+          password: 'x',
+          userImg: null
+        }
+      })
+      this.props.history.push("/mypage");
       console.log('userInfo라는 로컬스토리지 없다~');
+    }
+    else {
+      this.setState({
+        userInfo: {
+          username: userInfo.username,
+          email: userInfo.email,
+          password: userInfo.password,
+          userImg: userInfo.userImg
+        }
+      })
+      this.props.history.push("/mypage");
     }
   }
 
@@ -72,6 +84,7 @@ class Mypage extends Component {
           <MyInfo userInfo={userInfo} getUserInfo={this.getUserInfo}/>
           <MyMenu/>
         </div>
+        <Link to="/main" className='my-pieaceOfMainpage'></Link>
         <button className='my-logout-button' onClick={this.handleLogout}>로그아웃</button>
         { isResultModalOpen ? <Share /> : null }
       </div>
