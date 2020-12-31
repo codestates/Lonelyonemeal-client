@@ -24,14 +24,8 @@ class Mypage extends Component {
   }
 
   /* 만약 로컬스토리지와 스테이트의 유저인포가 다를 때 유저정보 자동갱신 */
-  componentDidUpdate(prevState, prevProps) {
-    const{email, password, userImg} = this.state;
-    let localUserInfo = JSON.parse(localStorage.getItem('userInfo'));
-    if(localUserInfo.userImg !== userImg ||
-    localUserInfo.email !== email ||
-    localUserInfo.password !== password) {
-      this.getUserInfo();
-    }
+  componentDidMount() {
+    this.getUserInfo();
   }
 
   /* 유저정보 불러오는 함수 */
@@ -56,7 +50,6 @@ class Mypage extends Component {
         userInfo: {
           username: getInfo.username,
           email: getInfo.email,
-          password: getInfo.password,
           userImg: getInfo.userImg
         }
       })

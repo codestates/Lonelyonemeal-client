@@ -48,20 +48,14 @@ class App extends Component {
         isLogin :true,
         accessToken: result.data.accessToken
       })
+      let response = await axios.get('https://api.github.com/user', {
+      headers: { authorization: `token ${result.data.accessToken}` }
+      })
+      console.log(response);
+      let userInfo = {id: response.data.node_id, username: response.data.name, userImg: response.data.avatar_url, email: response.data.email};
+      localStorage.setItem('userInfo', JSON.stringify(userInfo));
+      console.log(JSON.stringify(userInfo) + '가 스토리지에 저장!')
     }
-    await fetch('https://api.github.com/user', {
-      method: 'get',
-      headers: { 'authorization': `token ${result.data.accessToken}` }
-    })
-    .then(res => {
-      console.log(res.json())
-      return res.json()
-    })
-    .then(res => {
-      let userInfo = {id: res.node_id, username: res.name, userImg: res.avatar_url, email: res.email};
-      localStorage.setItem('userInfo', userInfo);
-      console.log(userInfo + '가 스토리지에 저장!')
-    })
   }
 
   componentDidMount() {
