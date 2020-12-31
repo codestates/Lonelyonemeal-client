@@ -83,12 +83,7 @@ class Mypage extends Component {
             email: getInfo.email,
             password: getInfo.password,
             userImg: `https://onemeal.site/userImg/${getInfo.userImg}`,
-            save: this.state.save.concat({
-              foodName: getlog.foodName,
-              foodImg: getlog.foodImg,
-              foodLink: getlog.link,
-              saveDate: getlog.createdAt
-            })
+            save: getlog
           }
         })
         console.log('유저정보랑 레시피를 새로 받아왔어요')
