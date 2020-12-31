@@ -51,7 +51,7 @@ class MyMenu extends Component {
         <div className="menuInt">추천받은 음식</div>
         <div className="block" />
         < div className="saveResultbox" >
-          {this.props.save.map((item,index)=>(
+          {this.props.userInfo.save.map((item,index)=>(
           <Recomend key = {index} foodName={item.foodName} foodImg={item.foodImg} foodLink ={item.foodLink} saveDate={item.saveDate}  />
           ))}
         </div >

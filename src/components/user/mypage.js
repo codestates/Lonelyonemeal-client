@@ -20,10 +20,10 @@ class Mypage extends Component {
         userImg: null,
         save: [
           {
-            foodName: '',
-            foodImg: '',
-            foodLink: '',
-            saveDate: ''
+            foodName: null,
+            foodImg: null,
+            foodLink: null,
+            saveDate: null
           }
         ]
       }
@@ -74,44 +74,28 @@ class Mypage extends Component {
       .then(res => res.json())
       .then(res => {
         localStorage.setItem('userInfo', JSON.stringify(res.data));
+        localStorage.setItem('recipelog', JSON.stringify(res.log));
         let getInfo = JSON.parse(localStorage.getItem('userInfo'))
+        let getlog = JSON.parse(localStorage.getItem('recipelog'))
         this.setState({
           userInfo: {
             username: getInfo.username,
             email: getInfo.email,
             password: getInfo.password,
             userImg: `https://onemeal.site/userImg/${getInfo.userImg}`,
+            save: this.state.save.concat({
+              foodName: getlog.foodName,
+              foodImg: getlog.foodImg,
+              foodLink: getlog.link,
+              saveDate: getlog.createdAt
+            })
           }
         })
-        console.log('유저정보 새로 받아왔어요')
+        console.log('유저정보랑 레시피를 새로 받아왔어요')
+        this.props.history.push("/mypage");
       })
-      .then(() => {
-        fetch('https://onemeal.site/users/recipelog', {
-          method: 'get',
-          headers: { 'Content-Type': 'application/json' },
-          credentials: 'include'
-        })
-        .then(res => res.json())
-        .then(res => {
-          localStorage.setItem('recipelog', JSON.stringify(res.log));
-          let getlog = JSON.parse(localStorage.getItem('recipelog'))
-          this.setState({
-            userInfo: {
-              ...this.state.userInfo,
-              save: this.state.save.concat({
-                foodName: getlog.foodName,
-                foodImg: getlog.foodImg,
-                foodLink: getlog.link,
-                saveDate: getlog.createdAt
-              })
-            }
-          })
-          console.log('유저 음식정보 새로 받아왔어요')
-          this.props.history.push("/mypage");
-        })
-        .catch(err => {
-          console.log(err);
-        })
+      .catch(err => {
+        console.log(err);
       })
     }
   }
