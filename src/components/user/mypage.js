@@ -6,6 +6,7 @@ import MyInfo from './myinfo'
 import MyMenu from './mymenu.js'
 import Share from './share'
 import { Link } from 'react-router-dom'
+import leftArrow from '../main/img/left-arrow.png'
 
 class Mypage extends Component {
   constructor(props) {
@@ -39,7 +40,7 @@ class Mypage extends Component {
   /* 유저정보 불러오는 함수 */
   getUserInfo() {
     let userInfo = JSON.parse(localStorage.getItem('userInfo'));
-    if (!userInfo) {
+    if(!userInfo) {
       //여긴 그냥 로그인안하고 들어갔을때임
       this.setState({
         userInfo: {
@@ -52,7 +53,7 @@ class Mypage extends Component {
       this.props.history.push("/mypage");
       console.log('userInfo라는 로컬스토리지 없다~');
     }
-    else if (this.props.accessToken) {
+    else if(this.props.accessToken) {
       let getInfo = JSON.parse(localStorage.getItem('userInfo'))
       this.setState({
         userInfo: {
@@ -66,36 +67,36 @@ class Mypage extends Component {
     }
     else {
       fetch('https://onemeal.site/users/userinfo', {
-        method: 'get',
-        headers: { 'Content-Type': 'application/json' },
-        credentials: 'include'
+      method: 'get',
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'include'
       })
-        .then(res => res.json())
-        .then(res => {
-          localStorage.setItem('userInfo', JSON.stringify(res.data));
-          localStorage.setItem('recipelog', JSON.stringify(res.log));
-          let getInfo = JSON.parse(localStorage.getItem('userInfo'))
-          let getlog = JSON.parse(localStorage.getItem('recipelog'))
-          this.setState({
-            userInfo: {
-              username: getInfo.username,
-              email: getInfo.email,
-              password: getInfo.password,
-              userImg: `https://onemeal.site/userImg/${getInfo.userImg}`,
-              save :this.state.save.concat({
+      .then(res => res.json())
+      .then(res => {
+        localStorage.setItem('userInfo', JSON.stringify(res.data));
+        localStorage.setItem('recipelog', JSON.stringify(res.log));
+        let getInfo = JSON.parse(localStorage.getItem('userInfo'));
+        let getlog = JSON.parse(localStorage.getItem('recipelog'));
+        this.setState({
+          userInfo: {
+            username: getInfo.username,
+            email: getInfo.email,
+            password: getInfo.password,
+            userImg: `https://onemeal.site/userImg/${getInfo.userImg}`,
+            save: this.state.save.concat({
               foodName: getlog.foodName,
               foodImg: getlog.foodImg,
               foodLink: getlog.link,
               saveDate: getlog.createdAt
             })
-            }
-          })
-          console.log('유저정보 새로 받아왔어요')
-          this.props.history.push("/mypage");
-        })
-        .catch(err => {
-          console.log(err);
-        })
+          }
+        });
+        console.log('유저정보 새로 받아왔어요')
+        this.props.history.push("/mypage");
+      })
+      .catch(err => {
+        console.log(err);
+      })
     }
   }
 
@@ -107,32 +108,32 @@ class Mypage extends Component {
       headers: { 'Content-Type': 'application/json' },
       withCredentials: true
     })
-      .then(() => {
-        this.props.handleLogin();
-        localStorage.clear();
-        // 깃헙 로그아웃
-        if (this.props.accessToken) {
-          this.props.githubLogout();
-        }
-      })
-      .then(() => {
-        alert('성공적으로 로그아웃 되었습니다!')
-        this.props.history.push("/main");
-      })
+    .then(() => {
+      this.props.handleLogin();
+      localStorage.clear();
+      // 깃헙 로그아웃
+      if(this.props.accessToken) {
+        this.props.githubLogout();
+      }
+    })
+    .then(() => {
+      alert('성공적으로 로그아웃 되었습니다!')
+      this.props.history.push("/main");
+    })
   }
 
   render() {
-    const { isResultModalOpen, userInfo } = this.state;
-    return (
+    const { isResultModalOpen, userInfo, save } = this.state;
+    return(
       <div className='my-wrap'>
         <MainHeader isLogin={this.props.isLogin} username={userInfo.username} loginModalHandler={this.loginModalHandler} />
         <div className='my-container'>
-          <MyInfo userInfo={userInfo} getUserInfo={this.getUserInfo} />
-          <MyMenu userInfo={userInfo} />
+          <MyInfo userInfo={userInfo} getUserInfo={this.getUserInfo}/>
+          <MyMenu userInfo={userInfo}/>
         </div>
-        <Link to="/main" className='my-pieaceOfMainpage'></Link>
+        <Link to="/main" className='my-pieaceOfMainpage'><img src={leftArrow} alt='' className='l-arrow' /></Link>
         <button className='my-logout-button' onClick={this.handleLogout}>로그아웃</button>
-        { isResultModalOpen ? <Share /> : null}
+        { isResultModalOpen ? <Share /> : null }
       </div>
     );
   }

@@ -42,18 +42,25 @@
 }
 
 .my-pieaceOfMainpage:hover {
-  width: 4vw; 
+  width: 5vw; 
 }
 
 .my-pieaceOfMainpage:active {
-  animation: goToMypage 0.5s forwards;
+  animation: goToMypage 0.3s forwards;
 }
 
 @keyframes goToMypage {
   from {
-    width: 4vw;
+    width: 5vw;
   }
   to {
     width: 100vw;
   }
+}
+
+.l-arrow {
+  height: 4vh;
+  position: absolute;
+  left: 0;
+  top: 48vh;
 }
