@@ -25,8 +25,8 @@ class App extends Component {
     this.handleOpenningClicked = this.handleOpenningClicked.bind(this);
     this.handleLogin = this.handleLogin.bind(this);
     this.isLoginSetUp = this.isLoginSetUp.bind(this);
-    this.getAccessToken = this.getAccessToken.bind(this)
-
+    this.getAccessToken = this.getAccessToken.bind(this);
+    this.githubLogout = this.githubLogout.bind(this);
   }
   /** 세션 유지 코드 **/
   /*
@@ -48,15 +48,14 @@ class App extends Component {
         isLogin :true,
         accessToken: result.data.accessToken
       })
+      let response = await axios.get('https://api.github.com/user', {
+      headers: { authorization: `token ${result.data.accessToken}` }
+      })
+      console.log(response);
+      let userInfo = {id: response.data.node_id, username: response.data.name, userImg: response.data.avatar_url, email: response.data.email};
+      localStorage.setItem('userInfo', JSON.stringify(userInfo));
+      console.log(JSON.stringify(userInfo) + '가 스토리지에 저장!')
     }
-    await fetch('https://api.github.com/user', {
-      method: 'get',
-      headers: { 'authorization': `token ${result.data.accessToken}` }
-    })
-    .then(res => {
-      console.log(res.json())
-      console.log(res.name.json())
-    })
   }
 
   componentDidMount() {
@@ -66,6 +65,11 @@ class App extends Component {
     if (authorizationCode) {
       this.getAccessToken(authorizationCode)
     }
+  }
+
+  githubLogout() {
+    localStorage.clear();
+    this.setState({ accessToken: null })
   }
 
   handleLogin() {
@@ -96,7 +100,7 @@ class App extends Component {
       <div className="App" >
         <Switch>
           <Route exact path='/main' render={() => <Main isLogin={isLogin} handleLogin={this.handleLogin}/>} />
-          <Route exact path='/mypage' render ={()=> <Mypage isLogin={isLogin} handleLogin={this.handleLogin} accessToken={accessToken}/>}/>
+          <Route exact path='/mypage' render ={()=> <Mypage isLogin={isLogin} handleLogin={this.handleLogin} accessToken={accessToken} githubLogout={this.githubLogout}/>}/>
           <Route exact path='/intro' render={() => <Intro handleIntroClicked={this.handleIntroClicked} />} />
           <Route exact path='/signin' render = {() => <Signin />} />
           <Route exact path='/signup' render = {() => <Signup />} />

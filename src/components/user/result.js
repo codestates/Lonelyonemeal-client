@@ -47,7 +47,8 @@ class Result extends Component {
                         <img className="resultImg" src={this.props.resultMenu.foodImg} alt="foodimg" />
                         <div className="save">저장하기</div>
                         <div className='block' />
-                        {this.props.isLogin ?
+                        {
+                            this.props.isLogin ?
                             <Link to="/mypage" className="goMyPage">마이페이지에서 확인하세요!</Link> :
                             <Link to="/main" className="goMyPage" onClick={this.openLoginModal}>마이페이지에서 확인하세요!</Link>
                         }

@@ -63,7 +63,6 @@ class MyInfo extends Component {
         console.log(res);
         this.props.getUserInfo();
         alert('업로드 성공!');
-        this.props.history.push("/mypage");
       })
       .catch(err => {
         console.log(err);
