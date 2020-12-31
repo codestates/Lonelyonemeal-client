@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import kakao from './img2/kakao.png'
 import x from './img2/X.png'
-import { Link, withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import axios from 'axios'
 
 class Share extends Component {
