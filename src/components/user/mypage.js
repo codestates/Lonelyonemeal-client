@@ -6,6 +6,7 @@ import MyInfo from './myinfo'
 import MyMenu from './mymenu.js'
 import Share from './share'
 import { Link } from 'react-router-dom'
+import leftArrow from '../main/img/left-arrow.png'
 
 class Mypage extends Component {
   constructor(props) {
@@ -39,7 +40,7 @@ class Mypage extends Component {
   /* 유저정보 불러오는 함수 */
   getUserInfo() {
     let userInfo = JSON.parse(localStorage.getItem('userInfo'));
-    if (!userInfo) {
+    if(!userInfo) {
       //여긴 그냥 로그인안하고 들어갔을때임
       this.setState({
         userInfo: {
@@ -52,7 +53,7 @@ class Mypage extends Component {
       this.props.history.push("/mypage");
       console.log('userInfo라는 로컬스토리지 없다~');
     }
-    else if (this.props.accessToken) {
+    else if(this.props.accessToken) {
       let getInfo = JSON.parse(localStorage.getItem('userInfo'))
       this.setState({
         userInfo: {
@@ -66,9 +67,9 @@ class Mypage extends Component {
     }
     else {
       fetch('https://onemeal.site/users/userinfo', {
-        method: 'get',
-        headers: { 'Content-Type': 'application/json' },
-        credentials: 'include'
+      method: 'get',
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'include'
       })
       .then(res => res.json())
       .then(res => {
@@ -83,7 +84,6 @@ class Mypage extends Component {
           }
         })
         console.log('유저정보 새로 받아왔어요')
-        this.props.history.push("/mypage");
       })
       .then(() => {
         fetch('https://onemeal.site/users/recipelog', {
@@ -106,7 +106,7 @@ class Mypage extends Component {
               })
             }
           })
-          console.log('유저정보 새로 받아왔어요')
+          console.log('유저 음식정보 새로 받아왔어요')
           this.props.history.push("/mypage");
         })
         .catch(err => {
@@ -147,7 +147,7 @@ class Mypage extends Component {
             <MyInfo userInfo={userInfo} getUserInfo={this.getUserInfo} />
             <MyMenu userInfo={userInfo} />
           </div>
-          <Link to="/main" className='my-pieaceOfMainpage'></Link>
+          <Link to="/main" className='my-pieaceOfMainpage'><img src={leftArrow} alt='' className='l-arrow' /></Link>
           <button className='my-logout-button' onClick={this.handleLogout}>로그아웃</button>
           { isResultModalOpen ? <Share /> : null}
         </div>

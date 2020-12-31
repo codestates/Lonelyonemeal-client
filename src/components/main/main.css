@@ -27,21 +27,28 @@ body {
 }
 
 .main-pieaceOfMypage:hover {
-  width: 4vw; 
+  width: 5vw; 
   background-color: rgba(88, 132, 173);
 }
 
 .main-pieaceOfMypage:active {
-  animation: goToMypage 0.5s forwards;
+  animation: goToMypage 0.3s forwards;
 }
 
 @keyframes goToMypage {
   from {
-    width: 4vw;
+    width: 5vw;
   }
   to {
     width: 100vw;
   }
+}
+
+.r-arrow {
+  height: 4vh;
+  position: absolute;
+  right: 0;
+  top: 48vh;
 }
 
 /* ------ main --------*/
