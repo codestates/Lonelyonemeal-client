@@ -18,14 +18,7 @@ class Mypage extends Component {
         email: '',
         password: '',
         userImg: null,
-        save: [
-          {
-            foodName: null,
-            foodImg: null,
-            foodLink: null,
-            saveDate: null
-          }
-        ]
+        save: null
       }
     };
     this.getUserInfo = this.getUserInfo.bind(this);
@@ -77,18 +70,14 @@ class Mypage extends Component {
         localStorage.setItem('recipelog', JSON.stringify(res.log));
         let getInfo = JSON.parse(localStorage.getItem('userInfo'))
         let getlog = JSON.parse(localStorage.getItem('recipelog'))
+        console.log(getlog)
         this.setState({
           userInfo: {
             username: getInfo.username,
             email: getInfo.email,
             password: getInfo.password,
             userImg: `https://onemeal.site/userImg/${getInfo.userImg}`,
-            save: this.state.save.concat({
-              foodName: getlog.foodName,
-              foodImg: getlog.foodImg,
-              foodLink: getlog.link,
-              saveDate: getlog.createdAt
-            })
+            save: getlog
           }
         })
         console.log('유저정보랑 레시피를 새로 받아왔어요')
@@ -129,7 +118,7 @@ class Mypage extends Component {
           <MainHeader isLogin={this.props.isLogin} username={userInfo.username} loginModalHandler={this.loginModalHandler} />
           <div className='my-container'>
             <MyInfo userInfo={userInfo} getUserInfo={this.getUserInfo} />
-            <MyMenu userInfo={userInfo} />
+            <MyMenu save={userInfo.save} />
           </div>
           <Link to="/main" className='my-pieaceOfMainpage'><img src={leftArrow} alt='' className='l-arrow' /></Link>
           <button className='my-logout-button' onClick={this.handleLogout}>로그아웃</button>

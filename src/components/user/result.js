@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
-import Signin from './signin'
 import x from './img2/X.png'
 import { Link, withRouter } from 'react-router-dom'
 import axios from 'axios'
-import mypage from './mypage'
+
 
 class Result extends Component {
     constructor(props) {

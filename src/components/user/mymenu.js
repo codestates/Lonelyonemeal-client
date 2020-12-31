@@ -1,6 +1,4 @@
 import React, { Component } from 'react'
-import axios from 'axios'
-import { render } from '@testing-library/react';
 
 function Recomend({foodName,foodImg,foodLink,saveDate}) {
 
@@ -51,7 +49,7 @@ class MyMenu extends Component {
         <div className="menuInt">추천받은 음식</div>
         <div className="block" />
         < div className="saveResultbox" >
-          {this.props.userInfo.save.map((item,index)=>(
+          {this.props.save.map((item,index)=>(
           <Recomend key = {index} foodName={item.foodName} foodImg={item.foodImg} foodLink ={item.foodLink} saveDate={item.saveDate}  />
           ))}
         </div >
