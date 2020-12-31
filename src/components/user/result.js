@@ -9,33 +9,22 @@ class Result extends Component {
     constructor(props) {
         super(props)
         this.openLoginModal = this.openLoginModal.bind(this)
+        this.saveClick=this.saveClick.bind(this)
     }
 
     openLoginModal() {
         this.props.resultModalHandler();
         this.props.loginModalHandler();
     }
-    //this.signupRequestHandler = this.signupRequestHandler.bind(this);
 
-
-    /*
-    signupRequestHandler() {
-
-        axios({
-            method: 'GET',
-            url: 'https://onemeal.site/resultrecipe',
-            headers: { 'Content-Type': 'application/json' },
-            withCredentials: true,
-            data: { foodName: this.foodName, foodImg: this.foodImg }
-        })
-            .then(res => {
-                console.log(res.data);
-            })
-            .catch(err => {
-                console.log(err);
-            })
-    }{this.props.resultMenu.foodName}
-    */
+    async saveClick(){
+        await axios.post("https://onemeal.site/users/saverecipe" ,{
+        foodName: this.props.resultMenu.foodName,
+        foodImg :this.props.resultMenu.foodImg,
+        link : this.props.resultMenu.link
+         }, 
+         {withCredentials: true})
+    }
     render() {
         return (
             <div className="back">
@@ -44,8 +33,8 @@ class Result extends Component {
                     <div className="middleContainer">
                         <div className="title">{this.props.resultMenu.foodName}</div>
                         <div className="resultName"></div>
-                        <img className="resultImg" src={this.props.resultMenu.foodImg} alt="foodimg" />
-                        <div className="save">저장하기</div>
+                        <a href={this.props.resultMenu.link} target="_blank"><img className="resultImg" src={this.props.resultMenu.foodImg} alt="foodimg"/></a>
+                        <div className="save" onClick={this.saveClick}>저장하기</div>
                         <div className='block' />
                         {
                             this.props.isLogin ?

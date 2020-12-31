@@ -2,14 +2,15 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import { render } from '@testing-library/react';
 
-function Recomend() {
+function Recomend({foodName,foodImg,foodLink,saveDate}) {
+
   return (
     <div className="saveResult">
-      <div className="saveresultImg"></div>
+      <a href={foodLink} target="_blank"><img className="saveresultImg" src={foodImg} alt="foodimg"/></a>
       <div className="saveresultEx">
-        <div className="explainName">계란볶음밥</div>
+        <div className="explainName">{foodName}</div>
         <div className="block"></div>
-        <div className="explainData">2020-12-15</div>
+        <div className="explainData">{saveDate}</div>
       </div>
     </div>
   )
@@ -50,7 +51,9 @@ class MyMenu extends Component {
         <div className="menuInt">추천받은 음식</div>
         <div className="block" />
         < div className="saveResultbox" >
-          <Recomend /><Recomend /><Recomend /><Recomend /><Recomend /><Recomend /><Recomend /><Recomend />
+          {props.save.map((item,index)=>(
+          <Recomend key = {index} foodName={item.foodName} foodImg={item.foodImg} foodLink ={item.foodLink} saveDate={item.saveDate}  />
+          ))}
         </div >
       </div>
     );
