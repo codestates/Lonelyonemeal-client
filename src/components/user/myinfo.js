@@ -62,11 +62,11 @@ class MyInfo extends Component {
       .then(res => {
         console.log(res);
         this.props.getUserInfo();
-        alert('업로드 성공!');
+        alert('사용자 이름이 변경되었습니다!');
       })
       .catch(err => {
         console.log(err);
-        alert('업로드 실패..');
+        alert('업로드 실패');
       })
   }
 
@@ -74,23 +74,22 @@ class MyInfo extends Component {
   handlePasswordClick() {
     const {newPassword, password2} = this.state;
     if(newPassword === password2) {
-      const {newUsername} = this.state;
       return fetch('https://onemeal.site/users/userinfoup', {
       method: 'put',
       headers: { 'Content-Type': 'application/json' },
       credentials: 'include',
-      body: JSON.stringify({ username: newPassword })
+      body: JSON.stringify({ password: newPassword })
       })
       .then(res => res.json())
       .then(res => {
         console.log(res);
         this.props.getUserInfo();
-        alert('업로드 성공!');
+        alert('비밀번호가 변경되었습니다!');
         this.props.history.push("/mypage");
       })
       .catch(err => {
         console.log(err);
-        alert('업로드 실패..');
+        alert('업로드 실패');
       })
     }
     else {
@@ -99,32 +98,38 @@ class MyInfo extends Component {
   }
 
   render() {
-    const {userInfo} = this.props;
+    const {userInfo, accessToken} = this.props;
     return(
       <aside className='my-info-container'>
         <div className='my-pic'>
           <img src={userInfo.userImg ? userInfo.userImg : undefined} alt='' />
-          <input className='my-pic-upload' name='img' type='file' onChange={(e) => this.handleImgChange(e)}></input>
+          {accessToken ? null : <input className='my-pic-upload' name='img' type='file' onChange={(e) => this.handleImgChange(e)}></input>}
         </div>
-        <button className='btn-pic' onClick={this.handleImgClick}>변경</button>
+        {accessToken ? null : <button className='btn-pic' onClick={this.handleImgClick}>변경</button>}
         <div className='my-name'>
           <h1 className='my-info-list'>사용자 이름</h1>
-          <input type='text' className='my-name-disc' name='newUsername' defaultValue={userInfo.username} onChange={(e) => this.handleAnyThing(e)}></input>
+          {accessToken ? <div className='my-name-disc'>{userInfo.username}</div> : <input type='text' className='my-name-disc' name='newUsername' defaultValue={userInfo.username} onChange={(e) => this.handleAnyThing(e)}></input>}
         </div>
-        <button className='btn' onClick={this.handleNameClick}>변경</button>
+        {accessToken ? null : <button className='btn' onClick={this.handleNameClick}>변경</button>}
         <div className='my-email'>
           <h1 className='my-info-list'>E-mail</h1>
           <div className='my-email-disc'>{userInfo.email}</div>
         </div>
-        <div className='my-password'>
-          <h1 className='my-info-list'>비밀번호</h1>
-          <input type='password' name='newPassword' placeholder='변경할 비밀번호를 입력하세요.'className='my-password-disc' onChange={(e) => this.handleAnyThing(e)}></input>
-        </div>
-        <div className='my-password'>
-          <h1 className='my-info-list'>비밀번호 확인</h1>
-          <input type='password' name='password2' placeholder='비밀번호를 다시 입력하세요.'className='my-password-disc' onChange={(e) => this.handleAnyThing(e)}></input>
-        </div>
-        <button className='btn' onClick={this.handlePasswordClick}>변경</button>
+        {
+          accessToken ? null :
+          <div className='my-password'>
+            <h1 className='my-info-list'>비밀번호</h1>
+            <input type='password' name='newPassword' placeholder='변경할 비밀번호를 입력하세요.'className='my-password-disc' onChange={(e) => this.handleAnyThing(e)}></input>
+          </div>
+        }
+        {
+          accessToken ? null :
+          <div className='my-password'>
+            <h1 className='my-info-list'>비밀번호 확인</h1>
+            <input type='password' name='password2' placeholder='비밀번호를 다시 입력하세요.'className='my-password-disc' onChange={(e) => this.handleAnyThing(e)}></input>
+          </div>
+        }
+        {accessToken ? null : <button className='btn' onClick={this.handlePasswordClick}>변경</button>}
       </aside>
     );
   }

@@ -17,6 +17,9 @@ class Result extends Component {
     }
 
     async saveClick(){
+        if(!this.props.isLogin) {
+            return alert('로그인이 필요합니다!')
+        }
         await axios.post("https://onemeal.site/users/saverecipe" ,{
         foodName: this.props.resultMenu.foodName,
         foodImg :this.props.resultMenu.foodImg,

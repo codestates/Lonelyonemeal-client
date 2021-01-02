@@ -56,9 +56,9 @@
 
 @media all and (max-width:767px) {
   .main-ingredients {
-    margin-top: 50px;
-    width: 60vw;
-    height: 45vh;
+    margin-top: 60px;
+    width: 250px;
+    height: 370px;
     display: flex;
     align-items: center;
     justify-content: center;
