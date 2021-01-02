@@ -28,6 +28,10 @@
   text-align: right;
 }
 
+.main-header-login:hover {
+  text-decoration: underline;
+}
+
 .main-header-user {
   position: absolute;
   right: 0;
@@ -46,6 +50,7 @@
     height: 7vh;
     background-color: rgba(88, 132, 173);
     box-shadow: 1px 1px 5px 1px rgb(129, 129, 129);
+    margin-top: 0vh;
   }
   
   .main-header-logo {
@@ -63,7 +68,6 @@
     margin: 0em;
     font-size: 0.8em;
     color: rgb(255, 255, 255);
-    text-decoration-line: underline;
   }
   
   .main-header-user {

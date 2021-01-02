@@ -2,11 +2,11 @@ import React, { Component } from 'react'
 import logo from './img2/logo.png'
 import github from './img2/github.png'
 import google from './img2/google.png'
-import { Link, withRouter } from 'react-router-dom'
-import axios from 'axios'
+import { withRouter } from 'react-router-dom'
+
 import x from './img2/X.png'
 import Signup from './signup'
-import { GoogleLogin } from "react-google-login"
+
 require('dotenv').config(); 
 
 class Signin extends Component {
@@ -63,7 +63,12 @@ class Signin extends Component {
       .then(res => res.json())
       .then(res => {
         console.log(res.data);
-        this.getUserInfo();
+        if(res.data.message === "hashPwd exists" || res.data.message === "Not authorized") {
+          alert('존재하지 않는 사용자 이메일 혹은 비밀번호 입니다.')
+        }
+        else {
+          this.getUserInfo();
+        }
       })
       .catch(err => {
         console.log(err);
@@ -97,9 +102,6 @@ class Signin extends Component {
 
   render() {
 
-    const responseGoogle = (any) => {
-
-    }
     return (
       this.state.showSignupView ?
         <Signup handleSignupView={this.handleSignupView} loginModalHandler={this.props.loginModalHandler} /> :

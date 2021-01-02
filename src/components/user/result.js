@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
-import Signin from './signin'
 import x from './img2/X.png'
 import { Link, withRouter } from 'react-router-dom'
 import axios from 'axios'
-import mypage from './mypage'
+
 
 class Result extends Component {
     constructor(props) {
@@ -18,6 +17,9 @@ class Result extends Component {
     }
 
     async saveClick(){
+        if(!this.props.isLogin) {
+            return alert('로그인이 필요합니다!')
+        }
         await axios.post("https://onemeal.site/users/saverecipe" ,{
         foodName: this.props.resultMenu.foodName,
         foodImg :this.props.resultMenu.foodImg,

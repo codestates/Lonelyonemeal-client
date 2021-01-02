@@ -18,14 +18,7 @@ class Mypage extends Component {
         email: '',
         password: '',
         userImg: null,
-        save: [
-          {
-            foodName: null,
-            foodImg: null,
-            foodLink: null,
-            saveDate: null
-          }
-        ]
+        save: []
       }
     };
     this.getUserInfo = this.getUserInfo.bind(this);
@@ -40,20 +33,7 @@ class Mypage extends Component {
   /* 유저정보 불러오는 함수 */
   getUserInfo() {
     let userInfo = JSON.parse(localStorage.getItem('userInfo'));
-    if(!userInfo) {
-      //여긴 그냥 로그인안하고 들어갔을때임
-      this.setState({
-        userInfo: {
-          username: '당신은 억지로',
-          email: '마이페이지에 접속했습니다',
-          password: 'x',
-          userImg: null
-        }
-      })
-      this.props.history.push("/mypage");
-      console.log('userInfo라는 로컬스토리지 없다~');
-    }
-    else if(this.props.accessToken) {
+    if(this.props.accessToken) {
       let getInfo = JSON.parse(localStorage.getItem('userInfo'))
       this.setState({
         userInfo: {
@@ -77,6 +57,7 @@ class Mypage extends Component {
         localStorage.setItem('recipelog', JSON.stringify(res.log));
         let getInfo = JSON.parse(localStorage.getItem('userInfo'))
         let getlog = JSON.parse(localStorage.getItem('recipelog'))
+        console.log(getlog)
         this.setState({
           userInfo: {
             username: getInfo.username,
@@ -119,12 +100,13 @@ class Mypage extends Component {
 
     render() {
       const { isResultModalOpen, userInfo } = this.state;
+      const { accessToken } = this.props;
       return (
         <div className='my-wrap'>
           <MainHeader isLogin={this.props.isLogin} username={userInfo.username} loginModalHandler={this.loginModalHandler} />
           <div className='my-container'>
-            <MyInfo userInfo={userInfo} getUserInfo={this.getUserInfo} />
-            <MyMenu userInfo={userInfo} />
+            <MyInfo userInfo={userInfo} getUserInfo={this.getUserInfo} accessToken={accessToken} />
+            <MyMenu save={userInfo.save} />
           </div>
           <Link to="/main" className='my-pieaceOfMainpage'><img src={leftArrow} alt='' className='l-arrow' /></Link>
           <button className='my-logout-button' onClick={this.handleLogout}>로그아웃</button>

@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import logo from './img2/logo.png'
 import x from './img2/X.png'
-import {Link , withRouter} from 'react-router-dom'
-import axios from 'axios'
+import {withRouter} from 'react-router-dom'
+
 
 class Signup extends Component {
   constructor(props) {
@@ -53,7 +53,12 @@ class Signup extends Component {
       .then(res => res.json())
       .then(res => {
         console.log(res.data);
-        this.props.handleSignupView();
+        if(res.data.message === 'email exists') {
+          alert('이미 존재하는 이메일입니다.')
+        }
+        else {
+          this.props.handleSignupView();
+        }
       })
       .catch(err => {
         console.log(err);
