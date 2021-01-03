@@ -6,6 +6,14 @@
   align-items: center;
 }
 
+.my-info-container-github {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 input:focus {
   outline: none;
 }
@@ -56,6 +64,16 @@ button:focus {
   margin-top: 3vh;
 }
 
+.my-pic-github {
+  position: relative;
+  border: 6px solid #F1D42A;
+  background-color: rgb(114, 105, 92);
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  margin-top: 3vh;
+}
+
 .my-pic img {
   width: 100%;
   height: 100%;
@@ -89,6 +107,10 @@ button:focus {
   flex-direction: row;
   justify-content: space-between;
   margin-top: 3vh;
+}
+
+.my-name-disc-github {
+  border: none;
 }
 
 .btn-pic {

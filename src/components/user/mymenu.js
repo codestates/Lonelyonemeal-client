@@ -25,17 +25,23 @@ class MyMenu extends Component {
   }
 
   render() {
+    const {accessToken} = this.props;
+    
     return (
-      <div className='my-menu-wrap'>
-        <div className="menuInt">추천받은 음식</div>
-        <div className="block" />
-        <div className="saveResultbox">
-          {
-            this.props.save.map(item => <Recomend key={item.id} foodName={item.foodName} foodImg={item.foodImg} foodLink ={item.link} saveDate={item.createdAt} deleteRecipeLog={this.props.deleteRecipeLog} />)
-          }
-        </div >
+      <div className={accessToken ? 'my-menu-wrap-github' : 'my-menu-wrap'}>
+        {accessToken ? null : <div className="menuInt">추천받은 음식</div>}
+        {accessToken ? null : <div className="block" />}
+        {
+          accessToken ?
+          null : 
+          <div className="saveResultbox">
+            {
+              this.props.save.map(item => <Recomend key={item.id} foodName={item.foodName} foodImg={item.foodImg} foodLink ={item.link} saveDate={item.createdAt} deleteRecipeLog={this.props.deleteRecipeLog} />)
+            }
+          </div >
+        } 
       </div>
-    );
+    )
   }
 }
 

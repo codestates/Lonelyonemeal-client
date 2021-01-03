@@ -56,6 +56,7 @@ class App extends Component {
       let userInfo = {id: response.data.node_id, username: response.data.name, userImg: response.data.avatar_url, email: response.data.email};
       localStorage.setItem('userInfo', JSON.stringify(userInfo));
       console.log(JSON.stringify(userInfo) + '가 스토리지에 저장!')
+      history.go(0);
     }
   }
 

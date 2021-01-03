@@ -127,7 +127,7 @@ class Mypage extends Component {
           <MainHeader isLogin={this.props.isLogin} username={userInfo.username} loginModalHandler={this.loginModalHandler} />
           <div className='my-container'>
             <MyInfo userInfo={userInfo} getUserInfo={this.getUserInfo} accessToken={accessToken} />
-            <MyMenu save={userInfo.save} deleteRecipeLog={this.deleteRecipeLog}/>
+            <MyMenu save={userInfo.save} deleteRecipeLog={this.deleteRecipeLog} accessToken={accessToken} />
           </div>
           <Link to="/main" className='my-pieaceOfMainpage'><img src={leftArrow} alt='' className='l-arrow' /></Link>
           <button className='my-logout-button' onClick={this.handleLogout}>로그아웃</button>
