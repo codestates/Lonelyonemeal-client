@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import x from './img2/X.png'
-import axios from 'axios'
+
 
 function Recomend({foodName,foodImg,foodLink,saveDate, deleteRecipeLog,key}) {
 
@@ -12,7 +12,7 @@ function Recomend({foodName,foodImg,foodLink,saveDate, deleteRecipeLog,key}) {
         <div className="block"></div>
         <div className="explainData">{saveDate}</div>
       </div>
-      <img className="deleteButton" src={x} alt='' onClick={deleteRecipeLog}/>
+      <img className="deleteButton" src={x} alt='' onClick={deleteRecipeLog({key})}/>
     </div>
   )
 }
@@ -22,10 +22,6 @@ class MyMenu extends Component {
     super(props);
  
   } 
-  async deleteRecipeLog(){
-  await axios.delete('https://onemeal.site/users/deleterecipe',{id:this.props.id},{withCredentials: true})
-  console.log(this.props.id)
-  }
 
   render() {
     return (
