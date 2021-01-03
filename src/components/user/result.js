@@ -16,17 +16,24 @@ class Result extends Component {
         this.props.loginModalHandler();
     }
 
-    async saveClick(){
+    saveClick(){
         if(!this.props.isLogin) {
             return alert('로그인이 필요합니다!')
         }
-        await axios.post("https://onemeal.site/users/saverecipe" ,{
-        foodName: this.props.resultMenu.foodName,
-        foodImg :this.props.resultMenu.foodImg,
-        link : this.props.resultMenu.link
-         }, 
-         {withCredentials: true})
+        axios.post("https://onemeal.site/users/saverecipe" ,{
+            foodName: this.props.resultMenu.foodName,
+            foodImg :this.props.resultMenu.foodImg,
+            link : this.props.resultMenu.link
+        }, 
+        {withCredentials: true})
+        .then(() => {
+            alert('저장이 완료되었습니다!');
+        })
+        .catch(err => {
+            console.log(err)
+        })
     }
+
     render() {
         return (
             <div className="back">

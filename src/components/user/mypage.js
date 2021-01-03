@@ -7,6 +7,7 @@ import MyMenu from './mymenu.js'
 import Share from './share'
 import { Link } from 'react-router-dom'
 import leftArrow from '../main/img/left-arrow.png'
+import blankPic from './img2/blank.png'
 
 class Mypage extends Component {
   constructor(props) {
@@ -17,17 +18,37 @@ class Mypage extends Component {
         username: '',
         email: '',
         password: '',
-        userImg: null,
-        save: []
+        userImg: blankPic,
+        save: [
+          /* 실험용 더미
+          {
+            createdAt: '2021-01-01',
+            foodImg: "https://i.imgur.com/Ud0mryq.jpg",
+            foodName: '테스트음식',
+            id: 99,
+            link: "https://www.youtube.com/watch?v=TkElH6dFhW8",
+            updatedAt: '2021-01-03',
+            userId: 9
+          }*/
+        ]
       }
     };
     this.getUserInfo = this.getUserInfo.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
+    this.deleteRecipeLog = this.deleteRecipeLog.bind(this);
   }
 
   /* 만약 로컬스토리지와 스테이트의 유저인포가 다를 때 유저정보 자동갱신 */
   componentDidMount() {
     this.getUserInfo();
+    this.props.LoginChecker();
+  }
+
+  /* 레시피 로그 삭제 함수 */
+  deleteRecipeLog() {
+    console.log('수정필요')
+    return; // ********************************************************** 수정필요
+    //fetch('https://onemeal.site/users/userinfo')
   }
 
   /* 유저정보 불러오는 함수 */
@@ -106,7 +127,7 @@ class Mypage extends Component {
           <MainHeader isLogin={this.props.isLogin} username={userInfo.username} loginModalHandler={this.loginModalHandler} />
           <div className='my-container'>
             <MyInfo userInfo={userInfo} getUserInfo={this.getUserInfo} accessToken={accessToken} />
-            <MyMenu save={userInfo.save} />
+            <MyMenu save={userInfo.save} deleteRecipeLog={this.deleteRecipeLog}/>
           </div>
           <Link to="/main" className='my-pieaceOfMainpage'><img src={leftArrow} alt='' className='l-arrow' /></Link>
           <button className='my-logout-button' onClick={this.handleLogout}>로그아웃</button>

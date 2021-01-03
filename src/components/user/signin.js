@@ -62,8 +62,8 @@ class Signin extends Component {
       })
       .then(res => res.json())
       .then(res => {
-        console.log(res.data);
-        if(res.data.message === "hashPwd exists" || res.data.message === "Not authorized") {
+        console.log(res.message);
+        if(res.message === "hashPwd exists" || res.message === "Not authorized") {
           alert('존재하지 않는 사용자 이메일 혹은 비밀번호 입니다.')
         }
         else {

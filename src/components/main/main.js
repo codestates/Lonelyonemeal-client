@@ -27,8 +27,15 @@ class Main extends Component {
     this.randomChefTalk = this.randomChefTalk.bind(this);
   }
 
+  componentDidMount() {
+    this.props.LoginChecker();
+  }
+
   /* 셰프에게 추천받기 버튼 서버통신 함수 */
   async getOneMeal() {
+    if(this.state.shoppingBag.length < 2) {
+      return alert('재료를 2개 이상 골라주세요!')
+    }
     fetch("https://onemeal.site/users/resultrecipe",{
       method: 'post',
       headers: { 'Content-Type': 'application/json' },

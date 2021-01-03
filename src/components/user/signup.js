@@ -52,16 +52,13 @@ class Signup extends Component {
       })
       .then(res => res.json())
       .then(res => {
-        console.log(res.data);
-        if(res.data.message === 'email exists') {
-          alert('이미 존재하는 이메일입니다.')
+        console.log(res.message);
+        if(res.message === 'email exists') {
+          this.setState({errorMessage: '이미 존재하는 이메일입니다.'})
         }
         else {
           this.props.handleSignupView();
         }
-      })
-      .catch(err => {
-        console.log(err);
       })
     }
   }

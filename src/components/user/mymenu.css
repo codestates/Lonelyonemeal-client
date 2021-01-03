@@ -1,13 +1,7 @@
-.my-menu-container {
-  border: 1px solid green;
+
+.my-menu-wrap{
   width: 50%;
   height: 100%;
-}
-.my-menu-wrap{
-  border: 1px solid green;
-  margin-top: 10%;
-  width: 50%;
-  height: 80%;
 }
 
 .menuInt{
@@ -20,41 +14,64 @@
   margin-left: 7%;
   margin-top: 2%;
 }
-.saveresultImg{
-  width: 60%;
-  height: 100%;
-  border: 1px solid black;
-}
+
 
 .saveResultbox{
   display: flex;
-  overflow:scroll;
-  flex-flow:row wrap;
-  margin-left: 7%;
-  border: 1px solid black;
-  width: 90%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  flex-flow: column;
+  border: #f1d42a solid 8px;
+  border-radius: 40px;
+  width: 100%;
   height: 80%;
+  background-color: rgb(234, 236, 221);
 }
 
 .saveresultEx{
-
+  width: 40%;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-flow: column nowrap;
-  border: 3px solid pink;
   text-align: center;
-  
 }
 
 .saveResult{
+  position: relative;
   display: flex;
-  border: 4px solid red;
-  width: 48%;
-  height: 33%;
-  
-
+  background-color: #97b3d8;
+  width: 96%;
+  height: 100px;
+  margin: 2%;
+  border-radius: 20px;
 }
+
+.saveresultImg{
+  width: 100%;
+  height: auto;
+}
+
+.saveResult a {
+  width: 60%;
+  border-radius: 20px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.explainName{
+  font-weight: 700;
+}
+
 .explainData{
   font-size: 12px;
+}
+
+.deleteButton {
+  position: absolute;
+  width: 8px;
+  height: 9px;
+  right: 10px;
+  top: 10px;
+  cursor: pointer;
 }

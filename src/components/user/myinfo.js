@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import blankPic from './img2/blank.png'
 
 class MyInfo extends Component {
   constructor(props) {
@@ -41,7 +42,7 @@ class MyInfo extends Component {
       console.log(res);
       alert('업로드 성공!');
       this.props.getUserInfo();
-      this.props.history.push("/mypage");
+      //this.props.history.push("/mypage");
     })
     .catch(err => {
       console.log(err);
@@ -85,7 +86,6 @@ class MyInfo extends Component {
         console.log(res);
         this.props.getUserInfo();
         alert('비밀번호가 변경되었습니다!');
-        this.props.history.push("/mypage");
       })
       .catch(err => {
         console.log(err);
@@ -102,7 +102,7 @@ class MyInfo extends Component {
     return(
       <aside className='my-info-container'>
         <div className='my-pic'>
-          <img src={userInfo.userImg ? userInfo.userImg : undefined} alt='' />
+          <img src={userInfo.userImg ? userInfo.userImg : blankPic} alt='' />
           {accessToken ? null : <input className='my-pic-upload' name='img' type='file' onChange={(e) => this.handleImgChange(e)}></input>}
         </div>
         {accessToken ? null : <button className='btn-pic' onClick={this.handleImgClick}>변경</button>}
