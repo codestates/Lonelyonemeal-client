@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
+import x from './img2/X.png'
 
-function Recomend({foodName,foodImg,foodLink,saveDate}) {
+function Recomend({foodName,foodImg,foodLink,saveDate, deleteRecipeLog}) {
 
   return (
     <div className="saveResult">
@@ -10,6 +11,7 @@ function Recomend({foodName,foodImg,foodLink,saveDate}) {
         <div className="block"></div>
         <div className="explainData">{saveDate}</div>
       </div>
+      <img className="deleteButton" src={x} alt='' onClick={deleteRecipeLog}/>
     </div>
   )
 }
@@ -27,9 +29,9 @@ class MyMenu extends Component {
       <div className='my-menu-wrap'>
         <div className="menuInt">추천받은 음식</div>
         <div className="block" />
-        < div className="saveResultbox" >
+        <div className="saveResultbox">
           {
-            this.props.save.map(item => <Recomend key={item.id} foodName={item.foodName} foodImg={item.foodImg} foodLink ={item.link} saveDate={item.createdAt}  />)
+            this.props.save.map(item => <Recomend key={item.id} foodName={item.foodName} foodImg={item.foodImg} foodLink ={item.link} saveDate={item.createdAt} deleteRecipeLog={this.props.deleteRecipeLog} />)
           }
         </div >
       </div>

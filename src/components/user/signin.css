@@ -194,7 +194,6 @@
 font-size: 20px;
 }
 .resultImg{
-  background-color: red;
   width: 250px;
   height: 210px;
   margin-top: 30px;
@@ -210,6 +209,7 @@ font-size: 20px;
   font-weight: 800;
   font-size: 20px;
   color: #A09348;
+  cursor: pointer;
 }
 .goMyPage{
   font-size: 15px;

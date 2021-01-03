@@ -27,6 +27,7 @@ class App extends Component {
     this.isLoginSetUp = this.isLoginSetUp.bind(this);
     this.getAccessToken = this.getAccessToken.bind(this);
     this.githubLogout = this.githubLogout.bind(this);
+    this.LoginChecker = this.LoginChecker.bind(this);
   }
   /** 세션 유지 코드 **/
   /*
@@ -67,6 +68,12 @@ class App extends Component {
     }
   }
 
+  LoginChecker() {
+    if(localStorage.getItem('userInfo') && !this.state.isLogin) {
+      this.setState({ isLogin: true })
+    }
+  }
+
   githubLogout() {
     localStorage.clear();
     this.setState({ accessToken: null })
@@ -99,8 +106,8 @@ class App extends Component {
     return (
       <div className="App" >
         <Switch>
-          <Route exact path='/main' render={() => <Main isLogin={isLogin} handleLogin={this.handleLogin}/>} />
-          <Route exact path='/mypage' render ={()=> <Mypage isLogin={isLogin} handleLogin={this.handleLogin} accessToken={accessToken} githubLogout={this.githubLogout}/>}/>
+          <Route exact path='/main' render={() => <Main isLogin={isLogin} handleLogin={this.handleLogin} LoginChecker={this.LoginChecker}/>} />
+          <Route exact path='/mypage' render ={()=> <Mypage isLogin={isLogin} handleLogin={this.handleLogin} accessToken={accessToken} githubLogout={this.githubLogout} LoginChecker={this.LoginChecker}/>}/>
           <Route exact path='/intro' render={() => <Intro handleIntroClicked={this.handleIntroClicked} />} />
           <Route exact path='/signin' render = {() => <Signin />} />
           <Route exact path='/signup' render = {() => <Signup />} />
