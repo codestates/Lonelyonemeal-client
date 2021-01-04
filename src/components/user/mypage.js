@@ -48,8 +48,9 @@ class Mypage extends Component {
   /* 레시피 로그 삭제 함수 */
   async deleteRecipeLog(key){
      //x클릭한 정보 db에서 삭제
-    await axios.delete('https://onemeal.site/users/deleterecipe',{id:key},{withCredentials: true})
     console.log(key)
+    await axios.delete('https://onemeal.site/users/deleterecipe',{id:key},{withCredentials: true})
+    
    
     //삭제된 db에서 정보 제 업로딩
     fetch('https://onemeal.site/users/userinfo', {

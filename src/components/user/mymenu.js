@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import x from './img2/X.png'
 
 
-function Recomend({foodName,foodImg,foodLink,saveDate, deleteRecipeLog,key}) {
+function Recomend({foodName,foodImg,foodLink,saveDate, deleteRecipeLog, key}) {
 
   return (
     <div className="saveResult">
