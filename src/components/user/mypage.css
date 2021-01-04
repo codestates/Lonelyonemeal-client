@@ -64,3 +64,36 @@
   left: 0;
   top: 48vh;
 }
+
+@media all and (max-width:767px) {
+  .my-container {
+    width: 80vw;
+    height: 80vh;
+    margin-top: 2vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .my-logout-button {
+    border: none;
+    text-align: center;
+    width: 150px;
+    height: 50px;
+    border-radius: 10px;
+    margin-top: 1.5vh;
+    font-size: 15px;
+    font-weight: bold;
+    color: rgb(20, 20, 20);
+    background-color: #F1D42A;
+  }
+
+
+
+
+
+
+
+
+
+}

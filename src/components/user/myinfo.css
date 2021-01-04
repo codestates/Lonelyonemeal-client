@@ -146,3 +146,51 @@ button:focus {
   border: none;
   margin-top: 1vh;
 }
+
+@media all and (max-width:767px) {
+
+  .my-info-container {
+    width: 100%;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .my-info-list {
+    font-size: 0.8em;
+    font-weight: 600;
+    text-align: right;
+  }
+
+  .my-pic {
+    position: relative;
+    border: 6px solid #F1D42A;
+    background-color: rgb(114, 105, 92);
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin-top: 1vh;
+  }
+
+  .my-name, .my-email, .my-password{
+    width: 70%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2vh;
+  }
+
+  .my-name-disc, .my-password-disc {
+    width: 100px;
+    height: 10px;
+  }
+
+  
+
+
+
+
+
+}

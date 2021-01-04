@@ -29,6 +29,8 @@ class Signin extends Component {
   async githubLoginHandler() {
     let GITHUB_LOGIN_URL = `https://github.com/login/oauth/authorize?client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}`
     window.location.assign(GITHUB_LOGIN_URL)
+    let username = JSON.parse(localStorage.getItem('userInfo')).username
+    this.props.loginHandler(username);
   }
 
   handleInputValue(e) {

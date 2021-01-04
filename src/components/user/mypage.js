@@ -47,11 +47,15 @@ class Mypage extends Component {
         'Accept' : 'application/json',
         'Content-Type' : 'application/json'
       },
+      credentials: 'include',
       body: JSON.stringify({id: e.target.alt })
     })
     //삭제된 db에서 정보 제 업로딩
-    .then(res => this.getUserInfo())
-    }
+    .then(res => {
+      console.log(res.json());
+      this.getUserInfo();
+    })
+  }
 
   /* 유저정보 불러오는 함수 */
   getUserInfo() {

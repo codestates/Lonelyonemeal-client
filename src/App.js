@@ -33,7 +33,6 @@ class App extends Component {
     const result = await axios.post("https://onemeal.site/socials/githubLogin",{authorizationCode} )
     if(result) {
       this.setState({
-        isLogin :true,
         accessToken: result.data.accessToken
       })
       localStorage.setItem('token', result.data.accessToken + "");
