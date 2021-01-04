@@ -85,13 +85,24 @@ body {
 @media all and (max-width:767px) {
   .main-submit {
     width: 120px;
-    height: 50px;
-    margin-right: 25vw;
-    margin-top: 23vh;
+    margin-top: 0;
     font-size: 0.8em;
     font-weight: 500;
     color: white;
     background-color: rgba(88, 132, 173);
     box-shadow: 1px 1px 5px 1px rgb(129, 129, 129);
+  }
+  .r-arrow{
+    height: 3vh;
+    position: absolute;
+    left: -1vw;
+    top: 3.5vh;
+  }
+  .main-pieaceOfMypage{
+    top: 45vh;
+    width: 5vw;
+    height: 10vh;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
   }
 }

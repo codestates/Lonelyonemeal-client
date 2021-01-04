@@ -31,7 +31,6 @@ class Main extends Component {
     this.props.maintainToken();
     setTimeout(() => {
       if(this.props.isLogin && this.props.username === '') {
-        console.log('누가누가 먼저 실행되나 나는 DidMount at Main.js') //************************************************* */
         let name = JSON.parse(localStorage.getItem('userInfo')).username;
         this.props.setUsername(name);
       }

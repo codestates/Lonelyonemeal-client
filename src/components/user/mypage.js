@@ -38,8 +38,6 @@ class Mypage extends Component {
 
   /* 레시피 로그 삭제 함수 */
   deleteRecipeLog(e){
-    console.log(e.target.alt)
-    console.log(e.target)
      //x클릭한 정보 db에서 삭제
      const url = 'https://onemeal.site/users/deleterecipe'
     fetch(url,{
@@ -53,7 +51,6 @@ class Mypage extends Component {
     })
     //삭제된 db에서 정보 제 업로딩
     .then(res => {
-      console.log(res.json());
       this.getUserInfo();
     })
   }
@@ -70,7 +67,6 @@ class Mypage extends Component {
           userImg: getInfo.userImg
         }
       })
-      console.log('스토리지에 저장된 깃헙인포를 가져왔어요');
       this.props.history.push("/mypage");
     }
     else {
@@ -137,7 +133,7 @@ class Mypage extends Component {
           <MainHeader isLogin={this.props.isLogin} username={userInfo.username} loginModalHandler={this.loginModalHandler} />
           <div className='my-container'>
             <MyInfo userInfo={userInfo} getUserInfo={this.getUserInfo} accessToken={accessToken} />
-            <MyMenu save={userInfo.save} deleteRecipeLog={this.deleteRecipeLog} accessToken={accessToken} />
+            <MyMenu className='my-menu' save={userInfo.save} deleteRecipeLog={this.deleteRecipeLog} accessToken={accessToken} />
           </div>
           <Link to="/main" className='my-pieaceOfMainpage'><img src={leftArrow} alt='' className='l-arrow' /></Link>
           <button className='my-logout-button' onClick={this.handleLogout}>로그아웃</button>
