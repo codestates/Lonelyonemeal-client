@@ -19,22 +19,7 @@ class Mypage extends Component {
         email: '',
         password: '',
         userImg: blankPic,
-        save: [
-          {createdAt: '2021-01-01',
-          foodImg: "https://i.imgur.com/Ud0mryq.jpg",
-          foodName: '테스트음식',
-          id: 99,
-          link: "https://www.youtube.com/watch?v=TkElH6dFhW8",
-          updatedAt: '2021-01-03',
-          userId: 9},
-          {createdAt: '2021-01-01',
-          foodImg: "https://i.imgur.com/Ud0mryq.jpg",
-          foodName: '테스트음식',
-          id: 99,
-          link: "https://www.youtube.com/watch?v=TkElH6dFhW8",
-          updatedAt: '2021-01-03',
-          userId: 9}
-        ]
+        save: []
       }
     };
     this.getUserInfo = this.getUserInfo.bind(this);

@@ -25,6 +25,8 @@ body {
   background-color: rgba(88, 132, 173);
   transition: all .1s cubic-bezier(.77,0,.175,1);
   cursor: pointer;
+  border-top-right-radius: 100px;
+  border-bottom-right-radius: 100px;
 }
 
 .main-pieaceOfMypage:hover {
