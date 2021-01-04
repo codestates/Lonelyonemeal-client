@@ -42,6 +42,7 @@ class Mypage extends Component {
   componentDidMount() {
     this.getUserInfo();
     this.props.LoginChecker();
+    this.props.maintainToken();
   }
 
   /* 레시피 로그 삭제 함수 */
@@ -99,24 +100,29 @@ class Mypage extends Component {
 
     /* 로그아읏 함수 */
     handleLogout() {
-      axios({
-        method: 'POST',
-        url: 'https://onemeal.site/users/logout',
-        headers: { 'Content-Type': 'application/json' },
-        withCredentials: true
-      })
+      // 깃헙 로그아웃
+      if (this.props.accessToken) {
+        this.props.githubLogout();
+        alert('성공적으로 로그아웃 되었습니다!')
+        this.props.history.push("/main");
+      }
+      // 일반 로그아웃
+      else {
+        axios({
+          method: 'POST',
+          url: 'https://onemeal.site/users/logout',
+          headers: { 'Content-Type': 'application/json' },
+          withCredentials: true
+        })
         .then(() => {
           this.props.handleLogin();
           localStorage.clear();
-          // 깃헙 로그아웃
-          if (this.props.accessToken) {
-            this.props.githubLogout();
-          }
         })
         .then(() => {
           alert('성공적으로 로그아웃 되었습니다!')
           this.props.history.push("/main");
         })
+      }
     }
 
     render() {

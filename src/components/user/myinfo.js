@@ -112,7 +112,7 @@ class MyInfo extends Component {
           {accessToken ? null : <input className='my-pic-upload' name='img' type='file' onChange={(e) => this.handleImgChange(e)}></input>}
         </div>
         {accessToken ? null : <button className='btn-pic' onClick={this.handleImgClick}>변경</button>}
-        <div className='my-name'>
+        <div className={accessToken ? 'my-name-gihub' : 'my-name'}>
           <h1 className='my-info-list'>사용자 이름</h1>
           {accessToken ? <div className='my-name-disc-github'>{userInfo.username}</div> : <input type='text' className='my-name-disc' name='newUsername' defaultValue={userInfo.username} onChange={(e) => this.handleAnyThing(e)}></input>}
         </div>

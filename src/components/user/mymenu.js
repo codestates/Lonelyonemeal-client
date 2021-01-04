@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import x from './img2/X.png'
+import axios from 'axios'
 
-function Recomend({foodName,foodImg,foodLink,saveDate, deleteRecipeLog}) {
+function Recomend({foodName,foodImg,foodLink,saveDate, deleteRecipeLog,key}) {
 
   return (
     <div className="saveResult">
@@ -19,9 +20,6 @@ function Recomend({foodName,foodImg,foodLink,saveDate, deleteRecipeLog}) {
 class MyMenu extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-
-    };
   }
 
   render() {
@@ -36,7 +34,7 @@ class MyMenu extends Component {
           null : 
           <div className="saveResultbox">
             {
-              this.props.save.map(item => <Recomend key={item.id} foodName={item.foodName} foodImg={item.foodImg} foodLink ={item.link} saveDate={item.createdAt} deleteRecipeLog={this.props.deleteRecipeLog} />)
+              this.props.save.map(item => <Recomend key={item.id} foodName={item.foodName} foodImg={item.foodImg} foodLink ={item.link} saveDate={item.createdAt} />)
             }
           </div >
         } 
