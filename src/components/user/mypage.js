@@ -8,7 +8,6 @@ import Share from './share'
 import { Link } from 'react-router-dom'
 import leftArrow from '../main/img/left-arrow.png'
 import blankPic from './img2/blank.png'
-import axios from 'axios'
 
 class Mypage extends Component {
   constructor(props) {
