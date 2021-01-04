@@ -46,10 +46,11 @@ class Mypage extends Component {
   }
 
   /* 레시피 로그 삭제 함수 */
-  deleteRecipeLog(key){
-    console.log(key)
+  deleteRecipeLog(e){
+    console.log(e.target.alt)
+    console.log(e.target)
      //x클릭한 정보 db에서 삭제
-     const url = 'https://onemeal.site/users/deleterecipe'+ key
+     const url = 'https://onemeal.site/users/deleterecipe/'+ e.target.alt
     fetch(url,{
       method : 'delete'
     })
