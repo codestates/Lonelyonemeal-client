@@ -28,7 +28,6 @@ class MainIngre extends Component {
   /* 재료버튼 클릭, 재클릭 핸들링 함수 */
   selectOrDeleteIngredient(e) {
     let target = e.target.textContent;
-    console.log(target);
 
     if (e.target.classList.contains('main-ingredient')) {  /* CSS 스타일 이름을 통해 선택 유/무를 판별하며 */
       for (let i of this.state.ingredients) {  /* 재료목록과 대조하여 영문이름 수집 후 쇼핑백에 담음 */

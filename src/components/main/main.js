@@ -15,7 +15,7 @@ class Main extends Component {
       chefsMessage: null,
       isLoginModalOpen: false,  /* 로그인 모달창이 열렸는지 여부 판별 */
       isResultModalOpen: false,  /* 결과 모달창이 열렸는지 여부 판별 */
-      username: JSON.parse(localStorage.getItem('userInfo')) ? JSON.parse(localStorage.getItem('userInfo')).username : null  /* 로그인 했을 시 사용자 이름 */,
+      username: JSON.parse(localStorage.getItem('userInfo')) ? JSON.parse(localStorage.getItem('userInfo')).username : null    /* 로그인 했을 시 사용자 이름 */,
       shoppingBag: [],  /* 유저가 고른 재료들 */
       resultMenu: {}  /* 셰프의 결과음식 */
     }
@@ -45,16 +45,10 @@ class Main extends Component {
     })
     .then(res => res.json())
     .then(res => {
-      console.log(res.data);
       this.setState({ resultMenu: res.data });
       this.resultModalHandler();
     })
   }
-
-    // let result = await axios.post("https://onemeal.site/users/resultrecipe" , {ingredients: this.state.shoppingBag}, {withCredentials: true});
-    // console.log(result.data);
-    // this.setState({ resultMenu: result.data });
-
 
   /* 로그인 상태 변경 함수 */
   loginHandler(username) {
@@ -79,7 +73,6 @@ class Main extends Component {
   /* MainIngre의 shoppingBag 스테이트를 복사해오는 함수 */
   /* 생각 못하고 만들어서 쇼핑백이 하위 컴포넌트의 스테이트로만 존재하여 불가피하게 간단한 선택 (쇼핑백은 통신을 위해 현재 메인컴포넌트에서 필요함) */
   copyShoppingBag(bag) {
-    console.log(bag)
     this.setState({ shoppingBag: bag });
   }
 

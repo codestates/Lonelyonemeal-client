@@ -20,16 +20,6 @@ class Mypage extends Component {
         password: '',
         userImg: blankPic,
         save: [
-          /* 실험용 더미
-          {
-            createdAt: '2021-01-01',
-            foodImg: "https://i.imgur.com/Ud0mryq.jpg",
-            foodName: '테스트음식',
-            id: 99,
-            link: "https://www.youtube.com/watch?v=TkElH6dFhW8",
-            updatedAt: '2021-01-03',
-            userId: 9
-          }*/
         ]
       }
     };
@@ -90,7 +80,6 @@ class Mypage extends Component {
         localStorage.setItem('recipelog', JSON.stringify(res.log));
         let getInfo = JSON.parse(localStorage.getItem('userInfo'))
         let getlog = JSON.parse(localStorage.getItem('recipelog'))
-        console.log(getlog)
         this.setState({
           userInfo: {
             username: getInfo.username,
@@ -100,7 +89,6 @@ class Mypage extends Component {
             save: getlog
           }
         })
-        console.log('유저정보랑 레시피를 새로 받아왔어요')
         this.props.history.push("/mypage");
       })
       .catch(err => {
