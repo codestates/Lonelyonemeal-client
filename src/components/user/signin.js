@@ -51,11 +51,6 @@ class Signin extends Component {
       })
     }
     else {
-      /*
-      let result = await axios.post("https://onemeal.site/users/login",{email: email , password : password},{headers: { 'Content-Type': 'application/json'} ,withCredentials: true})
-      console.log(result)
-      this.props.loginHandler(result.data.data.username)
-      */
      fetch('https://onemeal.site/users/login', {
       method: 'post',
       headers: { 'Content-Type': 'application/json' },
@@ -64,7 +59,6 @@ class Signin extends Component {
       })
       .then(res => res.json())
       .then(res => {
-        console.log(res.message);
         if(res.message === "hashPwd exists" || res.message === "Not authorized") {
           alert('존재하지 않는 사용자 이메일 혹은 비밀번호 입니다.')
         }
@@ -80,11 +74,6 @@ class Signin extends Component {
 
   /* 유저인포 불러오는 함수 */
   getUserInfo() {
-    /*
-    let result = await axios.get("https://onemeal.site/users/userinfo" , {withCredentials: true});
-    console.log(result);
-    console.log('와! 성공!');
-    */
     fetch('https://onemeal.site/users/userinfo', {
     method: 'get',
     headers: { 'Content-Type': 'application/json' },
@@ -94,8 +83,6 @@ class Signin extends Component {
     .then(res => {
       localStorage.setItem('userInfo', JSON.stringify(res.data));
       this.props.loginHandler(res.data.username);
-      console.log(res.data);
-      console.log('와! 성공!');
     })
     .catch(err => {
       console.log(err);

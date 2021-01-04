@@ -18,22 +18,7 @@ class Share extends Component {
   
 
     async signupRequestHandler() {
-        let result = await axios.get("https://onemeal.site/resultrecipe",{ foodName: this.foodName, foodImg: this.foodImg },{headers: { 'Content-Type': 'application/json'} ,withCredentials: true})
-
-
-        // axios({
-        //     method: 'GET',
-        //     url: 'https://onemeal.site/resultrecipe',
-        //     headers: { 'Content-Type': 'application/json' },
-        //     withCredentials: true,
-        //     data: { foodName: this.foodName, foodImg: this.foodImg }
-        // })
-        //     .then(res => {
-        //         console.log(res.data);
-        //     })
-        //     .catch(err => {
-        //         console.log(err);
-        //     })
+        await axios.get("https://onemeal.site/resultrecipe",{ foodName: this.foodName, foodImg: this.foodImg },{headers: { 'Content-Type': 'application/json'} ,withCredentials: true})
     }
 
 

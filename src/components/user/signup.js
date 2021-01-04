@@ -28,22 +28,6 @@ class Signup extends Component {
       this.setState({ errorMessage: '모든 항목을 입력해주세요' });
     }
     else {
-      /*
-      axios({
-        method: 'POST',
-        url: 'https://onemeal.site/users/signup',
-        headers: { 'Content-Type': 'application/json' },
-        withCredentials: true,
-        data: { email: email, username: username, password: password }
-      })
-      .then(res => {
-        console.log(res.data);
-        this.props.handleSignupView();
-      })
-      .catch(err => {
-        console.log(err);
-      })
-      */
       fetch('https://onemeal.site/users/signup', {
       method: 'post',
       headers: { 'Content-Type': 'application/json' },
@@ -52,7 +36,6 @@ class Signup extends Component {
       })
       .then(res => res.json())
       .then(res => {
-        console.log(res.message);
         if(res.message === 'email exists') {
           this.setState({errorMessage: '이미 존재하는 이메일입니다.'})
         }
