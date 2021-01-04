@@ -50,10 +50,15 @@ class Mypage extends Component {
     console.log(e.target.alt)
     console.log(e.target)
      //x클릭한 정보 db에서 삭제
-     const url = 'https://onemeal.site/users/deleterecipe/'+ e.target.alt
+     const url = 'https://onemeal.site/users/deleterecipe'
     fetch(url,{
-      method : 'delete',
-      headers: { 'Content-Type': 'application/json' }
+      method : 'post',
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'include',
+      body: JSON.stringify(e.target.alt)
+    })
+    .then(res => {
+      console.log(res.json());
     })
     //삭제된 db에서 정보 제 업로딩
     fetch('https://onemeal.site/users/userinfo', {
