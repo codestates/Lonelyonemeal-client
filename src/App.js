@@ -47,7 +47,6 @@ class App extends Component {
     console.log(result);
     if(result) {
       this.setState({
-        isLogin :true,
         accessToken: result.data.accessToken
       })
       localStorage.setItem('token', result.data.accessToken + "");

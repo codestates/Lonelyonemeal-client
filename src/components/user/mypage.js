@@ -53,35 +53,19 @@ class Mypage extends Component {
      const url = 'https://onemeal.site/users/deleterecipe'
     fetch(url,{
       method : 'post',
-      headers: { 'Content-Type': 'application/json' },
+      headers:{
+        'Accept' : 'application/json',
+        'Content-Type' : 'application/json'
+      },
       credentials: 'include',
-      body: JSON.stringify(e.target.alt)
-    })
-    .then(res => {
-      console.log(res.json());
+      body: JSON.stringify({id: e.target.alt })
     })
     //삭제된 db에서 정보 제 업로딩
-    fetch('https://onemeal.site/users/userinfo', {
-      method: 'get',
-      headers: { 'Content-Type': 'application/json' },
-      credentials: 'include'
-      })
-    .then(res => res.json())
     .then(res => {
-      localStorage.setItem('recipelog', JSON.stringify(res.log));
-      let getlog = JSON.parse(localStorage.getItem('recipelog'))
-      this.setState({
-        userInfo: {
-          save: getlog
-        }
-      })
-      this.props.history.push("/mypage");
-      alert("삭제되었습니다.")
+      console.log(res.json());
+      this.getUserInfo();
     })
-    .catch(err => {
-      console.log(err);
-    })
-    }
+  }
 
   /* 유저정보 불러오는 함수 */
   getUserInfo() {
