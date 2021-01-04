@@ -6,9 +6,7 @@ import Signin from "./components/user/signin"
 import Signup from "./components/user/signup"
 import Main from "./components/main/main"
 import Openning from "./components/main/openning"
-import Result from "./components/user/result"
 import Mypage from "./components/user/mypage"
-import Share from "./components/user/share"
 import axios from "axios"
 
 
@@ -30,21 +28,9 @@ class App extends Component {
     this.LoginChecker = this.LoginChecker.bind(this);
     this.maintainToken = this.maintainToken.bind(this);
   }
-  /** 세션 유지 코드 **/
-  /*
-  componentDidMount(prevProps, prevState) {
-    if(localStorage.getItem('userInfo')) {
-      this.setState({ isLogin: true });
-    }
-    else {
-      this.setState({ isLogin: false });
-    }
-  }
-  */
  
   async getAccessToken(authorizationCode) {
     const result = await axios.post("https://onemeal.site/socials/githubLogin",{authorizationCode} )
-    console.log(result);
     if(result) {
       this.setState({
         isLogin :true,
@@ -54,10 +40,8 @@ class App extends Component {
       let response = await axios.get('https://api.github.com/user', {
       headers: { authorization: `token ${result.data.accessToken}` }
       })
-      console.log(response);
       let userInfo = {id: response.data.node_id, username: response.data.name, userImg: response.data.avatar_url, email: response.data.email};
       localStorage.setItem('userInfo', JSON.stringify(userInfo));
-      console.log(JSON.stringify(userInfo) + '가 스토리지에 저장!')
     }
   }
 

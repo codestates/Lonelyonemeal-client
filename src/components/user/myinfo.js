@@ -37,15 +37,11 @@ class MyInfo extends Component {
     }
     const formData = new FormData();
     formData.append('img', this.state.selectedUserImg);
-    for (let key of formData.entries()) {
-      console.log(key[0] + ', ' + key[1]);
-    }
+
     axios.put('https://onemeal.site/users/userimgup', formData, {withCredentials: true})
     .then(res => {
-      console.log(res);
       alert('업로드 성공!');
       this.props.getUserInfo();
-      //this.props.history.push("/mypage");
     })
     .catch(err => {
       console.log(err);
@@ -67,7 +63,6 @@ class MyInfo extends Component {
       })
       .then(res => res.json())
       .then(res => {
-        console.log(res);
         this.props.getUserInfo();
         alert('사용자 이름이 변경되었습니다!');
       })
@@ -89,7 +84,6 @@ class MyInfo extends Component {
       })
       .then(res => res.json())
       .then(res => {
-        console.log(res);
         this.props.getUserInfo();
         alert('비밀번호가 변경되었습니다!');
       })
