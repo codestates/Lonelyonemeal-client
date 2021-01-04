@@ -31,9 +31,6 @@ class MainIngre extends Component {
     console.log(target);
 
     if (e.target.classList.contains('main-ingredient')) {  /* CSS 스타일 이름을 통해 선택 유/무를 판별하며 */
-      if (this.state.shoppingBag.length >= 4) {
-        return alert("최대 4개까지 선택할수 있습니다")
-      }
       for (let i of this.state.ingredients) {  /* 재료목록과 대조하여 영문이름 수집 후 쇼핑백에 담음 */
         if (i[0] === target) {
           target = i[1];
