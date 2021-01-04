@@ -27,6 +27,7 @@ class Signin extends Component {
   }
 
   async githubLoginHandler() {
+    console.log(`누가누가 먼저 실행되나 나는 githubLoginHandler 그리고 로컬스토리지에 ${JSON.parse(localStorage.getItem('userInfo'))}`) //************************************************* */
     let GITHUB_LOGIN_URL = `https://github.com/login/oauth/authorize?client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}`
     window.location.assign(GITHUB_LOGIN_URL)
     let username = JSON.parse(localStorage.getItem('userInfo')).username

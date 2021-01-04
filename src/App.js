@@ -17,7 +17,8 @@ class App extends Component {
       isLogin: false,
       isIntro: true,
       isOpenning: true,
-      accessToken: null
+      accessToken: null,
+      username: ''
     }
     this.handleIntroClicked = this.handleIntroClicked.bind(this);
     this.handleOpenningClicked = this.handleOpenningClicked.bind(this);
@@ -27,12 +28,14 @@ class App extends Component {
     this.githubLogout = this.githubLogout.bind(this);
     this.LoginChecker = this.LoginChecker.bind(this);
     this.maintainToken = this.maintainToken.bind(this);
+    this.setUsername = this.setUsername.bind(this);
   }
  
   async getAccessToken(authorizationCode) {
     const result = await axios.post("https://onemeal.site/socials/githubLogin",{authorizationCode} )
     if(result) {
       this.setState({
+        isLogin: true,
         accessToken: result.data.accessToken
       })
       localStorage.setItem('token', result.data.accessToken + "");
@@ -47,10 +50,13 @@ class App extends Component {
   componentDidMount() {
     const url = new URL(window.location.href)
     const authorizationCode = url.searchParams.get('code')
-    console.log(authorizationCode)
     if (authorizationCode) {
       this.getAccessToken(authorizationCode)
     }
+  }
+
+  setUsername(name) {
+    this.setState({ username: name });
   }
 
   /* 깃헙 토큰 계속해서 유지시켜주는 함수 */
@@ -94,11 +100,11 @@ class App extends Component {
   }
  
   render() {
-    const {isOpenning, isIntro, isLogin, accessToken} = this.state;
+    const {isOpenning, isIntro, isLogin, accessToken, username} = this.state;
     return (
       <div className="App" >
         <Switch>
-          <Route exact path='/main' render={() => <Main isLogin={isLogin} handleLogin={this.handleLogin} LoginChecker={this.LoginChecker} maintainToken={this.maintainToken}/>} />
+          <Route exact path='/main' render={() => <Main isLogin={isLogin} handleLogin={this.handleLogin} LoginChecker={this.LoginChecker} maintainToken={this.maintainToken} setUsername={this.setUsername} username={username}/>} />
           <Route exact path='/mypage' render ={()=> <Mypage isLogin={isLogin} handleLogin={this.handleLogin} accessToken={accessToken} githubLogout={this.githubLogout} LoginChecker={this.LoginChecker} maintainToken={this.maintainToken}/>}/>
           <Route exact path='/intro' render={() => <Intro handleIntroClicked={this.handleIntroClicked} />} />
           <Route exact path='/signin' render = {() => <Signin />} />

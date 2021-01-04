@@ -20,6 +20,7 @@ class Mypage extends Component {
         password: '',
         userImg: blankPic,
         save: [
+          
         ]
       }
     };

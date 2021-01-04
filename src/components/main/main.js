@@ -15,7 +15,6 @@ class Main extends Component {
       chefsMessage: null,
       isLoginModalOpen: false,  /* 로그인 모달창이 열렸는지 여부 판별 */
       isResultModalOpen: false,  /* 결과 모달창이 열렸는지 여부 판별 */
-      username: JSON.parse(localStorage.getItem('userInfo')) ? JSON.parse(localStorage.getItem('userInfo')).username : null    /* 로그인 했을 시 사용자 이름 */,
       shoppingBag: [],  /* 유저가 고른 재료들 */
       resultMenu: {}  /* 셰프의 결과음식 */
     }
@@ -30,6 +29,13 @@ class Main extends Component {
   componentDidMount() {
     this.props.LoginChecker();
     this.props.maintainToken();
+    setTimeout(() => {
+      if(this.props.isLogin && this.props.username === '') {
+        console.log('누가누가 먼저 실행되나 나는 DidMount at Main.js') //************************************************* */
+        let name = JSON.parse(localStorage.getItem('userInfo')).username;
+        this.props.setUsername(name);
+      }
+    }, 1600);
   }
 
   /* 셰프에게 추천받기 버튼 서버통신 함수 */
@@ -83,12 +89,12 @@ class Main extends Component {
   }
 
   render() {
-    const { chefsMessage, isLoginModalOpen, isResultModalOpen, username, resultMenu } = this.state;
+    const { chefsMessage, isLoginModalOpen, isResultModalOpen, resultMenu } = this.state;
     return (
       <div className='main-wrap'>
         <Chef chefsMessage={chefsMessage} />
         <div className='main-main'>
-          <MainHeader isLogin={this.props.isLogin} username={username} loginModalHandler={this.loginModalHandler} />
+          <MainHeader isLogin={this.props.isLogin} username={this.props.username} loginModalHandler={this.loginModalHandler} />
           <MainIngre copyShoppingBag={this.copyShoppingBag} randomChefTalk={this.randomChefTalk} />
           <button className='main-submit' onClick={this.getOneMeal}>셰프에게 추천받기</button>
         </div>
