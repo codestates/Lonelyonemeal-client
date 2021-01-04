@@ -17,9 +17,7 @@ class Mypage extends Component {
         email: '',
         password: '',
         userImg: blankPic,
-        save: [
-          
-        ]
+        save: []
       }
     };
     this.getUserInfo = this.getUserInfo.bind(this);

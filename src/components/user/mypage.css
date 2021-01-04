@@ -34,6 +34,8 @@
 
 .my-pieaceOfMainpage {
   position: absolute;
+  border-top-left-radius: 100px;
+  border-bottom-left-radius: 100px;
   right: 0;
   width: 3vw; 
   height: 100vh; 
@@ -49,6 +51,7 @@
   animation: goToMypage 0.3s forwards;
 }
 
+
 @keyframes goToMypage {
   from {
     width: 5vw;
@@ -57,7 +60,12 @@
     width: 100vw;
   }
 }
-
+.l-arrow {
+  height: 4vh;
+  position: absolute;
+  left: 0;
+  top: 48vh;
+}
 
 
 @media all and (max-width:767px) {
