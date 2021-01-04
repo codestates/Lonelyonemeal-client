@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import x from './img2/X.png'
 
 
-function Recomend({foodName,foodImg,foodLink,saveDate, deleteRecipeLog, key}) {
+function Recomend({foodName,foodImg,foodLink,saveDate, deleteRecipeLog,id}) {
 
   return (
     <div className="saveResult">
@@ -12,7 +12,7 @@ function Recomend({foodName,foodImg,foodLink,saveDate, deleteRecipeLog, key}) {
         <div className="block"></div>
         <div className="explainData">{saveDate}</div>
       </div>
-      <img className="deleteButton" src={x} alt='' onClick={(e)=>deleteRecipeLog(key)}/>
+      <img className="deleteButton" src={x} alt={id} onClick={(e)=>deleteRecipeLog(e)}/>
     </div>
   )
 }
@@ -34,7 +34,7 @@ class MyMenu extends Component {
           null : 
           <div className="saveResultbox">
             {
-              this.props.save.map(item => <Recomend key={item.id} foodName={item.foodName} foodImg={item.foodImg} foodLink ={item.link} saveDate={item.createdAt} deleteRecipeLog={deleteRecipeLog}/>)
+              this.props.save.map(item => <Recomend key={item.id} id = {item.id} foodName={item.foodName} foodImg={item.foodImg} foodLink ={item.link} saveDate={item.createdAt} deleteRecipeLog={deleteRecipeLog}/>)
             }
           </div >
         } 
