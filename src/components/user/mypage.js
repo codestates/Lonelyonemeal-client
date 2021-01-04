@@ -8,6 +8,7 @@ import Share from './share'
 import { Link } from 'react-router-dom'
 import leftArrow from '../main/img/left-arrow.png'
 import blankPic from './img2/blank.png'
+import axios from 'axios'
 
 class Mypage extends Component {
   constructor(props) {
@@ -46,11 +47,33 @@ class Mypage extends Component {
   }
 
   /* 레시피 로그 삭제 함수 */
-  deleteRecipeLog() {
-    console.log('수정필요')
-    return; // ********************************************************** 수정필요
-    //fetch('https://onemeal.site/users/userinfo')
-  }
+  async deleteRecipeLog(key){
+     //x클릭한 정보 db에서 삭제
+    await axios.delete('https://onemeal.site/users/deleterecipe',{id:key},{withCredentials: true})
+    console.log(key)
+   
+    //삭제된 db에서 정보 제 업로딩
+    fetch('https://onemeal.site/users/userinfo', {
+      method: 'get',
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'include'
+      })
+      .then(res => res.json())
+      .then(res => {
+        localStorage.setItem('recipelog', JSON.stringify(res.log));
+        let getlog = JSON.parse(localStorage.getItem('recipelog'))
+        this.setState({
+          userInfo: {
+            save: getlog
+          }
+        })
+        this.props.history.push("/mypage");
+        alert("삭제되었습니다.")
+      })
+      .catch(err => {
+        console.log(err);
+      })
+    }
 
   /* 유저정보 불러오는 함수 */
   getUserInfo() {

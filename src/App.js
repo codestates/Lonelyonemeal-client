@@ -85,7 +85,7 @@ class App extends Component {
 
   githubLogout() {
     localStorage.clear();
-    this.setState({ accessToken: null })
+    this.setState({ accessToken: null, isLogin: false })
   }
 
   handleLogin() {

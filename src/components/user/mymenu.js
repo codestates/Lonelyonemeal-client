@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import x from './img2/X.png'
-import axios from 'axios'
+
 
 function Recomend({foodName,foodImg,foodLink,saveDate, deleteRecipeLog,key}) {
 
@@ -12,7 +12,7 @@ function Recomend({foodName,foodImg,foodLink,saveDate, deleteRecipeLog,key}) {
         <div className="block"></div>
         <div className="explainData">{saveDate}</div>
       </div>
-      <img className="deleteButton" src={x} alt='' onClick={deleteRecipeLog}/>
+      <img className="deleteButton" src={x} alt='' onClick={deleteRecipeLog({key})}/>
     </div>
   )
 }
@@ -23,7 +23,7 @@ class MyMenu extends Component {
   }
 
   render() {
-    const {accessToken} = this.props;
+    const {accessToken, deleteRecipeLog} = this.props;
     
     return (
       <div className={accessToken ? 'my-menu-wrap-github' : 'my-menu-wrap'}>
@@ -34,7 +34,7 @@ class MyMenu extends Component {
           null : 
           <div className="saveResultbox">
             {
-              this.props.save.map(item => <Recomend key={item.id} foodName={item.foodName} foodImg={item.foodImg} foodLink ={item.link} saveDate={item.createdAt} />)
+              this.props.save.map(item => <Recomend key={item.id} foodName={item.foodName} foodImg={item.foodImg} foodLink ={item.link} saveDate={item.createdAt} deleteRecipeLog={deleteRecipeLog}/>)
             }
           </div >
         } 
