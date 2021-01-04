@@ -20,6 +20,20 @@ class Mypage extends Component {
         password: '',
         userImg: blankPic,
         save: [
+          {createdAt: '2021-01-01',
+          foodImg: "https://i.imgur.com/Ud0mryq.jpg",
+          foodName: '테스트음식',
+          id: 99,
+          link: "https://www.youtube.com/watch?v=TkElH6dFhW8",
+          updatedAt: '2021-01-03',
+          userId: 9},
+          {createdAt: '2021-01-01',
+          foodImg: "https://i.imgur.com/Ud0mryq.jpg",
+          foodName: '테스트음식',
+          id: 99,
+          link: "https://www.youtube.com/watch?v=TkElH6dFhW8",
+          updatedAt: '2021-01-03',
+          userId: 9}
         ]
       }
     };
@@ -69,7 +83,6 @@ class Mypage extends Component {
           userImg: getInfo.userImg
         }
       })
-      console.log('스토리지에 저장된 깃헙인포를 가져왔어요');
       this.props.history.push("/mypage");
     }
     else {
@@ -136,7 +149,7 @@ class Mypage extends Component {
           <MainHeader isLogin={this.props.isLogin} username={userInfo.username} loginModalHandler={this.loginModalHandler} />
           <div className='my-container'>
             <MyInfo userInfo={userInfo} getUserInfo={this.getUserInfo} accessToken={accessToken} />
-            <MyMenu save={userInfo.save} deleteRecipeLog={this.deleteRecipeLog} accessToken={accessToken} />
+            <MyMenu className='my-menu' save={userInfo.save} deleteRecipeLog={this.deleteRecipeLog} accessToken={accessToken} />
           </div>
           <Link to="/main" className='my-pieaceOfMainpage'><img src={leftArrow} alt='' className='l-arrow' /></Link>
           <button className='my-logout-button' onClick={this.handleLogout}>로그아웃</button>

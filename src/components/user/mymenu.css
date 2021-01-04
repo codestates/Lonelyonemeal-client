@@ -80,3 +80,51 @@
   top: 10px;
   cursor: pointer;
 }
+@keyframes goToMypage {
+  from {
+    width: 5vw;
+  }
+  to {
+    width: 100vw;
+  }
+}
+
+
+@media all and (max-width:767px) {
+.my-menu-wrap{
+  display: flex;
+  flex-flow:wrap;
+  align-items: center;
+  justify-content: center;
+  width: 80%;
+
+}
+.saveResultbox{
+  margin-top: 10px;
+  width: 100%;
+
+}
+.menuInt{
+  font-size: 15px;
+  margin-top: 20px;
+  margin-left: 5vw;
+  margin-right: 0
+
+}
+.explainName{
+  font-size: 10px;
+  right: 0;
+}
+.saveResult{ 
+  margin-top: 8px;
+  height: 50px;
+  
+}
+
+.block{
+  height: 0;
+}
+.deleteButton{
+  width: 2vw;
+}
+}
