@@ -50,31 +50,17 @@ class Mypage extends Component {
     console.log(e.target.alt)
     console.log(e.target)
      //x클릭한 정보 db에서 삭제
-     const url = 'https://onemeal.site/users/deleterecipe/'+ e.target.alt
+     const url = 'https://onemeal.site/users/deleterecipe'
     fetch(url,{
-      method : 'delete'
+      method : 'post',
+      headers:{
+        'Accept' : 'application/json',
+        'Content-Type' : 'application/json'
+      },
+      body: JSON.stringify({id: e.target.alt })
     })
     //삭제된 db에서 정보 제 업로딩
-    fetch('https://onemeal.site/users/userinfo', {
-      method: 'get',
-      headers: { 'Content-Type': 'application/json' },
-      credentials: 'include'
-      })
-      .then(res => res.json())
-      .then(res => {
-        localStorage.setItem('recipelog', JSON.stringify(res.log));
-        let getlog = JSON.parse(localStorage.getItem('recipelog'))
-        this.setState({
-          userInfo: {
-            save: getlog
-          }
-        })
-        this.props.history.push("/mypage");
-        alert("삭제되었습니다.")
-      })
-      .catch(err => {
-        console.log(err);
-      })
+    .then(res => this.getUserInfo())
     }
 
   /* 유저정보 불러오는 함수 */
