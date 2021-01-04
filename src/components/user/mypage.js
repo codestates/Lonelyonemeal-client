@@ -12,7 +12,6 @@ class Mypage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isResultModalOpen: false,
       userInfo: {
         username: '',
         email: '',
@@ -136,7 +135,6 @@ class Mypage extends Component {
           </div>
           <Link to="/main" className='my-pieaceOfMainpage'><img src={leftArrow} alt='' className='l-arrow' /></Link>
           <button className='my-logout-button' onClick={this.handleLogout}>로그아웃</button>
-          { isResultModalOpen ? <Share /> : null}
         </div>
       );
     }
