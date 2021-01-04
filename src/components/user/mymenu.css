@@ -4,6 +4,10 @@
   height: 100%;
 }
 
+.my-menu-wrap-github {
+  display: none;
+}
+
 .menuInt{
   margin-left: 40px;
   font-size: 23px;
@@ -29,7 +33,7 @@
 }
 
 .saveresultEx{
-  width: 40%;
+  width: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -42,18 +46,19 @@
   display: flex;
   background-color: #97b3d8;
   width: 96%;
-  height: 100px;
+  height: 120px;
   margin: 2%;
   border-radius: 20px;
 }
 
 .saveresultImg{
+  margin-bottom: 35%;
   width: 100%;
   height: auto;
 }
 
 .saveResult a {
-  width: 60%;
+  width: 50%;
   border-radius: 20px;
   overflow: hidden;
   cursor: pointer;

@@ -32,6 +32,9 @@ class MyInfo extends Component {
 
   /* 서버에 이미지 업데이트 함수 */
   handleImgClick() {
+    if(!this.state.selectedUserImg) {
+      return alert('이미지를 업로드 해주세요')
+    }
     const formData = new FormData();
     formData.append('img', this.state.selectedUserImg);
     for (let key of formData.entries()) {
@@ -53,6 +56,9 @@ class MyInfo extends Component {
   /* 서버에 이름 업데이트 함수 */
   handleNameClick() {
     const {newUsername} = this.state;
+    if(newUsername === this.props.userInfo.username) {
+      alert('새로운 사용자 이름을 작성해주세요')
+    }
     return fetch('https://onemeal.site/users/userinfoup', {
       method: 'put',
       headers: { 'Content-Type': 'application/json' },
@@ -100,21 +106,24 @@ class MyInfo extends Component {
   render() {
     const {userInfo, accessToken} = this.props;
     return(
-      <aside className='my-info-container'>
-        <div className='my-pic'>
+      <aside className={accessToken ? 'my-info-container-github' : 'my-info-container'}>
+        <div className={accessToken ? 'my-pic-github' : 'my-pic'}>
           <img src={userInfo.userImg ? userInfo.userImg : blankPic} alt='' />
           {accessToken ? null : <input className='my-pic-upload' name='img' type='file' onChange={(e) => this.handleImgChange(e)}></input>}
         </div>
         {accessToken ? null : <button className='btn-pic' onClick={this.handleImgClick}>변경</button>}
-        <div className='my-name'>
+        <div className={accessToken ? 'my-name-gihub' : 'my-name'}>
           <h1 className='my-info-list'>사용자 이름</h1>
-          {accessToken ? <div className='my-name-disc'>{userInfo.username}</div> : <input type='text' className='my-name-disc' name='newUsername' defaultValue={userInfo.username} onChange={(e) => this.handleAnyThing(e)}></input>}
+          {accessToken ? <div className='my-name-disc-github'>{userInfo.username}</div> : <input type='text' className='my-name-disc' name='newUsername' defaultValue={userInfo.username} onChange={(e) => this.handleAnyThing(e)}></input>}
         </div>
         {accessToken ? null : <button className='btn' onClick={this.handleNameClick}>변경</button>}
-        <div className='my-email'>
-          <h1 className='my-info-list'>E-mail</h1>
-          <div className='my-email-disc'>{userInfo.email}</div>
-        </div>
+        {
+          accessToken ? null :
+          <div className='my-email'>
+            <h1 className='my-info-list'>E-mail</h1>
+            <div className='my-email-disc'>{userInfo.email}</div>
+          </div>
+        }
         {
           accessToken ? null :
           <div className='my-password'>

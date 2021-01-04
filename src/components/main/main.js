@@ -29,6 +29,7 @@ class Main extends Component {
 
   componentDidMount() {
     this.props.LoginChecker();
+    this.props.maintainToken();
   }
 
   /* 셰프에게 추천받기 버튼 서버통신 함수 */

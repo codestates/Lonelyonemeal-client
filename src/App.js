@@ -28,6 +28,7 @@ class App extends Component {
     this.getAccessToken = this.getAccessToken.bind(this);
     this.githubLogout = this.githubLogout.bind(this);
     this.LoginChecker = this.LoginChecker.bind(this);
+    this.maintainToken = this.maintainToken.bind(this);
   }
   /** 세션 유지 코드 **/
   /*
@@ -49,6 +50,7 @@ class App extends Component {
         isLogin :true,
         accessToken: result.data.accessToken
       })
+      localStorage.setItem('token', result.data.accessToken + "");
       let response = await axios.get('https://api.github.com/user', {
       headers: { authorization: `token ${result.data.accessToken}` }
       })
@@ -68,6 +70,13 @@ class App extends Component {
     }
   }
 
+  /* 깃헙 토큰 계속해서 유지시켜주는 함수 */
+  maintainToken() {
+    if(localStorage.getItem('token') && !this.state.accessToken) {
+      this.setState({ accessToken: JSON.parse(localStorage.getItem('token')) });
+    }
+  }
+
   LoginChecker() {
     if(localStorage.getItem('userInfo') && !this.state.isLogin) {
       this.setState({ isLogin: true })
@@ -76,7 +85,7 @@ class App extends Component {
 
   githubLogout() {
     localStorage.clear();
-    this.setState({ accessToken: null })
+    this.setState({ accessToken: null, isLogin: false })
   }
 
   handleLogin() {
@@ -106,8 +115,8 @@ class App extends Component {
     return (
       <div className="App" >
         <Switch>
-          <Route exact path='/main' render={() => <Main isLogin={isLogin} handleLogin={this.handleLogin} LoginChecker={this.LoginChecker}/>} />
-          <Route exact path='/mypage' render ={()=> <Mypage isLogin={isLogin} handleLogin={this.handleLogin} accessToken={accessToken} githubLogout={this.githubLogout} LoginChecker={this.LoginChecker}/>}/>
+          <Route exact path='/main' render={() => <Main isLogin={isLogin} handleLogin={this.handleLogin} LoginChecker={this.LoginChecker} maintainToken={this.maintainToken}/>} />
+          <Route exact path='/mypage' render ={()=> <Mypage isLogin={isLogin} handleLogin={this.handleLogin} accessToken={accessToken} githubLogout={this.githubLogout} LoginChecker={this.LoginChecker} maintainToken={this.maintainToken}/>}/>
           <Route exact path='/intro' render={() => <Intro handleIntroClicked={this.handleIntroClicked} />} />
           <Route exact path='/signin' render = {() => <Signin />} />
           <Route exact path='/signup' render = {() => <Signup />} />

@@ -26,7 +26,10 @@ class Result extends Component {
             link : this.props.resultMenu.link
         }, 
         {withCredentials: true})
-        .then(() => {
+        .then(res => {
+            if(res.data.message === 'recipre exists') {
+                return alert('이미 같은 메뉴가 저장되었습니다!');
+            }
             alert('저장이 완료되었습니다!');
         })
         .catch(err => {
