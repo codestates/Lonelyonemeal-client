@@ -12,7 +12,7 @@ function Recomend({foodName,foodImg,foodLink,saveDate, deleteRecipeLog,key}) {
         <div className="block"></div>
         <div className="explainData">{saveDate}</div>
       </div>
-      <img className="deleteButton" src={x} alt='' onClick={deleteRecipeLog({key})}/>
+      <img className="deleteButton" src={x} alt='' onClick={(e)=>deleteRecipeLog(key)}/>
     </div>
   )
 }
