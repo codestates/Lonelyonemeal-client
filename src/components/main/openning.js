@@ -37,6 +37,7 @@ class Openning extends Component {
       this.setState({chefsMessage: `안녕하세요! 고독한 한끼 입니다.`})
     }
     if(talkingCount === 1) {
+
       this.setState({chefsMessage: '배가 고프신가요?'})
     }
     if(talkingCount === 2) {
@@ -47,6 +48,7 @@ class Openning extends Component {
     }
     if(talkingCount === 4) {
       this.setState({chefsMessage: '눈앞에 보이는 재료를 선택해주세요!'})
+
     }
     if(talkingCount === 5) {
       setTimeout(this.props.handleOpenningClicked, 2000);
