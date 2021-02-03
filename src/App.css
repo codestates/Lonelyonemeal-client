@@ -49,6 +49,11 @@ table {
 	border-spacing: 0;
 }
 
+.App {
+	overflow: hidden;
+	font-style: 'Nanum Gothic';
+}
+
 
 
 

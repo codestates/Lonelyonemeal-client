@@ -1,41 +1,45 @@
 import React, { Component } from 'react'
-import axios from 'axios'
+import x from './img2/X.png'
+
+
+function Recomend({foodName,foodImg,foodLink,saveDate, deleteRecipeLog,id}) {
+
+  return (
+    <div className="saveResult">
+      <a href={foodLink} target="_blank"><img className="saveresultImg" src={foodImg} alt="foodimg"/></a>
+      <div className="saveresultEx">
+        <div className="explainName">{foodName}</div>
+        <div className="block"></div>
+        <div className="explainData">{saveDate}</div>
+      </div>
+      <img className="deleteButton" src={x} alt={id} onClick={(e)=>deleteRecipeLog(e)}/>
+    </div>
+  )
+}
 
 class MyMenu extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-
-    };
   }
 
-  componentDidMount() {
-    /*
-    fetch('https://onemeal.site/users/userinfoup', {
-      method: 'put',
-      headers: { 'Content-Type': 'application/json' },
-      credentials: 'include',
-      body: JSON.stringify({ username: newUsername })
-    })
-    .then(res => res.json())
-    .then(res => {
-      console.log(res.data);
-      this.props.getUserInfo();
-      alert('업로드 성공!');
-    })
-    .catch(err => {
-      console.log(err);
-      alert('업로드 실패..');
-    })
-    */
-  }
- 
   render() {
-    return(
-      <div className='my-menu-wrap'>
-        {}
+    const {accessToken, deleteRecipeLog} = this.props;
+    
+    return (
+      <div className={accessToken ? 'my-menu-wrap-github' : 'my-menu-wrap'}>
+        {accessToken ? null : <div className="menuInt">추천받은 음식</div>}
+        {accessToken ? null : <div className="block" />}
+        {
+          accessToken ?
+          null : 
+          <div className="saveResultbox">
+            {
+              this.props.save.map(item => <Recomend key={item.id} id = {item.id} foodName={item.foodName} foodImg={item.foodImg} foodLink ={item.link} saveDate={item.createdAt} deleteRecipeLog={deleteRecipeLog}/>)
+            }
+          </div >
+        } 
       </div>
-    );
+    )
   }
 }
 

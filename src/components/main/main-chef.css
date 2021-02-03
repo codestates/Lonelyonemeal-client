@@ -56,19 +56,20 @@
     max-width: 500px;
     height: auto;
     left: 35vw;
-    top: 61vh;
+    top: 69vh;
     animation: in 2s forwards;
   }
 
   .main-chef-small {
-    width: 60vw;
-    max-width: 400px;
-    height: auto;
+    width: 50vw;
+    margin-right: 80px;
+    max-width: 500px;
+
   }
 
   .main-chefsTalk-small {
     top: -25vh;
-    left: -68vw;
+    left: -73vw;
     font-size: 1rem;
     text-align: right;
   }

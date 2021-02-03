@@ -1,57 +1,53 @@
 import React, { Component } from 'react'
-import Signin from './signin'
 import x from './img2/X.png'
 import { Link, withRouter } from 'react-router-dom'
 import axios from 'axios'
-import mypage from './mypage'
+
 
 class Result extends Component {
     constructor(props) {
         super(props)
         this.openLoginModal = this.openLoginModal.bind(this)
+        this.saveClick=this.saveClick.bind(this)
     }
 
     openLoginModal() {
         this.props.resultModalHandler();
         this.props.loginModalHandler();
     }
-    //this.signupRequestHandler = this.signupRequestHandler.bind(this);
 
-
-    /*
-    signupRequestHandler() {
-
-        axios({
-            method: 'GET',
-            url: 'https://onemeal.site/resultrecipe',
-            headers: { 'Content-Type': 'application/json' },
-            withCredentials: true,
-            data: { foodName: this.foodName, foodImg: this.foodImg }
+    saveClick(){
+        if(!this.props.isLogin) {
+            return alert('로그인이 필요합니다!')
+        }
+        axios.post("https://onemeal.site/users/saverecipe" ,{
+            foodName: this.props.resultMenu.foodName,
+            foodImg :this.props.resultMenu.foodImg,
+            link : this.props.resultMenu.link
+        }, 
+        {withCredentials: true})
+        .then(res => {
+            if(res.data.message === 'recipre exists') {
+                return alert('이미 같은 메뉴가 저장되었습니다!');
+            }
+            alert('저장이 완료되었습니다!');
         })
-            .then(res => {
-                console.log(res.data);
-            })
-            .catch(err => {
-                console.log(err);
-            })
-    }{this.props.resultMenu.foodName}
-    */
+        .catch(err => {
+            console.log(err)
+        })
+    }
+
     render() {
         return (
             <div className="back">
                 <div className='loginContainer'>
                     <img className='X' src={x} onClick={this.props.resultModalHandler} />
                     <div className="middleContainer">
-                        <div className="title">sdf</div>
-                        {/* <div className="title">{this.props.resultMenu.foodName}</div> */}
+                        <div className="title">{this.props.resultMenu.foodName}</div>
                         <div className="resultName"></div>
-                        {/* <img className="resultImg" src={this.props.resultMenu.foodImgaaaaAazAa} alt ="foodimg" /> */}
-                        <div className="resultImg" />
-                        <div className="save">저장하기</div>
+                        <a href={this.props.resultMenu.link} target="_blank"><img className="resultImg" src={this.props.resultMenu.foodImg} alt="foodimg"/></a>
+                        <div className="save" onClick={this.saveClick}>저장하기</div>
                         <div className='block' />
-                        {/* <div className="goMyPage" onClick={this.goMypage}>마이페이지에서 확인하세요!</div> */}
-                        {/* {this.props.isLogin ? <Link to="/mypage" /> : <Signin />} */}
-                        {/* <Link to ={this.props.isLogin ? "/mypage" : "/"    :} className="goMyPage">마이페이지에서 확인하세요!</Link> */}
                         {
                             this.props.isLogin ?
                             <Link to="/mypage" className="goMyPage">마이페이지에서 확인하세요!</Link> :

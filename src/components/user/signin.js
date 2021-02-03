@@ -2,11 +2,11 @@ import React, { Component } from 'react'
 import logo from './img2/logo.png'
 import github from './img2/github.png'
 import google from './img2/google.png'
-import { Link, withRouter } from 'react-router-dom'
-import axios from 'axios'
+import { withRouter } from 'react-router-dom'
+
 import x from './img2/X.png'
 import Signup from './signup'
-import { GoogleLogin } from "react-google-login"
+
 require('dotenv').config(); 
 
 class Signin extends Component {
@@ -27,16 +27,17 @@ class Signin extends Component {
   }
 
   async githubLoginHandler() {
+    console.log(`누가누가 먼저 실행되나 나는 githubLoginHandler 그리고 로컬스토리지에 ${JSON.parse(localStorage.getItem('userInfo'))}`) //************************************************* */
     let GITHUB_LOGIN_URL = `https://github.com/login/oauth/authorize?client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}`
     window.location.assign(GITHUB_LOGIN_URL)
+    let username = JSON.parse(localStorage.getItem('userInfo')).username
+    this.props.loginHandler(username);
   }
-
-
 
   handleInputValue(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
-
+  
   handleSignupView() {
     this.setState({ showSignupView: !this.state.showSignupView });
   }
@@ -51,11 +52,6 @@ class Signin extends Component {
       })
     }
     else {
-      /*
-      let result = await axios.post("https://onemeal.site/users/login",{email: email , password : password},{headers: { 'Content-Type': 'application/json'} ,withCredentials: true})
-      console.log(result)
-      this.props.loginHandler(result.data.data.username)
-      */
      fetch('https://onemeal.site/users/login', {
       method: 'post',
       headers: { 'Content-Type': 'application/json' },
@@ -64,8 +60,12 @@ class Signin extends Component {
       })
       .then(res => res.json())
       .then(res => {
-        console.log(res.data);
-        this.getUserInfo();
+        if(res.message === "hashPwd exists" || res.message === "Not authorized") {
+          alert('존재하지 않는 사용자 이메일 혹은 비밀번호 입니다.')
+        }
+        else {
+          this.getUserInfo();
+        }
       })
       .catch(err => {
         console.log(err);
@@ -75,11 +75,6 @@ class Signin extends Component {
 
   /* 유저인포 불러오는 함수 */
   getUserInfo() {
-    /*
-    let result = await axios.get("https://onemeal.site/users/userinfo" , {withCredentials: true});
-    console.log(result);
-    console.log('와! 성공!');
-    */
     fetch('https://onemeal.site/users/userinfo', {
     method: 'get',
     headers: { 'Content-Type': 'application/json' },
@@ -89,8 +84,6 @@ class Signin extends Component {
     .then(res => {
       localStorage.setItem('userInfo', JSON.stringify(res.data));
       this.props.loginHandler(res.data.username);
-      console.log(res.data);
-      console.log('와! 성공!');
     })
     .catch(err => {
       console.log(err);
@@ -99,9 +92,6 @@ class Signin extends Component {
 
   render() {
 
-    const responseGoogle = (any) => {
-
-    }
     return (
       this.state.showSignupView ?
         <Signup handleSignupView={this.handleSignupView} loginModalHandler={this.props.loginModalHandler} /> :

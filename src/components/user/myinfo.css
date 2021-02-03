@@ -1,6 +1,13 @@
 .my-info-container {
-  border: 1px solid green;
   width: 50%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.my-info-container-github {
+  width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -57,6 +64,28 @@ button:focus {
   margin-top: 3vh;
 }
 
+.my-pic-github {
+  position: relative;
+  border: 6px solid #F1D42A;
+  background-color: rgb(114, 105, 92);
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  margin-top: 3vh;
+}
+
+.my-pic-github img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.my-pic img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
 .my-pic-upload {
   position: absolute;
   top: 0px;
@@ -66,6 +95,7 @@ button:focus {
   display: flex;
   justify-content: center;
   align-items: center;
+  text-align: center;
   transition: all .3s cubic-bezier(.77,0,.175,1);
   opacity: 0;
   color: white;
@@ -83,6 +113,18 @@ button:focus {
   flex-direction: row;
   justify-content: space-between;
   margin-top: 3vh;
+}
+
+.my-name-gihub {
+  width: 30%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 4vh;
+}
+
+.my-name-disc-github {
+  border: none;
 }
 
 .btn-pic {
@@ -103,4 +145,52 @@ button:focus {
   border-radius: 5px;
   border: none;
   margin-top: 1vh;
+}
+
+@media all and (max-width:767px) {
+
+  .my-info-container {
+    width: 100%;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .my-info-list {
+    font-size: 0.8em;
+    font-weight: 600;
+    text-align: right;
+  }
+
+  .my-pic {
+    position: relative;
+    border: 6px solid #F1D42A;
+    background-color: rgb(114, 105, 92);
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin-top: 1vh;
+  }
+
+  .my-name, .my-email, .my-password{
+    width: 70%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2vh;
+  }
+
+  .my-name-disc, .my-password-disc {
+    width: 100px;
+    height: 10px;
+  }
+
+  
+
+
+
+
+
 }
